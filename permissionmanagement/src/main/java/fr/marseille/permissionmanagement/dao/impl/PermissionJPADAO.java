@@ -2,7 +2,7 @@ package fr.marseille.permissionmanagement.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.PersistenceException;
+import org.apache.log4j.Logger;
 import fr.marseille.permissionmanagement.dao.PermissionDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Permission;
@@ -10,28 +10,58 @@ import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class PermissionJPADAO implements PermissionDAO {
 
-    /**
-     * Default constructor
-     */
+    private static final Logger LOG = Logger.getLogger(PermissionJPADAO.class);
+
     public PermissionJPADAO() {
 
     }
 
     @Override
-    public boolean save(Permission permission) {
+    public boolean save(Permission permission) throws DAOException {
         boolean status = true;
-        JPAUtil.getEntityManager().persist(permission);
+
+        try {
+            JPAUtil.getEntityManager().getTransaction().begin();
+            JPAUtil.getEntityManager().persist(permission);
+            JPAUtil.getEntityManager().getTransaction().commit();
+        } catch (RuntimeException e) {
+            JPAUtil.closeAll();
+            String msg = "persist : " + e.getMessage();
+            LOG.warn(msg);
+            throw new DAOException(msg, e);
+        }
+
         return status;
     }
 
     @Override
-    public List<Permission> findAll() {
-        return new ArrayList<Permission>();
+    public List<Permission> findAll() throws DAOException {
+        List<Permission> permissions = new ArrayList<Permission>();
+
+        try {
+            permissions = (List<Permission>) JPAUtil.getEntityManager().createQuery("from Permission");
+        } catch (RuntimeException e) {
+            JPAUtil.closeAll();
+            String msg = "findAll : " + e.getMessage();
+            LOG.warn(msg);
+            throw new DAOException(msg, e);
+        }
+        return permissions;
     }
 
     @Override
-    public Permission find(Integer id) {
-        return JPAUtil.getEntityManager().find(Permission.class, id);
+    public Permission find(Integer id) throws DAOException {
+        Permission permission = null;
+
+        try {
+            permission = JPAUtil.getEntityManager().find(Permission.class, id);
+        } catch (RuntimeException e) {
+            String msg = "find : " + e.getMessage();
+            LOG.warn(msg);
+            throw new DAOException(msg, e);
+        }
+
+        return permission;
     }
 
     @Override
@@ -40,16 +70,35 @@ public class PermissionJPADAO implements PermissionDAO {
             JPAUtil.getEntityManager().getTransaction().begin();
             JPAUtil.getEntityManager().merge(permission);
             JPAUtil.getEntityManager().getTransaction().commit();
-        } catch (PersistenceException e) {
+        } catch (RuntimeException e) {
             JPAUtil.closeAll();
-            throw new DAOException("persist : " + e.getMessage(), e);
+            String msg = "persist : " + e.getMessage();
+            LOG.warn(msg);
+            throw new DAOException(msg, e);
         }
         return permission;
     }
 
     @Override
-    public void delete(Integer id) {
+    public boolean delete(Integer id) throws DAOException {
+        boolean status = false;
 
+        Permission permission = this.find(id);
+
+        if (null != permission) {
+            try {
+                JPAUtil.getEntityManager().getTransaction().begin();
+                JPAUtil.getEntityManager().remove(permission);
+                JPAUtil.getEntityManager().getTransaction().commit();
+
+            } catch (RuntimeException e) {
+                JPAUtil.closeAll();
+                String msg = "remove : " + e.getMessage();
+                LOG.warn(msg);
+                throw new DAOException(msg, e);
+            }
+        }
+        return status;
     }
 
 }

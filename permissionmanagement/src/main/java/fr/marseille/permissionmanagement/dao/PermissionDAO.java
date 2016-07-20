@@ -14,6 +14,6 @@ public interface PermissionDAO {
 
     public Permission update(Permission permission) throws DAOException;
 
-    public void delete(Integer id) throws DAOException;
+    public boolean delete(Integer id) throws DAOException;
 
 }
