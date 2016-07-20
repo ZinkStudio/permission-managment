@@ -3,6 +3,8 @@ package fr.marseille.permissionmanagement.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import fr.marseille.permissionmanagement.dao.DAOFactory;
 import fr.marseille.permissionmanagement.dao.UserDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
@@ -15,8 +17,7 @@ import fr.marseille.permissionmanagement.model.User;
  */
 public class UserService {
 
-	// private static final Logger LOG =
-	// LogManager.getLogger(FormateurService.class);
+	private static final Logger LOG = Logger.getLogger(UserService.class);
 
 	private UserDAO userDAO = DAOFactory.getUserDAO();
 
@@ -31,13 +32,15 @@ public class UserService {
 	 * 
 	 */
 	public List<User> findAll() throws ServiceException {
-		List<User> lstUsers = new ArrayList<>();
+		List<User> users = new ArrayList<>();
 		try {
-			lstUsers = userDAO.findAll();
+			users = userDAO.findAll();
+			UserService.LOG.debug("users found : " + users.size());
 		} catch (DAOException e) {
+			UserService.LOG.error("findAll : " + e.getMessage());
 			throw new ServiceException(e.getMessage(), e);
 		}
-		return lstUsers;
+		return users;
 	}
 
 	/**
@@ -47,9 +50,9 @@ public class UserService {
 	public User update(User user) throws ServiceException {
 		try {
 			userDAO.update(user);
-			// UserService.LOG.info("Log user id : " + user.getId() + " is
-			// updated "));
+			UserService.LOG.debug("Log user id updated : " + user.getId());
 		} catch (DAOException e) {
+			UserService.LOG.error("update : " + e.getMessage());
 			throw new ServiceException(e.getMessage(), e);
 		}
 		return user;
@@ -62,9 +65,9 @@ public class UserService {
 	public void delete(Integer id) throws ServiceException {
 		try {
 			userDAO.delete(id);
-			// UserService.LOG.warning("Log user id : " + id + " is suppressed
-			// "));
+			UserService.LOG.debug("Log user id deleted : " + id);
 		} catch (DAOException e) {
+			UserService.LOG.error("delete : " + e.getMessage());
 			throw new ServiceException(e.getMessage(), e);
 		}
 	}
@@ -76,8 +79,9 @@ public class UserService {
 	public User save(User user) throws ServiceException {
 		try {
 			userDAO.save(user);
-			// UserService.LOG.debug("Log user id : " + user.getId());
+			UserService.LOG.debug("Log user id saved : " + user.getId());
 		} catch (DAOException e) {
+			UserService.LOG.error("save : " + e.getMessage());
 			throw new ServiceException(e.getMessage(), e);
 		}
 		return user;
@@ -93,9 +97,9 @@ public class UserService {
 		User user;
 		try {
 			user = userDAO.find(id);
-			// UserService.LOG.info("Log user id : " + id + " is found
-			// "));
+			UserService.LOG.debug("Log user id found : " + id);
 		} catch (DAOException e) {
+			UserService.LOG.error("find : " + e.getMessage());
 			throw new ServiceException(e.getMessage(), e);
 		}
 		return user;
