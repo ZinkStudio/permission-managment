@@ -1,5 +1,7 @@
 package fr.marseille.permissionmanagement.dao;
 
+import java.util.List;
+import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Profile;
 
 /**
@@ -10,26 +12,26 @@ public interface ProfileDAO {
     /**
      * 
      */
-    public void save(Profile profile);
+    Profile save(Profile profile) throws DAOException;
 
     /**
      * 
      */
-    public void findAll();
+    List<Profile> findAll() throws DAOException;
 
     /**
      * 
      */
-    public void find(Integer id);
+    Profile find(Integer id) throws DAOException;
 
     /**
      * 
      */
-    public void update(Profile profile);
+    public void update(Profile profile) throws DAOException;
 
     /**
      * 
      */
-    public void delete(Integer id);
+    public Boolean delete(Integer id) throws DAOException;
 
 }
