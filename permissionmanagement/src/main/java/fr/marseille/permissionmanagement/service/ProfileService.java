@@ -46,7 +46,7 @@ public class ProfileService {
         List<Profile> list = new ArrayList<>();
         try {
             list = profileDAO.findAll();
-            LOG.debug("profiles found:" + list.size());
+            LOG.debug("profile found:" + list.size());
         } catch (RuntimeException e) {
 
             String msg = "findAll : " + e.getMessage();
