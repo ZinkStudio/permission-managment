@@ -6,36 +6,37 @@ import fr.marseille.permissionmanagement.dao.impl.UserJPADAO;
 
 public class DAOFactory {
 
-	private static RightDAO right;
+    private static RightDAO   right;
 
-	private static ProfileDAO profile;
+    private static ProfileDAO profile;
 
-	// added from home
-	private static UserDAO user;
+    // added from home
+    private static UserDAO    user;
 
-	// added from home
-	public static UserDAO getUserDAO() {
-		if (null == user) {
-			user = new UserJPADAO();
-		}
+    // added from home
+    // added from home222
+    public static UserDAO getUserDAO() {
+        if (null == user) {
+            user = new UserJPADAO();
+        }
 
-		return user;
-	}
+        return user;
+    }
 
-	public static ProfileDAO getProfileDAO() {
-		if (null == profile) {
-			profile = new ProfileJPADAO();
-		}
+    public static ProfileDAO getProfileDAO() {
+        if (null == profile) {
+            profile = new ProfileJPADAO();
+        }
 
-		return profile;
-	}
+        return profile;
+    }
 
-	public static RightDAO getRightDAO() {
+    public static RightDAO getRightDAO() {
 
-		if (null == right) {
-			right = new RightJPADAO();
-		}
+        if (null == right) {
+            right = new RightJPADAO();
+        }
 
-		return right;
-	}
+        return right;
+    }
 }
