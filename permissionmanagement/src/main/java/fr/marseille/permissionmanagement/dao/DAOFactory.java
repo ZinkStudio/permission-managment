@@ -14,7 +14,7 @@ public class DAOFactory {
     private static UserDAO    user;
 
     // added from home
-    // added from home222
+    // added from home
     public static UserDAO getUserDAO() {
         if (null == user) {
             user = new UserJPADAO();
