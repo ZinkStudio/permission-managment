@@ -12,26 +12,26 @@ public interface ProfileDAO {
     /**
      * 
      */
-    Profile save(Profile profile) throws DAOException;
+    public boolean save(Profile profile) throws DAOException;
 
     /**
      * 
      */
-    List<Profile> findAll() throws DAOException;
+    public List<Profile> findAll() throws DAOException;
 
     /**
      * 
      */
-    Profile find(Integer id) throws DAOException;
+    public Profile find(Integer id) throws DAOException;
 
     /**
      * 
      */
-    public void update(Profile profile) throws DAOException;
+    public Profile update(Profile profile) throws DAOException;
 
     /**
      * 
      */
-    public Boolean delete(Integer id) throws DAOException;
+    public boolean delete(Integer id) throws DAOException;
 
 }
