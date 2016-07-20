@@ -1,44 +1,74 @@
 package fr.marseille.permissionmanagement.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.apache.log4j.Logger;
+import fr.marseille.permissionmanagement.dao.DAOFactory;
 import fr.marseille.permissionmanagement.dao.PermissionDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
+import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 
 public class PermissionService {
 
-    public PermissionDAO permissionDAO;
+    private static final Logger LOG           = Logger.getLogger(PermissionService.class);
+
+    public PermissionDAO        permissionDAO = DAOFactory.getPermissionDAO();
 
     public PermissionService() {
 
     }
 
-    /**
-     * @throws DAOException
-     */
-    public List<Permission> findAll() throws DAOException {
-        return permissionDAO.findAll();
+    public List<Permission> findAll() throws ServiceException {
+        List<Permission> permissions = new ArrayList<Permission>();
+
+        try {
+            permissions = permissionDAO.findAll();
+            LOG.debug("permissions found : " + permissions.size());
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+
+        return permissions;
     }
 
-    /**
-     * 
-     */
-    public void update(Permission permission) {
-        // TODO implement here
+    public Permission update(Permission permission) throws ServiceException {
+        try {
+            permission = permissionDAO.update(permission);
+            LOG.debug("update permission id : " + permission.getId());
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+
+        return permission;
     }
 
-    /**
-     * 
-     */
-    public void delete(Integer id) {
-        // TODO implement here
+    public boolean delete(Integer id) throws ServiceException {
+        boolean status = false;
+        try {
+            status = permissionDAO.delete(id);
+        } catch (DAOException e) {
+            status = false;
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+
+        return status;
     }
 
-    /**
-     * 
-     */
-    public void save(Permission permission) {
-        // TODO implement here
+    public boolean save(Permission permission) throws ServiceException {
+        boolean status = false;
+        try {
+            status = permissionDAO.save(permission);
+        } catch (DAOException e) {
+            status = false;
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+
+        return status;
     }
 
 }

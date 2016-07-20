@@ -18,16 +18,18 @@ public class PermissionJPADAO implements PermissionDAO {
 
     @Override
     public boolean save(Permission permission) throws DAOException {
-        boolean status = true;
+        boolean status = false;
 
         try {
             JPAUtil.getEntityManager().getTransaction().begin();
             JPAUtil.getEntityManager().persist(permission);
             JPAUtil.getEntityManager().getTransaction().commit();
+            status = true;
         } catch (RuntimeException e) {
+            status = false;
             JPAUtil.closeAll();
             String msg = "persist : " + e.getMessage();
-            LOG.warn(msg);
+            LOG.error(msg);
             throw new DAOException(msg, e);
         }
 
@@ -43,9 +45,10 @@ public class PermissionJPADAO implements PermissionDAO {
         } catch (RuntimeException e) {
             JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
-            LOG.warn(msg);
+            LOG.error(msg);
             throw new DAOException(msg, e);
         }
+
         return permissions;
     }
 
@@ -57,7 +60,7 @@ public class PermissionJPADAO implements PermissionDAO {
             permission = JPAUtil.getEntityManager().find(Permission.class, id);
         } catch (RuntimeException e) {
             String msg = "find : " + e.getMessage();
-            LOG.warn(msg);
+            LOG.error(msg);
             throw new DAOException(msg, e);
         }
 
@@ -72,10 +75,11 @@ public class PermissionJPADAO implements PermissionDAO {
             JPAUtil.getEntityManager().getTransaction().commit();
         } catch (RuntimeException e) {
             JPAUtil.closeAll();
-            String msg = "persist : " + e.getMessage();
-            LOG.warn(msg);
+            String msg = "update : " + e.getMessage();
+            LOG.error(msg);
             throw new DAOException(msg, e);
         }
+
         return permission;
     }
 
@@ -90,14 +94,16 @@ public class PermissionJPADAO implements PermissionDAO {
                 JPAUtil.getEntityManager().getTransaction().begin();
                 JPAUtil.getEntityManager().remove(permission);
                 JPAUtil.getEntityManager().getTransaction().commit();
-
+                status = true;
             } catch (RuntimeException e) {
+                status = false;
                 JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
-                LOG.warn(msg);
+                LOG.error(msg);
                 throw new DAOException(msg, e);
             }
         }
+
         return status;
     }
 
