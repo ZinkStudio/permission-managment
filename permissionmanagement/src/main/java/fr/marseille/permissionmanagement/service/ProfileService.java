@@ -1,8 +1,8 @@
 package fr.marseille.permissionmanagement.service;
 
 import fr.marseille.permissionmanagement.dao.ProfileDAO;
+import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
-import fr.marseille.permissionmanagement.model.Right;
 
 /**
  * 
@@ -51,14 +51,14 @@ public class ProfileService {
     /**
      * 
      */
-    public void exclude(Profile profile, Right right) {
+    public void exclude(Profile profile, Permission permission) {
         // TODO implement here
     }
 
     /**
      * 
      */
-    public void include(Profile profile, Right right) {
+    public void include(Profile profile, Permission permission) {
         // TODO implement here
     }
 

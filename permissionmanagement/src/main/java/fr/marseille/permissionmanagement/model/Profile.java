@@ -19,27 +19,27 @@ public class Profile implements Serializable {
     /**
      * 
      */
-    private Integer     id;
+    private Integer          id;
 
     /**
      * 
      */
-    private String      name;
+    private String           name;
 
     /**
      * 
      */
-    private String      description;
+    private String           description;
 
     /**
      * 
      */
-    private List<Right> rights;
+    private List<Permission> permissions;
 
     /**
      * 
      */
-    private List<User>  users;
+    private List<User>       users;
 
     public Integer getId() {
         return id;
@@ -65,12 +65,12 @@ public class Profile implements Serializable {
         this.description = description;
     }
 
-    public List<Right> getRights() {
-        return rights;
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setRights(List<Right> rights) {
-        this.rights = rights;
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     public List<User> getUsers() {

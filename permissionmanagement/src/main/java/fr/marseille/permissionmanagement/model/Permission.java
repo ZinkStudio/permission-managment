@@ -8,37 +8,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Right implements Serializable {
+public class Permission implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor
-     */
-    public Right() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer       id;
+    private Integer           id;
 
-    /**
-     * 
-     */
-    private String        key;
+    private String            key;
 
-    /**
-     * 
-     */
-    private List<String>  label;
+    private List<String>      label;
 
-    /**
-     * 
-     */
-    private List<Profile> profiles;
+    private List<Profile>     profiles;
+
+    private List<Language>    languages;
+
+    public Permission() {
+
+    }
 
     public Integer getId() {
         return id;
@@ -70,6 +58,14 @@ public class Right implements Serializable {
 
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
+    }
+
+    public List<Language> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(List<Language> languages) {
+        this.languages = languages;
     }
 
 }

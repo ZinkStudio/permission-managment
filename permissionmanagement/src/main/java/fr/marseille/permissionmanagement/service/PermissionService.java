@@ -1,29 +1,29 @@
 package fr.marseille.permissionmanagement.service;
 
 import java.util.List;
-import fr.marseille.permissionmanagement.dao.RightDAO;
+import fr.marseille.permissionmanagement.dao.PermissionDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
-import fr.marseille.permissionmanagement.model.Right;
+import fr.marseille.permissionmanagement.model.Permission;
 
-public class RightService {
+public class PermissionService {
 
-    public RightDAO rightDAO;
+    public PermissionDAO permissionDAO;
 
-    public RightService() {
+    public PermissionService() {
 
     }
 
     /**
      * @throws DAOException
      */
-    public List<Right> findAll() throws DAOException {
-        return rightDAO.findAll();
+    public List<Permission> findAll() throws DAOException {
+        return permissionDAO.findAll();
     }
 
     /**
      * 
      */
-    public void update(Right right) {
+    public void update(Permission permission) {
         // TODO implement here
     }
 
@@ -37,7 +37,7 @@ public class RightService {
     /**
      * 
      */
-    public void save(Right right) {
+    public void save(Permission permission) {
         // TODO implement here
     }
 

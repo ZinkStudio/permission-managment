@@ -1,6 +1,7 @@
 package fr.marseille.permissionmanagement.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Language implements Serializable {
 
@@ -12,11 +13,13 @@ public class Language implements Serializable {
     public Language() {
     }
 
-    private Integer id;
+    private Integer          id;
 
-    private String  locale;
+    private String           locale;
 
-    private Boolean isDefault;
+    private Boolean          isDefault;
+
+    private List<Permission> permissions;
 
     public Integer getId() {
         return id;
@@ -40,6 +43,14 @@ public class Language implements Serializable {
 
     public void setIsDefault(Boolean isDefault) {
         this.isDefault = isDefault;
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 
 }

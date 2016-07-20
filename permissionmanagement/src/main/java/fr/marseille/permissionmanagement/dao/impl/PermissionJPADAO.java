@@ -3,53 +3,52 @@ package fr.marseille.permissionmanagement.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.PersistenceException;
-import fr.marseille.permissionmanagement.dao.RightDAO;
+import fr.marseille.permissionmanagement.dao.PermissionDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
-import fr.marseille.permissionmanagement.model.Right;
+import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
-public class RightJPADAO implements RightDAO {
+public class PermissionJPADAO implements PermissionDAO {
 
     /**
      * Default constructor
      */
-    public RightJPADAO() {
+    public PermissionJPADAO() {
 
     }
 
     @Override
-    public boolean save(Right right) {
+    public boolean save(Permission permission) {
         boolean status = true;
-        JPAUtil.getEntityManager().persist(right);
+        JPAUtil.getEntityManager().persist(permission);
         return status;
     }
 
     @Override
-    public List<Right> findAll() {
-        return new ArrayList<Right>();
+    public List<Permission> findAll() {
+        return new ArrayList<Permission>();
     }
 
     @Override
-    public Right find(Integer id) {
-        return JPAUtil.getEntityManager().find(Right.class, id);
+    public Permission find(Integer id) {
+        return JPAUtil.getEntityManager().find(Permission.class, id);
     }
 
     @Override
-    public Right update(Right right) throws DAOException {
+    public Permission update(Permission permission) throws DAOException {
         try {
             JPAUtil.getEntityManager().getTransaction().begin();
-            JPAUtil.getEntityManager().merge(right);
+            JPAUtil.getEntityManager().merge(permission);
             JPAUtil.getEntityManager().getTransaction().commit();
         } catch (PersistenceException e) {
             JPAUtil.closeAll();
             throw new DAOException("persist : " + e.getMessage(), e);
         }
-        return right;
+        return permission;
     }
 
     @Override
     public void delete(Integer id) {
-        // TODO Auto-generated method stub
 
     }
 
