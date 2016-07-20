@@ -2,7 +2,12 @@ package fr.marseille.permissionmanagement.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Profile implements Serializable {
 
     /**
@@ -16,9 +21,9 @@ public class Profile implements Serializable {
     public Profile() {
     }
 
-    /**
-     * 
-     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Integer          id;
 
     /**
@@ -75,6 +80,15 @@ public class Profile implements Serializable {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public Profile(Integer id, String name, String description, List<Permission> permissions, List<User> users) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.permissions = permissions;
+        this.users = users;
     }
 
     public void setUsers(List<User> users) {

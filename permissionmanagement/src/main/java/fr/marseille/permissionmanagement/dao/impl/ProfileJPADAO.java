@@ -1,11 +1,16 @@
 package fr.marseille.permissionmanagement.dao.impl;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import fr.marseille.permissionmanagement.dao.ProfileDAO;
 import fr.marseille.permissionmanagement.model.Profile;
 
 /**
  * 
  */
+
 public class ProfileJPADAO implements ProfileDAO {
 
     public ProfileJPADAO() {
@@ -13,33 +18,77 @@ public class ProfileJPADAO implements ProfileDAO {
     }
 
     @Override
-    public void save(Profile profile) {
-        // TODO Auto-generated method stub
+    public Profile save(Profile profile) {
+        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+        // Debute une transaction
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(profile);
+        entityManager.getTransaction().commit();
+        return profile;
 
     }
 
     @Override
-    public void findAll() {
-        // TODO Auto-generated method stub
+    public List<Profile> findAll() {
+        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+        // Debute une transaction
+
+        entityManager.getTransaction().begin();
+        List<Profile> profiles = (List<Profile>) entityManager.createQuery("from Profile");
+        entityManager.getTransaction().commit();
+        return profiles;
 
     }
 
     @Override
-    public void find(Integer id) {
+    public Profile find(Integer id) {
+        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+        // Debute une transaction
+
+        entityManager.getTransaction().begin();
+
+        Profile profile = entityManager.find(Profile.class, id);
+
+        return profile;
+
         // TODO Auto-generated method stub
 
     }
 
     @Override
     public void update(Profile profile) {
-        // TODO Auto-generated method stub
+        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+        // Debute une transaction
 
+        entityManager.getTransaction().begin();
+        entityManager.find(Profile.class, profile.getId());
+        entityManager.merge(profile);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entitiManagerFactory.close();
     }
 
     @Override
-    public void delete(Integer id) {
-        // TODO Auto-generated method stub
+    public Boolean delete(Integer id) {
+        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+        // Debute une transaction
 
+        entityManager.getTransaction().begin();
+
+        Profile profile = entityManager.find(Profile.class, id);
+        entityManager.remove(profile);
+        entityManager.getTransaction().commit();
+
+        entityManager.close();
+        entitiManagerFactory.close();
+        return true;
     }
 
 }
