@@ -1,5 +1,8 @@
 package fr.marseille.permissionmanagement.dao;
 
+import java.util.List;
+
+import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.User;
 
 /**
@@ -7,29 +10,35 @@ import fr.marseille.permissionmanagement.model.User;
  */
 public interface UserDAO {
 
-    /**
-     * 
-     */
-    public void save(User user);
+	/**
+	 * @return
+	 * @throws DAOException
+	 * 
+	 */
+	public boolean save(User user) throws DAOException;
 
-    /**
-     * 
-     */
-    public void findAll();
+	/**
+	 * @return
+	 * 
+	 */
+	public List<User> findAll() throws DAOException;
 
-    /**
-     * 
-     */
-    public void find(Integer id);
+	/**
+	 * @return
+	 * 
+	 */
+	public User find(Integer id) throws DAOException;
 
-    /**
-     * 
-     */
-    public void update(User user);
+	/**
+	 * @return
+	 * 
+	 */
+	public User update(User user) throws DAOException;
 
-    /**
-     * 
-     */
-    public void delete(Integer id);
+	/**
+	 * @return
+	 * 
+	 */
+	public boolean delete(Integer id) throws DAOException;
 
 }
