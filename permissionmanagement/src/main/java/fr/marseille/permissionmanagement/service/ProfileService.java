@@ -11,7 +11,7 @@ import fr.marseille.permissionmanagement.model.Profile;
 
 public class ProfileService {
     private static final Logger LOG        = Logger.getLogger(ProfileService.class);
-    private ProfileDAO          ProfileDAO = DAOFactory.getProfileDAO();
+    private ProfileDAO          profileDAO = DAOFactory.getProfileDAO();
 
     /**
      * Default constructor
@@ -37,7 +37,6 @@ public class ProfileService {
     /**
      * 
      */
-    public ProfileDAO profileDAO;
 
     /**
      * @throws DAOException
