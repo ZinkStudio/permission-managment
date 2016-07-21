@@ -24,6 +24,14 @@ public class User implements Serializable {
     public User() {
     }
 
+    public User(Integer id, String name, String firstName, String comment) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.firstName = firstName;
+        this.comment = comment;
+    }
+
     public User(Integer id, String name, String firstName, String comment, List<Profile> profiles) {
         super();
         this.id = id;

@@ -1,28 +1,19 @@
 package fr.marseille.permissionmanagement.bean;
 
+import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import fr.marseille.permissionmanagement.model.User;
+import fr.marseille.permissionmanagement.service.UserService;
 
-@ManagedBean(name = "UserController")
-@RequestScoped
+@ManagedBean(name = "userController")
+@ApplicationScoped
 public class UserController {
 
-    private String message = "Welcome to the Users'page ";
+    private UserService userService = new UserService();
 
-    public UserController() {
-        super();
-    }
-
-    public String nextPage(String page) {
-        return page;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public List<User> createUsers() {
+        return userService.createUsers();
     }
 
 }
