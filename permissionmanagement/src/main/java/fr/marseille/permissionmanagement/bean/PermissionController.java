@@ -1,48 +1,18 @@
 package fr.marseille.permissionmanagement.bean;
 
+import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import fr.marseille.permissionmanagement.model.Permission;
+import fr.marseille.permissionmanagement.service.PermissionService;
 
-@ManagedBean(name = "PermissionController")
-@RequestScoped
+@ManagedBean(name = "permissionController")
+@ApplicationScoped
 public class PermissionController {
 
-    private String message  = "";
-    private String password = "1234";
+    private PermissionService permissionService = new PermissionService();
 
-    public PermissionController() {
-        super();
+    public List<Permission> createPermissions() {
+        return permissionService.createPermissions(10);
     }
-
-    /**
-     * ajout d'une methode publique me permettant de faire une redirection dynamique vers une autre page
-     */
-
-    public String nextPage() {
-        if (message.isEmpty()) {
-            return null;
-        }
-        return "redirectPage";
-    }
-
-    public String nextPage(String page) {
-        return page;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 }

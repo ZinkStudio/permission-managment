@@ -19,6 +19,20 @@ public class PermissionService {
 
     }
 
+    public List<Permission> createPermissions(int size) {
+        List<Permission> permissions = new ArrayList<Permission>();
+
+        for (int i = 0; i < size; i++) {
+            List<String> labels = new ArrayList<>();
+            labels.add("mainapp" + i + ".manage.add");
+            labels.add("mainapp" + i + ".manage.list");
+            labels.add("mainapp" + i + ".manage.update");
+            permissions.add(new Permission(i, "mainapp.ressource" + i, labels));
+        }
+
+        return permissions;
+    }
+
     public List<Permission> findAll() throws ServiceException {
         List<Permission> permissions = new ArrayList<Permission>();
 

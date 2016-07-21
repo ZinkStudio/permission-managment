@@ -9,7 +9,15 @@
 	<title>permission : index</title>
 </h:head>
 <h:body>
-	<p:outputLabel value="Editor :"/>
-	<p:editor />
+	<p:outputLabel value="Editor :" />
+	<p:dataTable var="permission" value="#{dtPermissionView.permissions}">
+		<p:column headerText="Id">
+			<h:outputText value="#{permission.id}" />
+		</p:column>
+
+		<p:column headerText="Key">
+			<h:outputText value="#{permission.key}" />
+		</p:column>
+	</p:dataTable>
 </h:body>
 </html>

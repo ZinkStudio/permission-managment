@@ -28,6 +28,13 @@ public class Permission implements Serializable {
 
     }
 
+    public Permission(Integer id, String key, List<String> label) {
+        super();
+        this.id = id;
+        this.key = key;
+        this.label = label;
+    }
+
     public Integer getId() {
         return id;
     }
