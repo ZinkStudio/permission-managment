@@ -25,6 +25,15 @@ public class UserService {
     public UserService() {
     }
 
+    public List<User> createUsers() {
+        List<User> users = new ArrayList<User>();
+
+        for (int i = 0; i < 10; i++) {
+            users.add(new User(i, "name" + i, "firstName" + i, "super comment" + i));
+        }
+        return users;
+    }
+
     /**
      * @throws ServiceException
      */

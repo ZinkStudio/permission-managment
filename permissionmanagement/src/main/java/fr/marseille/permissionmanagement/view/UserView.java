@@ -1,41 +1,38 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.model.TreeNode;
+import fr.marseille.permissionmanagement.bean.UserController;
+import fr.marseille.permissionmanagement.model.User;
 
-@ManagedBean(name = "ttBasicView")
+@ManagedBean(name = "dtUserView")
 @ViewScoped
 public class UserView implements Serializable {
 
-    private TreeNode root;
-    // private Document selectedDocument;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-    // @ManagedProperty("#{documentService}")
-    // private DocumentService service;
+    private List<User>        users;
+
+    @ManagedProperty("#{userController}")
+    private UserController    controller;
 
     @PostConstruct
     public void init() {
-        // root = service.createDocuments();
+        users = controller.createUsers();
     }
 
-    public TreeNode getRoot() {
-        return root;
+    public List<User> getUsers() {
+        return users;
     }
 
-    // public void setService(DocumentService service) {
-    // this.service = service;
-    // }
-    //
-    // public Document getSelectedDocument() {
-    // return selectedDocument;
-    // }
-    //
-    // public void setSelectedDocument(Document selectedDocument) {
-    // this.selectedDocument = selectedDocument;
-    // }
-    // }
-    //
+    public void setController(UserController controller) {
+        this.controller = controller;
+    }
 }
