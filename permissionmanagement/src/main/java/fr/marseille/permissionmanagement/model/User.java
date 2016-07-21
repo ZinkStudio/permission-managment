@@ -8,25 +8,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-/**
- * 
- */
 @Entity
 public class User implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor
-     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer           id;
+
+    private String            name;
+
+    private String            firstName;
+
+    private String            comment;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Profile>     profiles;
+
     public User() {
     }
 
     public User(Integer id, String name, String firstName, String comment) {
-        super();
+        this();
         this.id = id;
         this.name = name;
         this.firstName = firstName;
@@ -34,41 +38,9 @@ public class User implements Serializable {
     }
 
     public User(Integer id, String name, String firstName, String comment, List<Profile> profiles) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.firstName = firstName;
-        this.comment = comment;
+        this(id, name, firstName, comment);
         this.profiles = profiles;
     }
-
-    /**
-     * 
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer       id;
-
-    /**
-     * 
-     */
-    private String        name;
-
-    /**
-     * 
-     */
-    private String        firstName;
-
-    /**
-     * 
-     */
-    private String        comment;
-
-    /**
-     * 
-     */
-    @ManyToMany
-    private List<Profile> profiles;
 
     public Integer getId() {
         return id;

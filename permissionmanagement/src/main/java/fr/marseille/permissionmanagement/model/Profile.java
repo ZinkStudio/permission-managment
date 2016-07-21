@@ -11,43 +11,38 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Profile implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
-
-    /**
-     * Default constructor
-     */
-    public Profile() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer           id;
 
-    private Integer          id;
+    private String            name;
 
-    /**
-     * 
-     */
-    private String           name;
+    private String            description;
 
-    /**
-     * 
-     */
-    private String           description;
-
-    /**
-     * 
-     */
     @ManyToMany
-    private List<Permission> permissions;
+    private List<Permission>  permissions;
 
-    /**
-     * 
-     */
     @ManyToMany
-    private List<User>       users;
+    private List<User>        users;
+
+    public Profile() {
+
+    }
+
+    public Profile(Integer id, String name, String description) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Profile(Integer id, String name, String description, List<Permission> permissions, List<User> users) {
+        this(id, name, description);
+        this.permissions = permissions;
+        this.users = users;
+    }
 
     public Integer getId() {
         return id;
@@ -85,24 +80,8 @@ public class Profile implements Serializable {
         return users;
     }
 
-    public Profile(Integer id, String name, String description, List<Permission> permissions, List<User> users) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.permissions = permissions;
-        this.users = users;
-    }
-
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public Profile(Integer id, String name, String description) {
-        super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
     }
 
 }

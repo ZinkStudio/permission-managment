@@ -25,6 +25,46 @@
 		<log4j.version>1.2.13</log4j.version>
 	</properties>
 
+	<!-- Gestion des profils : utile pour simplifier la gestion du persistence.xml -->
+	<profiles>
+
+		<profile>
+			<id>nicolas</id>
+			<properties>
+				<jdbc.password>Marseille</jdbc.password>
+				<jdbc.hbm2ddl.auto>create</jdbc.hbm2ddl.auto>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>louiza</id>
+			<properties>
+				<jdbc.password>Human123Booster</jdbc.password>
+				<jdbc.hbm2ddl.auto>create</jdbc.hbm2ddl.auto>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>soraya</id>
+			<properties>
+				<jdbc.password>qassim2015</jdbc.password>
+				<jdbc.hbm2ddl.auto>create</jdbc.hbm2ddl.auto>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>antony</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<jdbc.password>sonicmaster</jdbc.password>
+				<jdbc.hbm2ddl.auto>create</jdbc.hbm2ddl.auto>
+			</properties>
+		</profile>
+
+	</profiles>
+
 	<dependencies>
 
 		<!-- junit -->
@@ -82,8 +122,8 @@
 			<artifactId>jstl</artifactId>
 			<version>${jstl.version}</version>
 		</dependency>
-		
-<!-- 		log4j -->
+
+		<!-- log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>

@@ -20,9 +20,9 @@ public class Permission implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer               id;
 
-    private String                key;
+    private String                entry;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "permissions")
     private List<Profile>         profiles;
 
     @OneToMany(mappedBy = "permission", cascade = { CascadeType.ALL })
@@ -33,10 +33,10 @@ public class Permission implements Serializable {
 
     }
 
-    public Permission(Integer id, String key) {
+    public Permission(Integer id, String entry) {
         super();
         this.id = id;
-        this.key = key;
+        this.entry = entry;
     }
 
     public Integer getId() {
@@ -47,12 +47,12 @@ public class Permission implements Serializable {
         this.id = id;
     }
 
-    public String getKey() {
-        return key;
+    public String getEntry() {
+        return entry;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setEntry(String entry) {
+        this.entry = entry;
     }
 
     public List<Profile> getProfiles() {
