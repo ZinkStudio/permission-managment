@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * 
@@ -66,6 +67,7 @@ public class User implements Serializable {
     /**
      * 
      */
+    @ManyToMany
     private List<Profile> profiles;
 
     public Integer getId() {

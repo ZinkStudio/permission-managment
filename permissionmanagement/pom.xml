@@ -22,7 +22,7 @@
 		<jstl.version>1.2</jstl.version>
 		<jsf.version>2.2.4</jsf.version>
 		<maven.compiler.version>2.3.2</maven.compiler.version>
-		<log4j.version>1.2.9</log4j.version>
+		<log4j.version>1.2.13</log4j.version>
 	</properties>
 
 	<dependencies>
@@ -83,7 +83,7 @@
 			<version>${jstl.version}</version>
 		</dependency>
 		
-		<!-- log4j -->
+<!-- 		log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
