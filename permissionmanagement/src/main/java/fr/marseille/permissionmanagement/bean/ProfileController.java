@@ -1,4 +1,4 @@
-package fr.marseille.permissionmanagement.beans;
+package fr.marseille.permissionmanagement.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
