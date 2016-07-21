@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3c.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:c="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Indexjsf.xhtml</title>
-</head>
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>List of the users</title>
+</h:head>
 <body>
-<p>salut</p>
-	<p:editor />
+	<h3>
+		<h:outputText id="headOfPage" value="List of the users" />
+		<br />
+	</h3>
+<!-- 	<h:form id="UserForm"> -->
+<!-- 		 <p:treeTable value="#{ttBasicView.root}" var="document"> -->
+<!--         <f:facet name="header"> -->
+<!--             Document Viewer -->
+<!--         </f:facet> -->
+<!--         <p:column headerText="Name" sortBy="#{document.name}"> -->
+<!--             <h:outputText value="#{document.name}" /> -->
+<!--         </p:column> -->
+<!--         <p:column headerText="Size" sortBy="#{document.size}"> -->
+<!--             <h:outputText value="#{document.size}" /> -->
+<!--         </p:column> -->
+<!--         <p:column headerText="Type"  sortBy="#{document.type}"> -->
+<!--             <h:outputText value="#{document.type}" /> -->
+<!--         </p:column> -->
+<!--     </p:treeTable> -->
+<!-- 		<!-- Redirection statique vers la page principale --> -->
+<!-- 		 <h:commandButton id="buttonValider" action="indexjsf.xhtml" value="OK"></h:commandButton> -->
+<!-- 	</h:form> -->
 </body>
 </html>
