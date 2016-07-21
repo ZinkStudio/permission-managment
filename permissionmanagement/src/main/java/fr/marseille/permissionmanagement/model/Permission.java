@@ -2,37 +2,41 @@ package fr.marseille.permissionmanagement.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Permission implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long     serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer           id;
+    private Integer               id;
 
-    private String            key;
+    private String                key;
 
-    private List<String>      label;
+    @ManyToMany
+    private List<Profile>         profiles;
 
-    private List<Profile>     profiles;
-
-    private List<Language>    languages;
+    @OneToMany(mappedBy = "permission", cascade = { CascadeType.ALL })
+    @OrderBy("language")
+    private List<PermissionLabel> labels;
 
     public Permission() {
 
     }
 
-    public Permission(Integer id, String key, List<String> label) {
+    public Permission(Integer id, String key) {
         super();
         this.id = id;
         this.key = key;
-        this.label = label;
     }
 
     public Integer getId() {
@@ -51,14 +55,6 @@ public class Permission implements Serializable {
         this.key = key;
     }
 
-    public List<String> getLabel() {
-        return label;
-    }
-
-    public void setLabel(List<String> label) {
-        this.label = label;
-    }
-
     public List<Profile> getProfiles() {
         return profiles;
     }
@@ -67,12 +63,12 @@ public class Permission implements Serializable {
         this.profiles = profiles;
     }
 
-    public List<Language> getLanguages() {
-        return languages;
+    public List<PermissionLabel> getLabels() {
+        return labels;
     }
 
-    public void setLanguages(List<Language> languages) {
-        this.languages = languages;
+    public void setLabels(List<PermissionLabel> labels) {
+        this.labels = labels;
     }
 
 }

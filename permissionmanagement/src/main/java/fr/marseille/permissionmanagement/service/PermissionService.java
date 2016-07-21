@@ -20,14 +20,10 @@ public class PermissionService {
     }
 
     public List<Permission> createPermissions(int size) {
-        List<Permission> permissions = new ArrayList<Permission>();
+        List<Permission> permissions = new ArrayList<>();
 
         for (int i = 0; i < size; i++) {
-            List<String> labels = new ArrayList<>();
-            labels.add("mainapp" + i + ".manage.add");
-            labels.add("mainapp" + i + ".manage.list");
-            labels.add("mainapp" + i + ".manage.update");
-            permissions.add(new Permission(i, "mainapp.ressource" + i, labels));
+            permissions.add(new Permission(i, "mainapp.ressource" + i));
         }
 
         return permissions;

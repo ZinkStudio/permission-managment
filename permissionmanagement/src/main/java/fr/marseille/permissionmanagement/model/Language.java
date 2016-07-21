@@ -2,24 +2,31 @@ package fr.marseille.permissionmanagement.model;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Language implements Serializable {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+    private static final long     serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer               id;
+
+    private String                locale;
+
+    private Boolean               isDefault;
+
+    @OneToMany(mappedBy = "language", cascade = { CascadeType.REMOVE })
+    private List<PermissionLabel> labels;
 
     public Language() {
     }
-
-    private Integer          id;
-
-    private String           locale;
-
-    private Boolean          isDefault;
-
-    private List<Permission> permissions;
 
     public Integer getId() {
         return id;
@@ -43,14 +50,6 @@ public class Language implements Serializable {
 
     public void setIsDefault(Boolean isDefault) {
         this.isDefault = isDefault;
-    }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<Permission> permissions) {
-        this.permissions = permissions;
     }
 
 }
