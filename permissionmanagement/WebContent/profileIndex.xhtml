@@ -4,12 +4,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-<head>
+<h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Indexjsf.xhtml</title>
-</head>
-<body>
-<p>salut</p>
-	<p:editor />
-</body>
+	<title>Les Profiles</title>
+</h:head>
+<h:body>
+<h:outputText id="labelWelcome" value="Liste des profiles" />
+<!-- <p>salut</p> -->
+<!-- 	<p:editor /> -->
+	<p:dataTable var="profile" value="#{dtProfileView.profiles}">
+    <p:column headerText="Id">
+        <h:outputText value="#{profile.id}" />
+    </p:column>
+ 
+    <p:column headerText="Name">
+        <h:outputText value="#{profile.name}" />
+    </p:column>
+ 
+    <p:column headerText="Description">
+        <h:outputText value="#{profile.description}" />
+    </p:column>
+ 
+    
+</p:dataTable>
+	
+</h:body>
 </html>

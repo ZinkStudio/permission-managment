@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Profile implements Serializable {
@@ -39,11 +40,13 @@ public class Profile implements Serializable {
     /**
      * 
      */
+    @ManyToMany
     private List<Permission> permissions;
 
     /**
      * 
      */
+    @ManyToMany
     private List<User>       users;
 
     public Integer getId() {
@@ -93,6 +96,13 @@ public class Profile implements Serializable {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public Profile(Integer id, String name, String description) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
 }

@@ -123,4 +123,13 @@ public class ProfileService {
         // TODO implement here
     }
 
+    public List<Profile> createProfiles() {
+        List<Profile> profiles = new ArrayList<Profile>();
+
+        for (int i = 0; i < 10; i++) {
+            profiles.add(new Profile(i, "name" + i, "description" + i));
+        }
+        return profiles;
+
+    }
 }

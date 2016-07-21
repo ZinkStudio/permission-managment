@@ -1,49 +1,28 @@
 package fr.marseille.permissionmanagement.bean;
 
+import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import fr.marseille.permissionmanagement.exception.DAOException;
+import fr.marseille.permissionmanagement.model.Profile;
+import fr.marseille.permissionmanagement.service.ProfileService;
 
-@ManagedBean(name = "HelloController")
-@RequestScoped
+@ManagedBean(name = "profileController")
+@ApplicationScoped
 public class ProfileController {
 
-	private String message = "";
-	private String password = "1234";
+    private ProfileService profileService = new ProfileService();
 
-	public ProfileController() {
-		super();
-	}
+    public List<Profile> findAll() throws DAOException {
+        return profileService.findAll();
+    }
 
-	/**
-	 * ajout d'une methode publique me permettant de faire une redirection
-	 * dynamique vers une autre page
-	 */
+    public List<Profile> createProfiles() {
+        return profileService.createProfiles();
+    }
 
-	public String nextPage() {
-		if (message.isEmpty()) {
-			return null;
-		}
-		return "redirectPage";
-	}
-
-	public String nextPage(String page) {
-		return page;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    // public boolean save(Profile profile) throws DAOException {
+    // return profileService.save(profile);
+    // }
 
 }
