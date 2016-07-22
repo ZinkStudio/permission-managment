@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>UPDATE PAGE</title>
+	<title>User Update</title>
 </h:head>
 <body>
 	<h3>
@@ -31,8 +31,9 @@
 				<h:outputText value="#{user.comment}" />
 			</p:column>
 		</p:dataTable>
+		
 		<!-- Redirection statique vers le menu principal -->
-		<h:commandButton id="buttonValider" action="indexjsf.xhtml" value="OK"></h:commandButton>
+		<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
 	</h:form>
 </body>
 </html>

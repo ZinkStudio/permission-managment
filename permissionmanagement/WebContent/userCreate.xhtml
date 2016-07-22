@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Create New User</title>
+</head>
+<body>
+	<h1>
+		<h:outputText id="lblWelcome" value="Create a New User" />
+		<br />
+	</h1>
+
+	<h:form id="formUser">
+		<p:panelGrid columns="2" cellpadding="5">
+			<p:panel id="panel" header="Personal Information"
+				style="margin-bottom:10px;">
+				<p:messages id="messages" />
+				<c:facet name="header">
+					<p:graphicImage
+						name="http://az616578.vo.msecnd.net/files/2016/05/02/635977562108560005-679443365_kobe.jpg" />
+				</c:facet>
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="name" value="Name : " />
+					<p:inputText id="name" value="#{resetInputView.text1}"
+						required="true" label="name">
+						<c:validateLength minimum="2" />
+					</p:inputText>
+					<p:message for="name" />
+
+					<p:outputLabel for="firstName" value="FirstName : " />
+					<p:inputText id="firstName" value="#{resetInputView.text2}"
+						required="true" label="firstName" />
+					<p:message for="firstName" />
+
+				</h:panelGrid>
+			</p:panel>
+		</p:panelGrid>
+	</h:form>
+
+	<h:form id="formLstProfiles">
+		<h3>List of its profiles</h3>
+		<p:panelGrid columns="3" layout="grid">
+			<h:outputText value="Profile1" />
+			<h:outputText value="Profile2" />
+			<h:outputText value="Profile3" />
+		</p:panelGrid>
+
+		<p:toolbar>
+			<c:facet name="right">
+				<p:commandButton value="Submit" update="panel"
+					actionListener="#{resetInputView.save}" style="margin-right:20px;" />
+			</c:facet>
+		</p:toolbar>
+	</h:form>
+</body>
+</html>
