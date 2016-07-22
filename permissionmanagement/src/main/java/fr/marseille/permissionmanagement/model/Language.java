@@ -28,6 +28,12 @@ public class Language implements Serializable {
     public Language() {
     }
 
+    public Language(String locale, Boolean isDefault) {
+        super();
+        this.locale = locale;
+        this.isDefault = isDefault;
+    }
+
     public Integer getId() {
         return id;
     }
