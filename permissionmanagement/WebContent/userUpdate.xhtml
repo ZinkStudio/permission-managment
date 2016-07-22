@@ -6,11 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>List of the users</title>
+	<title>UPDATE PAGE</title>
 </h:head>
 <body>
 	<h3>
-		<h:outputText id="headOfPage" value="List of the users" />
+		<h:outputText id="headOfPage" value="Update of the users" />
 		<br />
 	</h3>
 	<h:form id="UserForm">
@@ -30,15 +30,9 @@
 			<p:column headerText="Comment">
 				<h:outputText value="#{user.comment}" />
 			</p:column>
-			
-			<!-- Redirections vers les pages de MAJ et de suppressions des utilisateurs -->
-			<p:column headerText="Update" width="50">
-				<p:commandButton id="buttonUpdate" action="userUpdate.xhtml" icon="fa fa-edit" title="Update User ?" />
-			</p:column>
-			<p:column headerText="Delete" width="50">
-				<p:commandButton id="buttonDelete" action="userDelete.xhtml" icon=" fa fa-remove" title="Delete User ?" />
-			</p:column>
 		</p:dataTable>
+		<!-- Redirection statique vers le menu principal -->
+		<h:commandButton id="buttonValider" action="indexjsf.xhtml" value="OK"></h:commandButton>
 	</h:form>
 </body>
 </html>

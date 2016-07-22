@@ -20,32 +20,30 @@ public class UserView implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    private String            linkUpdate       = "updateUser";
+
     private List<User>        users;
 
     @ManagedProperty("#{userController}")
     private UserController    controller;
 
     @PostConstruct
-    public void init() throws ServiceException {
-        // users = controller.createUsers();
-        List<User> users = new ArrayList<User>();
+    public void init() {
+        List<User> users = new ArrayList<>();
         User user = new User();
-        user.setId(2);
-        user.setName("Martin");
-        user.setFirstName("Lucie");
-        user.setComment("test de commentaires");
+        user.setName("Twix");
+        user.setFirstName("Young");
+        user.setComment("test de save a partir de l'appli");
 
         try {
             controller.save(user);
-            users.add(user);
+
             users = controller.findAll();
+
         } catch (ServiceException e) {
-            users.add(user);
             e.printStackTrace();
-        } finally {
-            users.add(user);
         }
-        users.add(user);
+        this.users = users;
     }
 
     public List<User> getUsers() {
@@ -54,5 +52,9 @@ public class UserView implements Serializable {
 
     public void setController(UserController controller) {
         this.controller = controller;
+    }
+
+    public String getLinkUpdate() {
+        return linkUpdate;
     }
 }

@@ -47,7 +47,7 @@ public class UserJPADAO implements UserDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<User> users = new ArrayList<>();
         try {
-            users = (List<User>) entityManager.createQuery("from User");
+            users = (List<User>) entityManager.createQuery("from User").getResultList();
         } catch (RuntimeException e) {
             entityManager.close();
             entityManagerFactory.close();
