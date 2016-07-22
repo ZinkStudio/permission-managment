@@ -21,8 +21,8 @@ public class ProfileController {
         return profileService.createProfiles();
     }
 
-    // public boolean save(Profile profile) throws DAOException {
-    // return profileService.save(profile);
-    // }
+    public boolean save(Profile profile) throws DAOException {
+        return profileService.save(profile);
+    }
 
 }

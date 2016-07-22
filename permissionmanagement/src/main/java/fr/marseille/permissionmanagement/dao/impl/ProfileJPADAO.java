@@ -54,7 +54,7 @@ public class ProfileJPADAO implements ProfileDAO {
         entityManager.getTransaction().begin();
         List<Profile> profiles = new ArrayList<>();
         try {
-            profiles = (List<Profile>) entityManager.createQuery("from Profile");
+            profiles = (List<Profile>) entityManager.createQuery("from Profile").getResultList();
             entityManager.getTransaction().commit();
 
         } catch (RuntimeException e) {

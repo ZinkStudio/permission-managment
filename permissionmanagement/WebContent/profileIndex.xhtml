@@ -24,7 +24,13 @@
     <p:column headerText="Description">
         <h:outputText value="#{profile.description}" />
     </p:column>
- 
+ <!-- Redirections vers les pages de MAJ et de suppressions des utilisateurs -->
+			<p:column headerText="Update" width="50">
+				<p:commandButton id="buttonUpdate" action="profileUpdate.xhtml" icon="fa fa-edit" title="Update Profile ?" />
+			</p:column>
+			<p:column headerText="Delete" width="50">
+				<p:commandButton id="buttonDelete" action="profileDelete.xhtml" icon=" fa fa-remove" title="Delete Profile ?" />
+			</p:column>
     
 </p:dataTable>
 	

@@ -1,6 +1,7 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -21,9 +22,26 @@ public class ProfileView implements Serializable {
     private ProfileController controller;
 
     @PostConstruct
-    public void init() throws DAOException {
-        // profiles = controller.createProfiles();
-        controller.findAll();
+
+    public void init() {
+        List<Profile> profiles = new ArrayList<>();
+        Profile profile = new Profile();
+        profile.setName("tota");
+        profile.setDescription("dsds");
+
+        profiles.addAll(controller.createProfiles());
+
+        try {
+            profiles.addAll(controller.findAll());
+
+            controller.save(profile);
+            profiles = controller.findAll();
+        } catch (DAOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        this.profiles = profiles;
     }
 
     List<Profile> findAll() throws DAOException {
