@@ -41,7 +41,7 @@ public class PermissionJPADAO implements PermissionDAO {
         List<Permission> permissions = new ArrayList<Permission>();
 
         try {
-            permissions = (List<Permission>) JPAUtil.getEntityManager().createQuery("from Permission");
+            permissions = (List<Permission>) JPAUtil.getEntityManager().createQuery("from Permission").getResultList();
         } catch (RuntimeException e) {
             JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();

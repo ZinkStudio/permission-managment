@@ -29,6 +29,18 @@ public class PermissionService {
         return permissions;
     }
 
+    public Permission find(Integer id) throws ServiceException {
+        Permission permission = null;
+        try {
+            Permission find = permissionDAO.find(id);
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
+        }
+
+        return permission;
+    }
+
     public List<Permission> findAll() throws ServiceException {
         List<Permission> permissions = new ArrayList<Permission>();
 
