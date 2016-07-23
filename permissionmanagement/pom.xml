@@ -115,6 +115,13 @@
 			<artifactId>primefaces</artifactId>
 			<version>${primefaces.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>all-themes</artifactId>
+			<version>1.0.8</version>
+			<type>pom</type>
+		</dependency>
 
 		<!-- jstl -->
 		<dependency>

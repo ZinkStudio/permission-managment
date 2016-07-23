@@ -25,7 +25,8 @@ public class PermissionView implements Serializable {
 
     @PostConstruct
     public void init() {
-        permissions = controller.createPermissions();
+        // permissions = controller.createPermissions();
+        permissions = controller.findAll();
     }
 
     public List<Permission> getPermissions() {
