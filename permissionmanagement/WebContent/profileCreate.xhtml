@@ -1,27 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
->
-<head>
+<h:head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Profile Creation</title>
-</head>
-<body>
-<h:form id="form">
-    
-            <p:outputLabel for="text1" value="Text 1:" />
-            <p:inputText id="text1" value="#{resetInputView.text1}" required="true" label="Firstname">
-                
-            </p:inputText>
-            <p:message for="text1" />
- 
-            <p:outputLabel for="text2" value="Text 2:" />
-            <p:inputText id="text2" value="#{resetInputView.text2}" required="true" label="Surname"/>
-            <p:message for="text2" />
-        
- 
-</body>
+<title>Create A New Profile</title>
+</h:head>
+<h:body>
+	<h1>
+		<h:outputText id="lblCreateProfile" value="Create a New Profile" />
+		<br />
+	</h1>
+
+	<h:form id="formProfile">
+		<p:panelGrid columns="2" cellpadding="5">
+			<p:panel id="panel" header=" Information"
+				style="margin-bottom:10px;">
+				<p:messages id="messages" />
+		
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="name" value="Name : " />
+					<p:inputText id="name" value=""
+						required="true" label="name">
+						<c:validateLength minimum="2" />
+					</p:inputText>
+					<p:message for="name" />
+
+					<p:outputLabel for="description" value="Description : " />
+					<p:inputText id="description" value=""
+						 label="description" />
+					<p:message for="description" />
+					
+				</h:panelGrid>
+			</p:panel>
+		</p:panelGrid>
+		 <p:toolbar>
+        <c:facet name="left">
+            <p:commandButton value="Save" update="panel" actionListener="#{resetInputView.save}"  />
+        </c:facet>
+        </p:toolbar>
+	</h:form>
+</h:body>
 </html>

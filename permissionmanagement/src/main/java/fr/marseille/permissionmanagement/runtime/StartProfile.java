@@ -52,6 +52,17 @@ public class StartProfile {
 
     }
 
+    private static void excludePermission() throws ServiceException, DAOException {
+
+        Profile profile = profileService.findAll().get(0);
+        Permission permission = permissionService.findAll().get(0);
+        profile.getPermissions().remove(permission);
+        profileService.update(profile);
+
+        profileService.createProfiles();
+
+    }
+
     private static void insertProfiles() throws DAOException {
         String[] applications = StartPermission.applications;
         for (String application : applications) {

@@ -6,14 +6,32 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Les Profiles</title>
+	<title>profile : index</title>
 </h:head>
 <h:body>
-<h:outputText id="labelWelcome" value="Liste des profiles" />
-<!-- <p>salut</p> -->
-<!-- 	<p:editor /> -->
-	<p:dataTable var="profile" value="#{dtProfileView.profiles}">
-    <p:column headerText="Id">
+<h1>
+		<h:outputText id="headReadAll" value="List of the profiles" />
+		<br />
+	</h1>
+
+	<!-- Redirection statique vers le menu principal -->
+<!-- 	<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link> -->
+
+	<div style="width:100%;height:50px;">
+	<p:commandButton style="float:right;" value="Create A New Profile"
+		icon="ui-icon-star" title="Create a new Profile" action="profileCreate.xhtml" />
+	</div>
+	
+	<h:form id="ProfileForm" style="margin-top:20px;"/>
+
+
+
+<!-- 	<p:outputLabel value="Listing Profiles :" /> -->
+	<p:dataTable var="profile" value="#{dtProfileView.profiles}"
+		rows="10" paginator="true"
+		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
+		<p:column headerText="Id">
         <h:outputText value="#{profile.id}" />
     </p:column>
  
@@ -25,15 +43,42 @@
         <h:outputText value="#{profile.description}" />
     </p:column>
  <!-- Redirections vers les pages de MAJ et de suppressions des utilisateurs -->
-			<p:column headerText="Update" width="50">
+ 
+<!-- 			<p:column headerText="Update" width="50"> -->
 			
-				<p:commandButton id="buttonUpdate" action="indexjsf.xhtml"  icon="fa fa-edit" title="Update Profile ?" />
+<!-- 				<p:commandButton id="Update" action= "indexjsf.xhtml"  icon="fa fa-edit" title="Update Profile ?" /> -->
+<!-- 			</p:column> -->
+			
+<!-- 			<p:column headerText="Delete" width="50"> -->
+			
+<!-- 				<p:commandButton id="Delete"  action= "profileDelete.xhtml" icon=" fa fa-remove" title="Delete Profile ?" /> -->
+<!-- 			</p:column> -->
+<!--     <p:column headerText="Allpermissions" width="50"> -->
+<!-- 				<p:commandButton id="buttonAllPermissions" action="userAllProfiles.xhtml" icon=" fa fa-eye" title="See All users'profiles ?" /> -->
+<!-- 				</p:column> -->
+<!-- Redirection to userAllProfiles -->
+			<p:column headerText="See permissions" width="100">
+				<p:commandButton id="buttonAllPermissions"
+					action="profileIndex.xhtml" icon=" fa fa-eye"
+					title="See all the permissions for this profile ?"
+					style="display:block;margin:0 auto;" />
 			</p:column>
-			<p:column headerText="Delete" width="50">
-				<p:commandButton id="buttonDelete" action="profileDelete.xhtml" icon=" fa fa-remove" title="Delete Profile ?" />
+			
+			<p:column headerText="Update" width="60">
+				<p:commandButton id="buttonUpdate" action="profileUpdate.xhtml"
+					icon="fa fa-edit" title="Update User ?"
+					style="display:block;margin:0 auto;" />
 			</p:column>
-    
-</p:dataTable>
-	
+			
+			<p:column headerText="Delete" width="60">
+				<p:commandButton id="buttonDelete" action="profileDelete.xhtml"
+					icon=" fa fa-remove" title="Delete Profile ?"
+					style="display:block;margin:0 auto;" />
+			</p:column>
+		</p:dataTable>
+		<!-- Redirection statique vers le menu principal -->
+		<p:link style="float:right;margin-top:20px;"
+			value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
+
 </h:body>
 </html>

@@ -33,7 +33,7 @@ public class ProfileView implements Serializable {
         try {
             // profiles.addAll(controller.findAll());
 
-            controller.save(profile);
+            // controller.save(profile);
             profiles = controller.findAll();
         } catch (DAOException e) {
             // TODO Auto-generated catch block
