@@ -9,11 +9,14 @@
 	<title>User Update</title>
 </h:head>
 <body>
-	<h3>
-		<h:outputText id="headOfPage" value="Update of the users" />
-		<br />
-	</h3>
-	<h:form id="UserForm">
+	<h1>
+		<h:outputText id="headUserUpdate" value="Update of the users" />
+	</h1>
+			<!-- Redirection statique vers le menu principal -->
+		<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
+		
+		
+	<h:form id="UserForm" style="margin-top:20px;">
 		<p:dataTable var="user" value="#{dtUserView.users}">
 			<p:column headerText="Id">
 				<h:outputText value="#{user.id}" />
@@ -31,9 +34,8 @@
 				<h:outputText value="#{user.comment}" />
 			</p:column>
 		</p:dataTable>
-		
 		<!-- Redirection statique vers le menu principal -->
-		<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
+		<p:link style ="float:right;margin-top:20px;" value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
 	</h:form>
 </body>
 </html>

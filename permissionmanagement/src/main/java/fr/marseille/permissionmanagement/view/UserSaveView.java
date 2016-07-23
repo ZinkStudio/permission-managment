@@ -1,49 +1,47 @@
 package fr.marseille.permissionmanagement.view;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+@ManagedBean
 public class UserSaveView {
-    // package org.primefaces.showcase.view.misc;
-    //
-    // import javax.faces.application.FacesMessage;
-    // import javax.faces.bean.ManagedBean;
-    // import javax.faces.context.FacesContext;
-    // import org.primefaces.context.RequestContext;
-    //
-    // @ManagedBean
-    // public class ResetInputView {
-    //
-    // private String text1;
-    //
-    // private String text2;
-    //
-    // public String getText1() {
-    // return text1;
-    // }
-    //
-    // public void setText1(String text1) {
-    // this.text1 = text1;
-    // }
-    //
-    // public String getText2() {
-    // return text2;
-    // }
-    //
-    // public void setText2(String text2) {
-    // this.text2 = text2;
-    // }
-    //
-    // public void save() {
-    // FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
-    // }
-    //
-    // public void reset() {
-    // RequestContext.getCurrentInstance().reset("form:panel");
-    // }
-    //
-    // public void resetFail() {
-    // this.text1 = null;
-    // this.text2 = null;
-    //
-    // FacesMessage msg = new FacesMessage("Model reset, but it won't work properly.");
-    // FacesContext.getCurrentInstance().addMessage(null, msg);
-    // }
+
+    // attributs
+    private String name;
+    private String firstName;
+    private String comment;
+
+    // getters and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public UserSaveView() {
+        super();
+    }
+
+    public void save() {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+    }
 }
