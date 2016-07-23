@@ -30,13 +30,7 @@ public class UserView implements Serializable {
     @PostConstruct
     public void init() {
         List<User> users = new ArrayList<>();
-        User user = new User();
-        user.setName("Martin");
-        user.setFirstName("Julie");
-        user.setComment("2eme test de l'application");
-
         try {
-            controller.save(user);
             users = controller.findAll();
 
         } catch (ServiceException e) {

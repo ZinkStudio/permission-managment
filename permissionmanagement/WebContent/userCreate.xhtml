@@ -4,47 +4,43 @@
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Create A New User</title>
-</head>
-<body>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Create A New User</title>
+</h:head>
+<h:body>
 	<h1>
 		<h:outputText id="lblCreateUser" value="Create a New User" />
 		<br />
 	</h1>
-
+<div style="width:1024px;display:block;margin:0 auto;">
 	<h:form id="formUser">
-		<p:panelGrid columns="2" cellpadding="5">
-			<p:panel id="panel" header="Personal Information"
-				style="margin-bottom:10px;">
-				<p:messages id="messages" />
-		
-				<h:panelGrid columns="3" cellpadding="5">
-					<p:outputLabel for="name" value="Name : " />
-					<p:inputText id="name" value="Enter the name"
-						required="true" label="name">
-						<c:validateLength minimum="2" />
-					</p:inputText>
-					<p:message for="name" />
+		<p:panel id="panel" header="PERSONAL INFORMATION" style="font-size:20px;margin-bottom:10px;">
+			<p:messages id="messages" />
+			<h:panelGrid columns="3" cellpadding="8">
+				<p:outputLabel for="name" value="Name : " />
+				<p:inputText id="name" value="#{userSaveView.user.name}" required="true"
+					label="name">
+					<c:validateLength minimum="2" />
+				</p:inputText>
+				<p:message for="name" />
 
-					<p:outputLabel for="firstName" value="FirstName : " />
-					<p:inputText id="firstName" value="Enter the firstname"
-						required="true" label="firstName" />
-					<p:message for="firstName" />
-					
-						<p:outputLabel for="comment" value="Comment : " />
-					<p:inputText id="comment" value="Enter a comment"
-						required="false" label="comment" />
-					<p:message for="comment" />
-				</h:panelGrid>
-			</p:panel>
-		</p:panelGrid>
-		 <p:toolbar>
-        <c:facet name="right">
-            <p:commandButton value="Submit" update="panel" actionListener="#{resetInputView.save}" style="margin-right:20px;" />
-        </c:facet>
-        </p:toolbar>
+				<p:outputLabel for="firstName" value="FirstName : " />
+				<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
+					required="true" label="firstName" />
+				<p:message for="firstName" />
+
+				<p:outputLabel for="comment" value="Comment : " />
+				<p:inputText id="comment" value="#{userSaveView.user.comment}"
+					required="false" label="comment" />
+				<p:message for="comment" />
+			</h:panelGrid>
+			
+		</p:panel>
+		<p:commandButton value="Save" update="panel"
+			actionListener="#{userSaveView.save}" style="margin-right:20px;" />
+
 	</h:form>
-</body>
+	</div>
+</h:body>
 </html>

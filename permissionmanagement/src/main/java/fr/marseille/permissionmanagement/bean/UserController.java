@@ -25,4 +25,8 @@ public class UserController {
         return userService.save(user);
     }
 
+    public void delete(User user) throws ServiceException {
+        userService.delete(user.getId());
+    }
+
 }
