@@ -9,7 +9,10 @@
 	<title>permission : index</title>
 </h:head>
 <h:body>
-	<p:outputLabel value="Listing Permissions :" />
+	<h1><p:outputLabel id="headPermissionReadAll" value="Listing Permissions :" /></h1>
+	
+	<p:link value="Vers Menu Principal" outcome="index.xhtml"></p:link>
+	
 	<p:dataTable var="permission" value="#{dtPermissionView.permissions}"
 		rows="10" paginator="true"
 		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
