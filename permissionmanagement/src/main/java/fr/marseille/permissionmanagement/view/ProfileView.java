@@ -1,7 +1,6 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,15 +23,15 @@ public class ProfileView implements Serializable {
     @PostConstruct
 
     public void init() {
-        List<Profile> profiles = new ArrayList<>();
+        // List<Profile> profiles = new ArrayList<>();
         Profile profile = new Profile();
-        profile.setName("tota");
-        profile.setDescription("dsds");
+        // profile.setName("tota");
+        // profile.setDescription("dsds");
 
-        profiles.addAll(controller.createProfiles());
+        // profiles.addAll(controller.createProfiles());
 
         try {
-            profiles.addAll(controller.findAll());
+            // profiles.addAll(controller.findAll());
 
             controller.save(profile);
             profiles = controller.findAll();
