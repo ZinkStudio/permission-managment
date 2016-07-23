@@ -12,11 +12,11 @@ import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class StartPermission {
 
-    private static String[]          locales           = { "en", "fr" };
-    private static String[]          ressources        = { "home", "support", "adminpanel" };
-    private static String[]          actions           = { "create", "read", "update", "delete" };
-    private static String[]          applications      = { "cognava", "spotpulse", "sharelytic", "cloudovio" };
-    private static PermissionService permissionService = new PermissionService();
+    public static String[]          locales           = { "en", "fr" };
+    public static String[]          ressources        = { "home", "support", "adminpanel" };
+    public static String[]          actions           = { "create", "read", "update", "delete" };
+    public static String[]          applications      = { "cognava", "spotpulse", "sharelytic", "cloudovio" };
+    public static PermissionService permissionService = new PermissionService();
 
     public static void main(String[] args) throws ServiceException, DAOException {
         // generateDatabase();
