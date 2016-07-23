@@ -16,9 +16,7 @@ public class StartProfile {
 
     public static void main(String[] args) throws ServiceException, DAOException {
 
-        // JPAUtil.getEntityManager().getTransaction().begin();
-        //
-        // JPAUtil.getEntityManager().getTransaction().commit();
+        createUserAndProfile();
         affectUser();
         JPAUtil.closeAll();
 
