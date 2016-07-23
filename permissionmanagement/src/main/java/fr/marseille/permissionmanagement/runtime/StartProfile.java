@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.exception.ServiceException;
+import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.PermissionService;
@@ -21,33 +22,35 @@ public class StartProfile {
         JPAUtil.getEntityManager().getTransaction().begin();
 
         JPAUtil.getEntityManager().getTransaction().commit();
-        // affectUser();
-        // createUserAndProfile();
-
+        affectUser();
+        createUserAndProfile();
+        includePermission();
         insertProfiles();
         JPAUtil.closeAll();
 
     }
 
     private static void affectUser() throws ServiceException, DAOException {
-        User user = userService.find(1);
-        Profile profile = profileService.find(1);
+        User user = userService.findAll().get(0);
+        Profile profile = profileService.findAll().get(0);
 
         profile.getUsers().add(user);
+        profileService.update(profile);
 
         profileService.createProfiles();
 
     }
 
-    // private static void includePermission() throws ServiceException, DAOException {
-    //
-    // Profile profile = profileService.find(1);
-    // Permission permission = permissionService.find(1);
-    //
-    // profile.getPermissions();
-    // permissionService.update(permission);
-    //
-    // }
+    private static void includePermission() throws ServiceException, DAOException {
+
+        Profile profile = profileService.findAll().get(0);
+        Permission permission = permissionService.findAll().get(0);
+        profile.getPermissions().add(permission);
+        profileService.update(profile);
+
+        profileService.createProfiles();
+
+    }
 
     private static void insertProfiles() throws DAOException {
         String[] applications = StartPermission.applications;
