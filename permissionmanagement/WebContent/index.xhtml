@@ -9,6 +9,36 @@
 	<title>Indexjsf.xhtml</title>
 </h:head>
 <h:body>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Training Center</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li class=""><a href="/trainingcenter/">Index</a></li>
+				<li class=" dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Trainers&nbsp;<span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="trainer?action=list">list</a></li>
+						<li><a href="trainer?action=create">create</a></li>
+					</ul></li>
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#">Skills&nbsp;<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="skill?action=list">list</a></li>
+						<li><a href="skill?action=create">create</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 <h1>Welcome</h1>
 	<p>
 		Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem
