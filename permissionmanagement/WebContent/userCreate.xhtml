@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h1>
-		<h:outputText id="lblWelcome" value="Create a New User" />
+		<h:outputText id="lblCreateUser" value="Create a New User" />
 		<br />
 	</h1>
 
@@ -35,26 +35,9 @@
 					<p:inputText id="firstName" value="#{resetInputView.text2}"
 						required="true" label="firstName" />
 					<p:message for="firstName" />
-
 				</h:panelGrid>
 			</p:panel>
 		</p:panelGrid>
-	</h:form>
-
-	<h:form id="formLstProfiles">
-		<h3>List of its profiles</h3>
-		<p:panelGrid columns="3" layout="grid">
-			<h:outputText value="Profile1" />
-			<h:outputText value="Profile2" />
-			<h:outputText value="Profile3" />
-		</p:panelGrid>
-
-		<p:toolbar>
-			<c:facet name="right">
-				<p:commandButton value="Submit" update="panel"
-					actionListener="#{resetInputView.save}" style="margin-right:20px;" />
-			</c:facet>
-		</p:toolbar>
 	</h:form>
 </body>
 </html>

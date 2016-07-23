@@ -9,10 +9,10 @@
 	<title>List of the users</title>
 </h:head>
 <body>
-	<h3>
-		<h:outputText id="headOfPage" value="List of the users" />
+	<h1>
+		<h:outputText id="headReadAll" value="List of the users" />
 		<br />
-	</h3>
+	</h1>
 	<h:form id="UserForm">
 		<p:dataTable var="user" value="#{dtUserView.users}">
 			<p:column headerText="Id">
@@ -31,12 +31,17 @@
 				<h:outputText value="#{user.comment}" />
 			</p:column>
 			
-			<!-- Redirections vers les pages de MAJ et de suppressions des utilisateurs -->
+			<!-- Redirection to userUpdate -->
 			<p:column headerText="Update" width="50">
 				<p:commandButton id="buttonUpdate" action="userUpdate.xhtml" icon="fa fa-edit" title="Update User ?" />
 			</p:column>
+			<!-- Redirection to userDelete -->
 			<p:column headerText="Delete" width="50">
 				<p:commandButton id="buttonDelete" action="userDelete.xhtml" icon=" fa fa-remove" title="Delete User ?" />
+			</p:column>
+			<!-- Redirection to userAllProfiles -->
+			<p:column headerText="Allprofiles" width="50">
+				<p:commandButton id="buttonAllProfiles" action="userAllProfiles.xhtml" icon=" fa fa-eye" title="See All users'profiles ?" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
