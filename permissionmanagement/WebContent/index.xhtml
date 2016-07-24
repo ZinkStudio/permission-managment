@@ -8,6 +8,8 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<c:facet name="last">
+	<link type="text/css" rel="stylesheet" href="/permissionmanagement/javax.faces.resource/primefaces.css.jsf?ln=primefaces&amp;v=5.3" /><script type="text/javascript" src="/permissionmanagement/javax.faces.resource/jquery/jquery.js.jsf?ln=primefaces&amp;v=5.3"></script><script type="text/javascript" src="/permissionmanagement/javax.faces.resource/primefaces.js.jsf?ln=primefaces&amp;v=5.3"></script>
+	
 		<link rel="stylesheet" type="text/css"
 			href="#{facesContext.externalContext.requestContextPath}/css/header.css" />
 		<link rel="stylesheet" type="text/css"
@@ -25,7 +27,7 @@
 		<ui:include src="./WEB-INF/layout/header.xhtml" />
 	</ui:insert>
 	<ui:insert name="content">
-		<ui:include src="./userReadAll.xhtml" />
+		<c:event type="preRenderView" listener="#{indexView.redirectIndex()}" />
 	</ui:insert>
 	<ui:insert name="footer">
 		<ui:include src="./WEB-INF/layout/footer.xhtml" />

@@ -9,11 +9,11 @@
 	</ui:define>
 
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Listing Permission :" />
+		<h:outputText id="layoutTitle" value="Listing Permissions :" />
 	</ui:define>
 
 	<ui:define name="content">
-		<p:link value="Vers Menu Principal" outcome="index.xhtml"></p:link>
+		<p:link value="To Main Menu" outcome="index.xhtml"></p:link>
 
 		<p:dataTable var="permission" value="#{dtPermissionView.permissions}"
 			rows="10" paginator="true"

@@ -10,37 +10,47 @@
 </h:head>
 <h:body>
 	<h1>
-		<h:outputText id="lblCreateUser" value="Create a New User" />
+		<h:outputText id="lblCreateUser" value="Create A New User" />
 		<br />
 	</h1>
-<div style="width:1024px;display:block;margin:0 auto;">
-	<h:form id="formUser">
-		<p:panel id="panel" header="PERSONAL INFORMATION" style="font-size:20px;margin-bottom:10px;">
-			<p:messages id="messages" />
-			<h:panelGrid columns="3" cellpadding="8">
-				<p:outputLabel for="name" value="Name : " />
-				<p:inputText id="name" value="#{userSaveView.user.name}" required="true"
-					label="name">
-					<c:validateLength minimum="2" />
-				</p:inputText>
-				<p:message for="name" />
+	<div style="width: 1024px; display: block; margin: 0 auto;">
+		<h:form id="formUser">
+			<p:panel id="panel" header="PERSONAL INFORMATION"
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" />
+				<h:panelGrid columns="3" cellpadding="8">
+					<p:outputLabel for="name" value="Name : " />
+					<p:inputText id="name" value="#{userSaveView.user.name}"
+						required="true" label="name">
+						<c:validateLength minimum="2" />
+					</p:inputText>
+					<p:message for="name" />
 
-				<p:outputLabel for="firstName" value="FirstName : " />
-				<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
-					required="true" label="firstName" />
-				<p:message for="firstName" />
+					<p:outputLabel for="firstName" value="FirstName : " />
+					<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
+						required="true" label="firstName" />
+					<p:message for="firstName" />
 
-				<p:outputLabel for="comment" value="Comment : " />
-				<p:inputText id="comment" value="#{userSaveView.user.comment}"
-					required="false" label="comment" />
-				<p:message for="comment" />
-			</h:panelGrid>
-			
-		</p:panel>
-		<p:commandButton value="Save" update="panel"
-			actionListener="#{userSaveView.save}" style="margin-right:20px;" />
+					<p:outputLabel for="comment" value="Comment : " />
+					<p:inputText id="comment" value="#{userSaveView.user.comment}"
+						required="false" label="comment" />
+					<p:message for="comment" />
+				</h:panelGrid>
 
-	</h:form>
+			</p:panel>
+			<p:commandButton value="Save" update="panel"
+				actionListener="#{userSaveView.save}" style="margin-right:20px;" />
+		</h:form>
+	</div>
+	<div 
+		style="width: 350px; display: block; float:right; margin-top: 20px;">
+		<br />
+		<!-- Redirection to the main menu -->
+		<p:link value="To Main Menu" outcome="indexjsf.xhtml"></p:link>
+		<br />
+		<!-- Redirection to the users' list -->
+		<p:link value="To Users'List"
+			outcome="userReadAll.xhtml"></p:link>
 	</div>
 </h:body>
 </html>

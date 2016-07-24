@@ -10,28 +10,39 @@ import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean
 @ViewScoped
-public class UserSaveView {
-
+public class UserUpdateView {
     private UserService userService = new UserService();
 
-    private User        user        = new User();
+    private User        user;
 
-    public void save() {
+    public void update() {
         try {
-            userService.save(user);
+            userService.update(user);
         } catch (ServiceException e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Error while Saving User: " + e.getMessage()));
+                    new FacesMessage("Error while Updating the User : " + e.getMessage()));
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated"));
     }
 
     public User getUser() {
         return this.user;
     }
 
-    public UserSaveView() {
+    public UserUpdateView() {
         super();
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
 }

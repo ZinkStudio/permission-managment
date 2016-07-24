@@ -4,38 +4,55 @@
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>User Update</title>
+	<title>Update of the User</title>
 </h:head>
-<body>
+<h:body>
 	<h1>
-		<h:outputText id="headUserUpdate" value="Update of the users" />
+		<h:outputText id="lblUpdateUser" value="User Information Update" />
+		<br />
 	</h1>
-			<!-- Redirection statique vers le menu principal -->
-		<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
-		
-		
-	<h:form id="UserForm" style="margin-top:20px;">
-		<p:dataTable var="user" value="#{dtUserView.users}">
-			<p:column headerText="Id">
-				<h:outputText value="#{user.id}" />
-			</p:column>
+	<div style="width: 1024px; display: block; margin: 0 auto;">
+		<h:form id="formUserUpdate">
+			<p:panel id="panel" header="PERSONAL INFORMATION"
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" />
+				<h:panelGrid columns="3" cellpadding="8">
+					<p:outputLabel for="name" value="Name : " />
+					<p:inputText id="name" value="#{userUpdateView.user.name}"
+						required="true" label="name">
+						<c:validateLength minimum="2" />
+					</p:inputText>
+					<p:message for="name" />
 
-			<p:column headerText="Name">
-				<h:outputText value="#{user.name}" />
-			</p:column>
+					<p:outputLabel for="firstName" value="FirstName : " />
+					<p:inputText id="firstName"
+						value="#{userUpdateView.user.firstName}" required="true"
+						label="firstName" />
+					<p:message for="firstName" />
 
-			<p:column headerText="FirstName">
-				<h:outputText value="#{user.firstName}" />
-			</p:column>
+					<p:outputLabel for="comment" value="Comment : " />
+					<p:inputText id="comment" value="#{userUpdateView.user.comment}"
+						required="false" label="comment" />
+					<p:message for="comment" />
+				</h:panelGrid>
 
-			<p:column headerText="Comment">
-				<h:outputText value="#{user.comment}" />
-			</p:column>
-		</p:dataTable>
-		<!-- Redirection statique vers le menu principal -->
-		<p:link style ="float:right;margin-top:20px;" value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
-	</h:form>
-</body>
+			</p:panel>
+			<p:commandButton value="Update" update="panel"
+				actionListener="#{userUpdateView.update}" style="margin-right:20px;" />
+		</h:form>
+	</div>
+	<div
+		style="width: 350px; display: block; float: right; margin-top: 20px;">
+		<br />
+		<!-- Redirection to the main menu -->
+		<p:link value="To Main Menu" outcome="indexjsf.xhtml"></p:link>
+		<br />
+		<!-- Redirection to the users' list -->
+		<p:link value="To All Users'List"
+			outcome="userReadAll.xhtml"></p:link>
+	</div>
+</h:body>
 </html>

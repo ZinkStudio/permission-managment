@@ -62,10 +62,10 @@ public class UserJPADAO implements UserDAO {
     public User find(Integer id) throws DAOException {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        User user = new User();
+        User user = null;
         try {
             user = entityManager.find(User.class, id);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             entityManager.close();
             entityManagerFactory.close();
             String msg = "find : " + e.getMessage();
@@ -82,7 +82,6 @@ public class UserJPADAO implements UserDAO {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.find(User.class, user.getId());
             entityManager.merge(user);
             entityManager.getTransaction().commit();
         } catch (RuntimeException e) {
@@ -101,16 +100,18 @@ public class UserJPADAO implements UserDAO {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         User user = this.find(id);
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.remove(user);
-            entityManager.getTransaction().commit();
-        } catch (RuntimeException e) {
-            entityManager.close();
-            entityManagerFactory.close();
-            String msg = "remove : " + e.getMessage();
-            LOG.warn(msg);
-            throw new DAOException(msg, e);
+        if (null != user) {
+            try {
+                entityManager.getTransaction().begin();
+                entityManager.remove(user);
+                entityManager.getTransaction().commit();
+            } catch (RuntimeException e) {
+                entityManager.close();
+                entityManagerFactory.close();
+                String msg = "remove : " + e.getMessage();
+                LOG.warn(msg);
+                throw new DAOException(msg, e);
+            }
         }
         return true;
     }
