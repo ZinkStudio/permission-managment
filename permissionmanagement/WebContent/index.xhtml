@@ -27,7 +27,7 @@
 		<ui:include src="./WEB-INF/layout/header.xhtml" />
 	</ui:insert>
 	<ui:insert name="content">
-		<c:event type="preRenderView" listener="#{indexView.redirectIndex()}" />
+		<c:event type="preRenderView" listener="#{indexView.redirectIndex}" />
 	</ui:insert>
 	<ui:insert name="footer">
 		<ui:include src="./WEB-INF/layout/footer.xhtml" />

@@ -43,6 +43,10 @@ public class UserView implements Serializable {
         return users;
     }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     public void setController(UserController controller) {
         this.controller = controller;
     }

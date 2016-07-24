@@ -13,23 +13,20 @@ import fr.marseille.permissionmanagement.util.JPAUtil;
 @ApplicationScoped
 public class UserDeleteView {
     private UserService userService = new UserService();
-    private Integer     id;
-    private String      name;
-    private String      firstName;
-    private String      comment;
 
     private User        user;
 
-    public void delete() {
+    public void delete(User user) {
         try {
+            JPAUtil.beginTransaction();
             JPAUtil.getEntityManager().merge(user);
-            JPAUtil.getEntityManager().getTransaction().commit();
+            JPAUtil.commitTransaction();
             userService.delete(user.getId());
-
         } catch (ServiceException e) {
             JPAUtil.closeAll();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error : " + e.getMessage()));
         }
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User deleted"));
     }
 
@@ -40,37 +37,4 @@ public class UserDeleteView {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
 }

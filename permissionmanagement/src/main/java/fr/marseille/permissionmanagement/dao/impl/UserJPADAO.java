@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import fr.marseille.permissionmanagement.dao.UserDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.User;
+import fr.marseille.permissionmanagement.util.JPAUtil;
 
 /**
  * 
@@ -60,14 +61,17 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public User find(Integer id) throws DAOException {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        // EntityManager entityManager = entityManagerFactory.createEntityManager();
+
         User user = null;
         try {
-            user = entityManager.find(User.class, id);
+            // user = entityManager.find(User.class, id);
+            user = JPAUtil.getEntityManager().find(User.class, id);
         } catch (RuntimeException e) {
-            entityManager.close();
-            entityManagerFactory.close();
+            // entityManager.close();
+            // entityManagerFactory.close();
+            JPAUtil.closeAll();
             String msg = "find : " + e.getMessage();
             LOG.warn(msg);
             throw new DAOException(msg, e);
@@ -97,17 +101,21 @@ public class UserJPADAO implements UserDAO {
 
     @Override
     public boolean delete(Integer id) throws DAOException {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        // EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
+        // EntityManager entityManager = entityManagerFactory.createEntityManager();
         User user = this.find(id);
         if (null != user) {
             try {
-                entityManager.getTransaction().begin();
-                entityManager.remove(user);
-                entityManager.getTransaction().commit();
+                // entityManager.getTransaction().begin();
+                // entityManager.remove(user);
+                // entityManager.getTransaction().commit();
+                JPAUtil.beginTransaction();
+                JPAUtil.getEntityManager().remove(user);
+                JPAUtil.commitTransaction();
             } catch (RuntimeException e) {
-                entityManager.close();
-                entityManagerFactory.close();
+                // entityManager.close();
+                // entityManagerFactory.close();
+                JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
                 LOG.warn(msg);
                 throw new DAOException(msg, e);

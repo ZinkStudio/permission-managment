@@ -21,7 +21,7 @@
 
 		<h:form id="UserForm" style="margin-top:20px;">
 			<p:messages id="messages" />
-			<p:dataTable var="user" value="#{dtUserView.users}" rows="10"
+			<p:dataTable id="refreshUsers" var="user" value="#{dtUserView.users}" rows="10"
 				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
 				rowsPerPageTemplate="5,10,15">
@@ -53,14 +53,16 @@
 				<!-- Delete User -->
 				<p:column headerText="Delete" width="30">
 					<p:commandButton id="buttonDelete" update="UserForm"
-						actionListener="#{userDeleteView.delete}" icon="fa fa-remove"
+						actionListener="#{userDeleteView.delete(user)}" icon="fa fa-remove"
 						title="Delete User ?" style="display:block;margin:0 auto;" />
 				</p:column>
 			</p:dataTable>
+			
 
 			<!-- Redirection statique vers le menu principal -->
 			<p:link style="float:right;margin-top:20px;" value="To Main Menu"
 				outcome="index.xhtml"></p:link>
 		</h:form>
+<!-- 		<p:ajax event="click" update="buttonDelete" listener="#{dtUserView.users}" /> -->
 	</ui:define>
 </ui:composition>
