@@ -26,9 +26,11 @@
 	<ui:insert name="header">
 		<ui:include src="./WEB-INF/layout/header.xhtml" />
 	</ui:insert>
+	<h:panelGrid style="margin:0 auto;max-width: 1200px;">
 	<ui:insert name="content">
 		<c:event type="preRenderView" listener="#{indexView.redirectIndex}" />
 	</ui:insert>
+	</h:panelGrid>
 	<ui:insert name="footer">
 		<ui:include src="./WEB-INF/layout/footer.xhtml" />
 	</ui:insert>

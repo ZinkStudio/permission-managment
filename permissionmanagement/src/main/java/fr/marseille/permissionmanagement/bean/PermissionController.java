@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
@@ -10,9 +11,26 @@ import fr.marseille.permissionmanagement.service.PermissionService;
 
 @ManagedBean(name = "permissionController")
 @ApplicationScoped
-public class PermissionController {
+public class PermissionController implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID  = 1L;
 
     private PermissionService permissionService = new PermissionService();
+
+    public Permission update(Permission permission) {
+        Permission update = permission;
+
+        try {
+            update = permissionService.update(permission);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+
+        return update;
+    }
 
     public List<Permission> findAll() {
         List<Permission> permissions = new ArrayList<>();
