@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import fr.marseille.permissionmanagement.bean.ProfileController;
-import fr.marseille.permissionmanagement.exception.DAOException;
+import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 
 @ManagedBean(name = "dtProfileView")
@@ -35,15 +35,14 @@ public class ProfileView implements Serializable {
 
             // controller.save(profile);
             profiles = controller.findAll();
-        } catch (DAOException e) {
-            // TODO Auto-generated catch block
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
 
         this.profiles = profiles;
     }
 
-    List<Profile> findAll() throws DAOException {
+    List<Profile> findAll() throws ServiceException {
         return profiles = controller.findAll();
 
     }

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import fr.marseille.permissionmanagement.dao.DAOFactory;
 import fr.marseille.permissionmanagement.dao.ProfileDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
+import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
 
@@ -19,16 +20,14 @@ public class ProfileService {
     public ProfileService() {
     }
 
-    public Profile find(Integer id) throws DAOException {
+    public Profile find(Integer id) throws ServiceException {
         Profile profile = null;
         try {
             profile = profileDAO.find(id);
             LOG.debug("profile found:" + id);
-        } catch (RuntimeException e) {
-
-            String msg = "find : " + e.getMessage();
-
-            throw new DAOException(msg, e);
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
 
         return profile;
@@ -40,73 +39,68 @@ public class ProfileService {
 
     /**
      * @throws DAOException
+     * @throws ServiceException
      */
-    public List<Profile> findAll() throws DAOException {
+    public List<Profile> findAll() throws ServiceException {
         List<Profile> list = new ArrayList<>();
         try {
             list = profileDAO.findAll();
-            LOG.debug("profile found:" + list.size());
-        } catch (RuntimeException e) {
-
-            String msg = "findAll : " + e.getMessage();
-            LOG.error(msg);
-            throw new DAOException(msg, e);
-
+            ProfileService.LOG.debug("profile found:" + list.size());
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
         return list;
     }
 
     /**
      * @throws DAOException
+     * @throws ServiceException
      */
-    public Profile update(Profile profile) throws DAOException {
+    public Profile update(Profile profile) throws ServiceException {
 
         try {
             profileDAO.update(profile);
             LOG.debug("profile update:" + profile.getId());
-        } catch (RuntimeException e) {
-
-            String msg = "update : " + e.getMessage();
-            LOG.error(msg);
-            throw new DAOException(msg, e);
-
+        } catch (DAOException e) {
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
         return profile;
     }
 
     /**
      * @throws DAOException
+     * @throws ServiceException
      */
-    public Boolean delete(Integer id) throws DAOException {
+    public Boolean delete(Integer id) throws ServiceException {
+        boolean status = false;
         try {
-            profileDAO.delete(id);
-            LOG.debug("profile deleted:" + id);
-        } catch (RuntimeException e) {
+            status = profileDAO.delete(id);
 
-            String msg = "delete : " + e.getMessage();
-            LOG.error(msg);
-            throw new DAOException(msg, e);
-
+        } catch (DAOException e) {
+            status = false;
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
-        return true;
+        return status;
     }
 
     /**
      * @throws DAOException
+     * @throws ServiceException
      */
-    public boolean save(Profile profile) throws DAOException {
+    public boolean save(Profile profile) throws ServiceException {
+        boolean status = false;
         try {
-            profileDAO.save(profile);
-            LOG.debug("profile saved:" + profile.getId());
+            status = profileDAO.save(profile);
 
-        } catch (RuntimeException e) {
-
-            String msg = "save : " + e.getMessage();
-            LOG.error(msg);
-            throw new DAOException(msg, e);
-
+        } catch (DAOException e) {
+            status = false;
+            LOG.error(e.getMessage());
+            throw new ServiceException(e.getMessage(), e);
         }
-        return true;
+        return status;
     }
 
     /**

@@ -63,7 +63,7 @@ public class StartProfile {
 
     }
 
-    private static void insertProfiles() throws DAOException {
+    private static void insertProfiles() throws ServiceException {
         String[] applications = StartPermission.applications;
         for (String application : applications) {
             Profile profile = new Profile();
@@ -96,7 +96,7 @@ public class StartProfile {
 
         try {
             profil.save(profile);
-        } catch (DAOException e1) {
+        } catch (ServiceException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }

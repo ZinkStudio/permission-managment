@@ -2,7 +2,6 @@ package fr.marseille.permissionmanagement.dao.impl;
 
 import java.util.List;
 import fr.marseille.permissionmanagement.dao.ProfilePermissionDAO;
-import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
@@ -21,9 +20,9 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
     public void include(Profile profile, List<Permission> permissions) {
         try {
             List<Profile> listprofiles = profileService.findAll();
-        } catch (DAOException e) {
+        } catch (ServiceException e1) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            e1.printStackTrace();
         }
         try {
             List<Permission> listpermissions = permissionService.findAll();
@@ -34,7 +33,7 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
         profile.getPermissions().addAll(permissions);
         try {
             profileService.update(profile);
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -53,7 +52,7 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
     public void include(Profile profile, Permission permission) {
         try {
             List<Profile> listprofiles = profileService.findAll();
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -66,7 +65,7 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
         profile.getPermissions().add(permission);
         try {
             profileService.update(profile);
-        } catch (DAOException e) {
+        } catch (ServiceException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

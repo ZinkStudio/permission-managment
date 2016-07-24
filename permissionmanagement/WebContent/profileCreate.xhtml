@@ -22,14 +22,14 @@
 		
 				<h:panelGrid columns="3" cellpadding="5">
 					<p:outputLabel for="name" value="Name : " />
-					<p:inputText id="name" value=""
+					<p:inputText id="name" value="#{profileSaveView.profile.name}"
 						required="true" label="name">
 						<c:validateLength minimum="2" />
 					</p:inputText>
 					<p:message for="name" />
 
 					<p:outputLabel for="description" value="Description : " />
-					<p:inputText id="description" value=""
+					<p:inputText id="description" value="#{profileSaveView.profile.description}"
 						 label="description" />
 					<p:message for="description" />
 					
@@ -38,9 +38,11 @@
 		</p:panelGrid>
 		 <p:toolbar>
         <c:facet name="left">
-            <p:commandButton value="Save" update="panel" actionListener="#{resetInputView.save}"  />
+            <p:commandButton value="Save" update="panel" actionListener="#{profileSaveView.save}" />
         </c:facet>
         </p:toolbar>
+        <!-- Redirection statique vers le menu principal -->
+	<p:link value="Vers Menu Principal" outcome="profileIndex.xhtml"></p:link>
 	</h:form>
 </h:body>
 </html>
