@@ -3,26 +3,26 @@ package fr.marseille.permissionmanagement.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
-import fr.marseille.permissionmanagement.dao.PermissionDAO;
+import fr.marseille.permissionmanagement.dao.PermissionLabelDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
-import fr.marseille.permissionmanagement.model.Permission;
+import fr.marseille.permissionmanagement.model.PermissionLabel;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
-public class PermissionJPADAO implements PermissionDAO {
+public class PermissionLabelJPADAO implements PermissionLabelDAO {
 
-    private static final Logger LOG = Logger.getLogger(PermissionJPADAO.class);
+    private static final Logger LOG = Logger.getLogger(PermissionLabelJPADAO.class);
 
-    public PermissionJPADAO() {
+    public PermissionLabelJPADAO() {
 
     }
 
     @Override
-    public boolean save(Permission permission) throws DAOException {
+    public boolean save(PermissionLabel label) throws DAOException {
         boolean status = false;
 
         try {
             JPAUtil.beginTransaction();
-            JPAUtil.getEntityManager().persist(permission);
+            JPAUtil.getEntityManager().persist(label);
             JPAUtil.commitTransaction();
             status = true;
         } catch (RuntimeException e) {
@@ -37,11 +37,12 @@ public class PermissionJPADAO implements PermissionDAO {
     }
 
     @Override
-    public List<Permission> findAll() throws DAOException {
-        List<Permission> permissions = new ArrayList<Permission>();
+    public List<PermissionLabel> findAll() throws DAOException {
+        List<PermissionLabel> labels = new ArrayList<PermissionLabel>();
 
         try {
-            permissions = JPAUtil.getEntityManager().createQuery("from Permission", Permission.class).getResultList();
+            labels = JPAUtil.getEntityManager().createQuery("from PermissionLabel", PermissionLabel.class)
+                    .getResultList();
         } catch (RuntimeException e) {
             JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
@@ -49,32 +50,31 @@ public class PermissionJPADAO implements PermissionDAO {
             throw new DAOException(msg, e);
         }
 
-        return permissions;
+        return labels;
     }
 
     @Override
-    public Permission find(Integer id) throws DAOException {
-        Permission permission = null;
+    public PermissionLabel find(Integer id) throws DAOException {
+        PermissionLabel label = null;
 
         try {
-            permission = JPAUtil.getEntityManager().find(Permission.class, id);
+            label = JPAUtil.getEntityManager().find(PermissionLabel.class, id);
         } catch (RuntimeException e) {
             String msg = "find : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
         }
 
-        return permission;
+        return label;
     }
 
     @Override
-    public Permission update(Permission permission) throws DAOException {
-        Permission mergePermission = permission;
+    public PermissionLabel update(PermissionLabel label) throws DAOException {
+        PermissionLabel mergeLabel = label;
 
         try {
             JPAUtil.beginTransaction();
-            mergePermission = JPAUtil.getEntityManager().merge(permission);
-            JPAUtil.commitTransaction();
+            mergeLabel = JPAUtil.getEntityManager().merge(label);
         } catch (RuntimeException e) {
             JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
@@ -82,21 +82,18 @@ public class PermissionJPADAO implements PermissionDAO {
             throw new DAOException(msg, e);
         }
 
-        return mergePermission;
+        return mergeLabel;
     }
 
     @Override
     public boolean delete(Integer id) throws DAOException {
         boolean status = false;
 
-        Permission permission = this.find(id);
+        PermissionLabel label = this.find(id);
 
-        if (null != permission) {
+        if (null != label) {
             try {
-                JPAUtil.beginTransaction();
-                JPAUtil.getEntityManager().remove(permission);
-                JPAUtil.commitTransaction();
-                status = true;
+
             } catch (RuntimeException e) {
                 status = false;
                 JPAUtil.closeAll();
