@@ -1,0 +1,26 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<header class="header-two-bars">
+	<div class="header-first-bar">
+		<div class="header-limiter">
+			<h1><a href="#">Permission<span>Management</span></a></h1>
+			<nav>
+				<ui:insert name="headerTitle"><a href="#"><h:outputText id="layoutTitle" value="Welcome" /></a></ui:insert>
+				<ui:insert name="headerTitle"><a href="#"><h:outputText id="headerTitle" value="permission-management : home" /></a></ui:insert>
+			</nav>
+			<a href="#" class="logout-button">Logout</a>
+		</div>
+	</div>
+
+	<div class="header-second-bar">	
+		<div class="header-limiter">	
+			<ui:insert name="tabmenu">		
+				<ui:include src="tabmenu.xhtml" />
+			</ui:insert>
+		</div>		
+	</div>
+	
+</header>
+</ui:composition>

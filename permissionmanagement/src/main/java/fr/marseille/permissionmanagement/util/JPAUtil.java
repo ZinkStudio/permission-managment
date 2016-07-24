@@ -2,6 +2,7 @@ package fr.marseille.permissionmanagement.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 // TODO: Auto-generated Javadoc
@@ -18,6 +19,9 @@ public class JPAUtil {
 
     /** The entity manager. */
     private static EntityManager        entityManager;
+
+    /** The entity transaction */
+    private static EntityTransaction    transaction;
 
     /**
      * Instantiates a new JPA util.
@@ -53,6 +57,38 @@ public class JPAUtil {
         }
 
         return managerFactory;
+    }
+
+    /**
+     * Gets the entity manager transaction.
+     *
+     * @return the entity manager transaction
+     */
+    public synchronized static EntityTransaction getTransaction() {
+
+        if (transaction == null) {
+            transaction = getEntityManager().getTransaction();
+        }
+
+        return transaction;
+    }
+
+    /**
+     * Begin the entity manager transaction.
+     */
+    public synchronized static void beginTransaction() {
+        if (!getTransaction().isActive()) {
+            getTransaction().begin();
+        }
+    }
+
+    /**
+     * Commit the entity manager transaction.
+     */
+    public synchronized static void commitTransaction() {
+        if (getTransaction().isActive()) {
+            getTransaction().commit();
+        }
     }
 
     /**

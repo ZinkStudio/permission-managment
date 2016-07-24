@@ -1,51 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3c.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Indexjsf.xhtml</title>
+	<c:facet name="last">
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/header.css" />
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/content.css" />
+		<link rel="stylesheet" type="text/css"
+			href="#{facesContext.externalContext.requestContextPath}/css/footer.css" />
+	</c:facet>
+	<title><ui:insert name="title">
+			<h:outputText value="permission-management : home" />
+		</ui:insert></title>
 </h:head>
 <h:body>
-<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Training Center</a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li class=""><a href="/trainingcenter/">Index</a></li>
-				<li class=" dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Trainers&nbsp;<span
-						class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="trainer?action=list">list</a></li>
-						<li><a href="trainer?action=create">create</a></li>
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#">Skills&nbsp;<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="skill?action=list">list</a></li>
-						<li><a href="skill?action=create">create</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<h1>Welcome</h1>
-	<p>
-		Lorem Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem
-		Ipsum dolor sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor
-		sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor
-		sit amet. Lorem Ipsum dolor sit amet. Lorem Ipsum dolor
-		sit amet.
-	</p>
+
+	<ui:insert name="header">
+		<ui:include src="./WEB-INF/layout/header.xhtml" />
+	</ui:insert>
+	<ui:insert name="content">
+		<ui:include src="./userReadAll.xhtml" />
+	</ui:insert>
+	<ui:insert name="footer">
+		<ui:include src="./WEB-INF/layout/footer.xhtml" />
+	</ui:insert>
 </h:body>
 </html>

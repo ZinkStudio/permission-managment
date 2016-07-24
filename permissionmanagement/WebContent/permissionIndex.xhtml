@@ -1,29 +1,31 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<ui:composition template="index.xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>permission : index</title>
-</h:head>
-<h:body>
-	<h1><p:outputLabel id="headPermissionReadAll" value="Listing Permissions :" /></h1>
-	
-	<p:link value="Vers Menu Principal" outcome="index.xhtml"></p:link>
-	
-	<p:dataTable var="permission" value="#{dtPermissionView.permissions}"
-		rows="10" paginator="true"
-		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
-		<p:column headerText="Id">
-			<h:outputText value="#{permission.id}" />
-		</p:column>
 
-		<p:column headerText="Entry">
-			<h:outputText value="#{permission.entry}" />
-		</p:column>
-	</p:dataTable>
-</h:body>
-</html>
+	<ui:define name="title">
+		<h:outputText value="permission-management : permission" />
+	</ui:define>
+
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Listing Permission :" />
+	</ui:define>
+
+	<ui:define name="content">
+		<p:link value="Vers Menu Principal" outcome="index.xhtml"></p:link>
+
+		<p:dataTable var="permission" value="#{dtPermissionView.permissions}"
+			rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Id">
+				<h:outputText value="#{permission.id}" />
+			</p:column>
+
+			<p:column headerText="Entry">
+				<h:outputText value="#{permission.entry}" />
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

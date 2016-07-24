@@ -1,0 +1,20 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:tabMenu activeIndex="#{IndexView.index}">
+		<p:menuitem value="Users" outcome="userReadAll" icon="ui-icon-star">
+			<c:param name="index" value="0" />
+		</p:menuitem>
+		<p:menuitem value="Profiles" outcome="profileIndex"
+			icon="ui-icon-search">
+			<c:param name="index" value="1" />
+		</p:menuitem>
+		<p:menuitem value="Permissions" outcome="permissionIndex"
+			icon="ui-icon-document">
+			<c:param name="index" value="2" />
+		</p:menuitem>
+	</p:tabMenu>
+
+</ui:composition>

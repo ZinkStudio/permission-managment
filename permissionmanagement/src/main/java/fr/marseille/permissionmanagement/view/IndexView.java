@@ -11,9 +11,6 @@ import fr.marseille.permissionmanagement.bean.PermissionController;
 @ViewScoped
 public class IndexView implements Serializable {
 
-    /**
-     * 
-     */
     private static final long    serialVersionUID = 1L;
 
     @ManagedProperty("#{permissionController}")
@@ -21,8 +18,7 @@ public class IndexView implements Serializable {
 
     @PostConstruct
     public void init() {
-        // permissions = controller.createPermissions();
-        // permissions = controller.findAll();
+
     }
 
     public void setController(PermissionController permissionController) {
