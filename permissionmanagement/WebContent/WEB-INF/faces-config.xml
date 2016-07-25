@@ -6,6 +6,22 @@
 
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
+<!-- 		Soraya -->
+<navigation-case>
+			<from-outcome>profileUpdate</from-outcome>
+			<to-view-id>profileUpdate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profileCreate</from-outcome>
+			<to-view-id>profileCreate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profileIndex</from-outcome>
+			<to-view-id>profileIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 
 <!-- 		louiza -->
 		<navigation-case>
