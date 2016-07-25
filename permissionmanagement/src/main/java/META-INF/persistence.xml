@@ -13,7 +13,7 @@
 <!-- 		<property name="javax.persistence.jdbc.password" value="${jdbc.password}" /> -->
 <!--  		<property name="javax.persistence.jdbc.password" value="Human123Booster" />  -->
 <!-- 		<property name="javax.persistence.jdbc.password" value="qassim2015" /> -->
-<!-- 		<property name="javax.persistence.jdbc.password" value="sonicmaster" /> -->
+		<property name="javax.persistence.jdbc.password" value="sonicmaster" />
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 
 			<!-- Hibernate -->
