@@ -8,12 +8,12 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>userUpdate</from-outcome>
-			<to-view-id>updateUser.xhtml</to-view-id>
+			<to-view-id>userUpdate.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>userCreate</from-outcome>
-			<to-view-id>updateCreate.xhtml</to-view-id>
+			<to-view-id>userCreate.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
