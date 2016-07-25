@@ -13,9 +13,9 @@ import org.primefaces.event.RowEditEvent;
 import fr.marseille.permissionmanagement.bean.PermissionController;
 import fr.marseille.permissionmanagement.model.Permission;
 
-@ManagedBean(name = "dtPermissionEditView")
+@ManagedBean
 @ViewScoped
-public class PermissionEditView implements Serializable {
+public class PermissionView implements Serializable {
 
     /**
      * 
@@ -24,21 +24,14 @@ public class PermissionEditView implements Serializable {
 
     private List<Permission>     permissions;
 
+    private Permission           permission;
+
     @ManagedProperty("#{permissionController}")
     private PermissionController controller;
 
     @PostConstruct
     public void init() {
-        // permissions = controller.createPermissions();
         permissions = controller.findAll();
-    }
-
-    public List<Permission> getPermissions() {
-        return permissions;
-    }
-
-    public void setController(PermissionController permissionController) {
-        this.controller = permissionController;
     }
 
     public void delete() {
@@ -68,5 +61,21 @@ public class PermissionEditView implements Serializable {
                     "Old: " + oldValue + ", New:" + newValue);
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+    }
+
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setController(PermissionController permissionController) {
+        this.controller = permissionController;
+    }
+
+    public Permission getPermission() {
+        return permission;
+    }
+
+    public void setPermission(Permission permission) {
+        this.permission = permission;
     }
 }

@@ -16,10 +16,10 @@
 		<p:link value="To Main Menu" outcome="index.xhtml"></p:link>
 
 		<h:form id="form">
-			<p:growl id="msgs" showDetail="true" />
+			<p:growl id="msgs" life="1500" showDetail="true" />
 
 			<p:dataTable id="dtUsers" var="permission"
-				value="#{dtPermissionEditView.permissions}" editable="true"
+				value="#{permissionView.permissions}" editable="true"
 				rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
@@ -27,10 +27,10 @@
 				<c:facet name="header">
 					<h:outputText id="headerDataTable" value="Listing Permissions" />
 				</c:facet>
-				<p:ajax event="rowEdit" listener="#{dtPermissionEditView.onRowEdit}"
+				<p:ajax event="rowEdit" listener="#{permissionView.onRowEdit}"
 					update=":form:msgs" />
 				<p:ajax event="rowEditCancel"
-					listener="#{dtPermissionEditView.onRowCancel}" update=":form:msgs" />
+					listener="#{permissionView.onRowCancel}" update=":form:msgs" />
 
 				<p:column headerText="Id" style="width:auto;">
 					<p:cellEditor>
@@ -60,17 +60,12 @@
 					<p:rowEditor />
 				</p:column>
 				<p:column headerText="Delete" style="width:100px;">
-					<p:commandButton id="btnDelete" action="permissionDelete" icon="fa fa-edit">
-						<c:setPropertyActionListener target="{#PermissionView.}" value="#{permission}" />
+					<p:commandButton id="btnDelete" action="permissionDelete"
+						icon="fa fa-edit" update="@form">
+						<c:setPropertyActionListener target="#{permissionView.permission}"
+							value="#{permission}" />
 					</p:commandButton>
 				</p:column>
-				<!-- Delete User -->
-				<!-- 				<p:column headerText="Delete" width="30"> -->
-				<!-- 					<p:commandButton id="buttonDelete" update="dtUsers" -->
-				<!-- 						actionListener="#{permisionDeleteView.delete(user)}" -->
-				<!-- 						icon="fa fa-remove" title="Delete User ?" -->
-				<!-- 						style="display:block;margin:0 auto;" /> -->
-				<!-- 				</p:column> -->
 			</p:dataTable>
 		</h:form>
 
