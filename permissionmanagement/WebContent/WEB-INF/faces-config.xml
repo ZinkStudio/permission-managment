@@ -6,26 +6,54 @@
 
 	<navigation-rule>
 		<from-view-id>*</from-view-id>
+		<!-- Soraya -->
+		<navigation-case>
+			<from-outcome>profileUpdate</from-outcome>
+			<to-view-id>profileUpdate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profileCreate</from-outcome>
+			<to-view-id>profileCreate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>profileIndex</from-outcome>
+			<to-view-id>profileIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 
-<!-- 		louiza -->
+		<!-- louiza -->
 		<navigation-case>
 			<from-outcome>userUpdate</from-outcome>
-			<to-view-id>/userUpdate.xhtml</to-view-id>
+			<to-view-id>userUpdate.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>userCreate</from-outcome>
-			<to-view-id>/userCreate.xhtml</to-view-id>
+			<to-view-id>userCreate.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>userDelete</from-outcome>
-			<to-view-id>/userReadAll.xhtml</to-view-id>
+			<to-view-id>userReadAll.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
+
+		<!-- Antony -->
+		<navigation-case>
+			<from-outcome>permissionIndex</from-outcome>
+			<to-view-id>permissionIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>permissionDelete</from-outcome>
+			<to-view-id>permissionIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
-	
+
 </faces-config>
