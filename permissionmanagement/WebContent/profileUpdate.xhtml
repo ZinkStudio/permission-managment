@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:c="http://java.sun.com/jsf/core"
+<ui:composition template="index.xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Update Profile</title>
-</h:head>
-<h:body>
-	<h1>
-		<h:outputText id="lblUpdateUser" value="  Update" />
-		<br />
-	</h1>
-	<div style="width: 1024px; display: block; margin: 0 auto;">
+<ui:define name="title">
+		<h:outputText value="permission-management : profiles" />
+	</ui:define>
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Listing Profiles :" />
+	</ui:define>
+	<ui:define name="content">
 		<h:form id="formProfileUpdate">
 			<p:panel id="panel" header="INFORMATION"
 				style="font-size:20px;margin-bottom:10px;">
@@ -40,12 +36,13 @@
 			<p:commandButton value="Update" update="panel"
 				actionListener="#{profileUpdateView.update}" style="margin-right:20px;" />
 		</h:form>
-	</div>
+
 	<div
 		style="width: 350px; display: block; float: left; margin-top: 20px;">
 		
 		
 		<p:link value="Vers Menu Principal" outcome="profileIndex.xhtml"></p:link>
 	</div>
-</h:body>
-</html>
+
+</ui:define>
+</ui:composition>
