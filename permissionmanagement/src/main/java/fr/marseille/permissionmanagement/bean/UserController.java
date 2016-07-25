@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.bean;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -9,9 +10,13 @@ import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean(name = "userController")
 @ApplicationScoped
-public class UserController {
+public class UserController implements Serializable {
 
-    private UserService userService = new UserService();
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private UserService       userService      = new UserService();
 
     public List<User> createUsers() {
         return userService.createUsers();

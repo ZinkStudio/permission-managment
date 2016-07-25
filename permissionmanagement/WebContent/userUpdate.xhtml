@@ -7,7 +7,7 @@
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Update of the User</title>
+	<title>User Information Update</title>
 </h:head>
 <h:body>
 	<h1>
@@ -41,7 +41,7 @@
 
 			</p:panel>
 			<p:commandButton value="Update" update="panel"
-				actionListener="#{userUpdateView.update(user)}" style="margin-right:20px;" />
+				actionListener="#{userUpdateView.update}" style="margin-right:20px;" />
 		</h:form>
 	</div>
 	<div
@@ -50,9 +50,6 @@
 		<!-- Redirection to the main menu -->
 		<p:link value="Back Home" outcome="index.xhtml"></p:link>
 		<br />
-		<!-- Redirection to the users' list -->
-		<p:link value="To All Users'List"
-			outcome="userReadAll.xhtml"></p:link>
 	</div>
 </h:body>
 </html>

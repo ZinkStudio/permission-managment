@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.view;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -10,11 +11,16 @@ import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean
 @ViewScoped
-public class UserSaveView {
+public class UserSaveView implements Serializable {
 
-    private UserService userService = new UserService();
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-    private User        user        = new User();
+    private UserService       userService      = new UserService();
+
+    private User              user             = new User();
 
     public void save() {
         try {

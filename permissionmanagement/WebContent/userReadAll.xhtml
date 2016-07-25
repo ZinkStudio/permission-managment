@@ -46,8 +46,7 @@
 				</p:column>
 				<!-- Redirection to userUpdate -->
 				<p:column headerText="Update" width="30">
-					<p:commandButton id="buttonUpdate" action="userUpdate.xhtml"
-						icon="fa fa-edit" title="Update User ?"
+					<p:commandButton id="buttonUpdate" action="#{userUpdateView.redirect(user)}" icon="fa fa-edit" title="Update User ?"
 						style="display:block;margin:0 auto;" />
 				</p:column>
 				<!-- Delete User -->
@@ -63,6 +62,5 @@
 			<p:link style="float:right;margin-top:20px;" value="Back Home"
 				outcome="index.xhtml"></p:link>
 		</h:form>
-<!-- 		<p:ajax event="click" update="buttonDelete" listener="#{dtUserView.users}" /> -->
 	</ui:define>
 </ui:composition>

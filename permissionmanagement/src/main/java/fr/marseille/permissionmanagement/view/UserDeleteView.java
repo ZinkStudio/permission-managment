@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.view;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,10 +12,13 @@ import fr.marseille.permissionmanagement.util.JPAUtil;
 
 @ManagedBean
 @ApplicationScoped
-public class UserDeleteView {
-    private UserService userService = new UserService();
-
-    private User        user;
+public class UserDeleteView implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private UserService       userService      = new UserService();
+    private User              user;
 
     public void delete(User user) {
         try {
