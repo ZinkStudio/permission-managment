@@ -2,7 +2,6 @@ package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -29,7 +28,7 @@ public class PermissionView implements Serializable {
     @ManagedProperty("#{permissionController}")
     private PermissionController controller;
 
-    @PostConstruct
+    // @PostConstruct
     public void init() {
         permissions = controller.findAll();
     }
@@ -64,6 +63,7 @@ public class PermissionView implements Serializable {
     }
 
     public List<Permission> getPermissions() {
+        init();
         return permissions;
     }
 
