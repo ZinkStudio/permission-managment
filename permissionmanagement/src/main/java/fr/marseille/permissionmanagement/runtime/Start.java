@@ -31,8 +31,8 @@ public class Start {
     }
 
     public static void generateDatabase() {
-        JPAUtil.getEntityManager().getTransaction().begin();
-        JPAUtil.getEntityManager().getTransaction().commit();
+        JPAUtil.beginTransaction();
+        JPAUtil.commitTransaction();
     }
 
 }

@@ -1,9 +1,9 @@
 package fr.marseille.permissionmanagement.runtime;
 
+import java.util.Random;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
-import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class StartUser {
     protected static String[]    names       = { "Shelton", "Walker", "Doyle", "Holland", "Williams", "Moss", "Wolfe" };
@@ -16,21 +16,17 @@ public class StartUser {
     public static void main(String[] args) throws ServiceException {
 
         insertUsers();
-        JPAUtil.closeAll();
+        // JPAUtil.closeAll();
 
     }
 
     protected static void insertUsers() throws ServiceException {
-
-        JPAUtil.beginTransaction();
+        Random rng = new Random();
         for (String name : names) {
             for (String firstname : firstNames) {
-                for (String comment : comments) {
-                    JPAUtil.getEntityManager().persist((new User(0, name, firstname, comment)));
-                }
+                userService.save(new User(null, name, firstname, comments[rng.nextInt(comments.length)]));
             }
         }
-        JPAUtil.commitTransaction();
 
     }
 }

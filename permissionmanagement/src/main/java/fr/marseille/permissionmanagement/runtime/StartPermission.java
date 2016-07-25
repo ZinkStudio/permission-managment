@@ -60,7 +60,7 @@ public class StartPermission {
         for (String application : applications) {
             for (String resource : resources) {
                 for (String action : actions) {
-                    permissionService.save(new Permission(0, application + "." + resource + "." + action));
+                    permissionService.save(new Permission(null, application + "." + resource + "." + action));
                 }
             }
         }

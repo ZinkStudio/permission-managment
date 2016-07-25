@@ -41,6 +41,10 @@ public class PermissionEditView implements Serializable {
         this.controller = permissionController;
     }
 
+    public void delete() {
+
+    }
+
     public void onRowEdit(RowEditEvent event) {
         Permission permission = (Permission) event.getObject();
 
