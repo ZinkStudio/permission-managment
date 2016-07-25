@@ -19,8 +19,8 @@ public class StartProfile {
         // Start.generateDatabase();
 
         insertProfiles();
-        affectUser();
-        includePermission();
+        // affectUser();
+        // includePermission();
 
         // JPAUtil.closeAll();
 

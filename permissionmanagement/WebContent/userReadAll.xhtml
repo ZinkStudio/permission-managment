@@ -15,14 +15,14 @@
 
 		<div style="width: 100%; height: 50px;">
 			<p:commandButton style="float:right;" value="Create A New User"
-				icon="ui-icon-star" title="Create a new User?"
-				action="userCreate.xhtml" />
+				icon="ui-icon-star" title="Create a new User?" action="userCreate">
+			</p:commandButton>
 		</div>
 
 		<h:form id="UserForm" style="margin-top:20px;">
 			<p:messages id="messages" />
-			<p:dataTable id="refreshUsers" var="user" value="#{dtUserView.users}" rows="10"
-				paginator="true"
+			<p:dataTable id="refreshUsers" var="user" value="#{dtUserView.users}"
+				rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
 				rowsPerPageTemplate="5,10,15">
 				<p:column headerText="Id" width="30">
@@ -46,17 +46,25 @@
 				</p:column>
 				<!-- Redirection to userUpdate -->
 				<p:column headerText="Update" width="30">
-					<p:commandButton id="buttonUpdate" action="#{userUpdateView.redirect(user)}" icon="fa fa-edit" title="Update User ?"
-						style="display:block;margin:0 auto;" />
+					<p:commandButton id="buttonUpdate" action="userUpdate"
+						icon="fa fa-edit" title="Update User ?"
+						style="display:block;margin:0 auto;">
+						<c:setPropertyActionListener value="#{user}"
+							target="#{userUpdateView.user}" />
+					</p:commandButton>
 				</p:column>
 				<!-- Delete User -->
 				<p:column headerText="Delete" width="30">
 					<p:commandButton id="buttonDelete" update="UserForm"
-						actionListener="#{userDeleteView.delete(user)}" icon="fa fa-remove"
-						title="Delete User ?" style="display:block;margin:0 auto;" />
+						action="#{userDeleteView.delete}" icon="fa fa-remove" title="Delete User ?"
+						style="display:block;margin:0 auto;">
+						<c:setPropertyActionListener value="#{user}"
+							target="#{userDeleteView.user}"></c:setPropertyActionListener>
+<!-- 					<c:ajax execute="@form" render=":UserForm"/>		 -->
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-			
+
 
 			<!-- Redirection statique vers le menu principal -->
 			<p:link style="float:right;margin-top:20px;" value="Back Home"
