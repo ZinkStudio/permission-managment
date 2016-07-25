@@ -20,7 +20,7 @@ public class UserDeleteView implements Serializable {
     private UserService       userService      = new UserService();
     private User              user;
 
-    public void delete(User user) {
+    public void delete() {
         try {
             JPAUtil.beginTransaction();
             JPAUtil.getEntityManager().merge(user);

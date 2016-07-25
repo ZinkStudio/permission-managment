@@ -1,7 +1,6 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
-import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -17,17 +16,9 @@ public class UserUpdateView implements Serializable {
     /**
      * 
      */
-    private static final long             serialVersionUID  = 1L;
-    private FacesContext                  facesContext      = FacesContext.getCurrentInstance();
-    private ConfigurableNavigationHandler navigationHandler = (ConfigurableNavigationHandler) facesContext
-            .getApplication().getNavigationHandler();
-    private UserService                   userService       = new UserService();
-    private User                          user;
-
-    public void redirect(User user) {
-        this.setUser(user);
-        navigationHandler.performNavigation("userUpdate.jsf?index=0&jftfdi=&jffi=userUpdate");
-    }
+    private static final long serialVersionUID = 1L;
+    private UserService       userService      = new UserService();
+    private User              user;
 
     public void update() {
         try {

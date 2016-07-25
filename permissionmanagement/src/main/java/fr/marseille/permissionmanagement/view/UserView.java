@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import fr.marseille.permissionmanagement.bean.UserController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
@@ -18,14 +21,17 @@ public class UserView implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = 1L;
+    private static final long             serialVersionUID  = 1L;
 
-    private String            linkUpdate       = "updateUser";
+    private String                        linkUpdate        = "updateUser";
+    private FacesContext                  facesContext      = FacesContext.getCurrentInstance();
+    private ConfigurableNavigationHandler navigationHandler = (ConfigurableNavigationHandler) facesContext
+            .getApplication().getNavigationHandler();
 
-    private List<User>        users;
+    private List<User>                    users;
 
     @ManagedProperty("#{userController}")
-    private UserController    controller;
+    private UserController                controller;
 
     @PostConstruct
     public void init() {
@@ -53,5 +59,9 @@ public class UserView implements Serializable {
 
     public String getLinkUpdate() {
         return linkUpdate;
+    }
+
+    public void redirectCreate(ComponentSystemEvent event) {
+        navigationHandler.performNavigation("userCreate.jsf?index=0&jftfdi=&jffi=userCreate");
     }
 }

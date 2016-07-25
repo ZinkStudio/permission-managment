@@ -2,13 +2,11 @@ package fr.marseille.permissionmanagement.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import org.apache.log4j.Logger;
 import fr.marseille.permissionmanagement.dao.ProfileDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Profile;
+import fr.marseille.permissionmanagement.util.JPAUtil;
 
 /**
  * 
@@ -23,20 +21,19 @@ public class ProfileJPADAO implements ProfileDAO {
 
     @Override
     public boolean save(Profile profile) throws DAOException {
-        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entitiManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
+
         boolean status = false;
         try {
 
             // Debute une transaction
+            JPAUtil.beginTransaction();
 
-            entityManager.persist(profile);
-            entityManager.getTransaction().commit();
+            JPAUtil.getEntityManager().persist(profile);
+
+            JPAUtil.commitTransaction();
 
         } catch (RuntimeException e) {
-            entityManager.close();
-            entitiManagerFactory.close();
+            JPAUtil.closeAll();
             String msg = "persist : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -47,19 +44,14 @@ public class ProfileJPADAO implements ProfileDAO {
 
     @Override
     public List<Profile> findAll() throws DAOException {
-        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entitiManagerFactory.createEntityManager();
-        // Debute une transaction
 
-        entityManager.getTransaction().begin();
         List<Profile> profiles = new ArrayList<>();
         try {
-            profiles = (List<Profile>) entityManager.createQuery("from Profile").getResultList();
-            entityManager.getTransaction().commit();
+
+            profiles = (List<Profile>) JPAUtil.getEntityManager().createQuery("from Profile").getResultList();
 
         } catch (RuntimeException e) {
-            entityManager.close();
-            entitiManagerFactory.close();
+            JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -71,18 +63,15 @@ public class ProfileJPADAO implements ProfileDAO {
 
     @Override
     public Profile find(Integer id) throws DAOException {
-        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entitiManagerFactory.createEntityManager();
+
         // Debute une transaction
 
-        entityManager.getTransaction().begin();
         Profile profile = null;
         try {
-            profile = entityManager.find(Profile.class, id);
+            profile = JPAUtil.getEntityManager().find(Profile.class, id);
 
         } catch (RuntimeException e) {
-            entityManager.close();
-            entitiManagerFactory.close();
+            JPAUtil.closeAll();
             String msg = "find : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -94,20 +83,13 @@ public class ProfileJPADAO implements ProfileDAO {
 
     @Override
     public Profile update(Profile profile) throws DAOException {
-        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entitiManagerFactory.createEntityManager();
-        // Debute une transaction
-
-        entityManager.getTransaction().begin();
 
         try {
-            entityManager.find(Profile.class, profile.getId());
-            entityManager.merge(profile);
-            entityManager.getTransaction().commit();
-
+            JPAUtil.beginTransaction();
+            JPAUtil.getEntityManager().merge(profile);
+            JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            entityManager.close();
-            entitiManagerFactory.close();
+            JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -117,22 +99,16 @@ public class ProfileJPADAO implements ProfileDAO {
 
     @Override
     public boolean delete(Integer id) throws DAOException {
-        EntityManagerFactory entitiManagerFactory = Persistence.createEntityManagerFactory("permissionmanagement");
-        EntityManager entityManager = entitiManagerFactory.createEntityManager();
-        // Debute une transaction
-
-        entityManager.getTransaction().begin();
         boolean status = false;
-        Profile profile = entityManager.find(Profile.class, id);
+        Profile profile = this.find(id);
         if (null != profile) {
             try {
-
-                entityManager.remove(profile);
-                entityManager.getTransaction().commit();
+                JPAUtil.beginTransaction();
+                JPAUtil.getEntityManager().remove(profile);
+                JPAUtil.commitTransaction();
 
             } catch (RuntimeException e) {
-                entityManager.close();
-                entitiManagerFactory.close();
+                JPAUtil.closeAll();
                 String msg = "delete : " + e.getMessage();
                 LOG.error(msg);
                 throw new DAOException(msg, e);
