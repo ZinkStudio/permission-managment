@@ -62,6 +62,13 @@
 					style="display:block;margin:0 auto;" />
 			</p:column>
 			
+			<p:column headerText="See users" width="100">
+				<p:commandButton id="buttonAllUsers"
+					action="indexjsf.xhtml" icon=" fa fa-eye"
+					title="See all the users for this profile ?"
+					style="display:block;margin:0 auto;" />
+			</p:column>
+			
 			<p:column headerText="Update" width="60">
 				<p:commandButton id="buttonUpdate" action="profileUpdate"
 					icon="fa fa-edit" title="Update Profile ?"
@@ -72,13 +79,15 @@
 			</p:column>
 			
 			<p:column headerText="Delete" width="60">
-				<p:commandButton id="buttonDelete" update="ProfileForm" 
-				action="#{profileDeleteView.delete}"
+				<p:commandButton id="buttonDelete" update="@all" 
+				actionListener="#{profileDeleteView.delete(profile.id)}"
 					icon=" fa fa-remove" title="Delete Profile ?"
 					 style="display:block;margin:0 auto;">
-					 <c:setPropertyActionListener value="#{profile}" target="#{profileDeleteView.profile}" />
 					</p:commandButton>
 			</p:column>
+			
+			
+			
 		</p:dataTable>
 		<!-- Redirection statique vers le menu principal -->
 		<p:link style="float:right;margin-top:20px;"

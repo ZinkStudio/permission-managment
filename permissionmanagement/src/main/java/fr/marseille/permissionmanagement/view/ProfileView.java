@@ -1,17 +1,17 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import fr.marseille.permissionmanagement.bean.ProfileController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 
 @ManagedBean(name = "dtProfileView")
-@ViewScoped
+@SessionScoped
 public class ProfileView implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -20,10 +20,10 @@ public class ProfileView implements Serializable {
     @ManagedProperty("#{profileController}")
     private ProfileController controller;
 
-    @PostConstruct
+    // @PostConstruct
 
     public void init() {
-        // List<Profile> profiles = new ArrayList<>();
+        List<Profile> profiles = new ArrayList<>();
         Profile profile = new Profile();
         // profile.setName("tota");
         // profile.setDescription("dsds");
@@ -31,9 +31,7 @@ public class ProfileView implements Serializable {
         // profiles.addAll(controller.createProfiles());
 
         try {
-            // profiles.addAll(controller.findAll());
 
-            // controller.save(profile);
             profiles = controller.findAll();
         } catch (ServiceException e) {
             e.printStackTrace();
@@ -42,12 +40,17 @@ public class ProfileView implements Serializable {
         this.profiles = profiles;
     }
 
-    List<Profile> findAll() throws ServiceException {
-        return profiles = controller.findAll();
+    // List<Profile> findAll() throws ServiceException {
+    // return profiles = controller.findAll();
+    //
+    // }
 
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
     }
 
     public List<Profile> getProfiles() {
+        init();
         return profiles;
     }
 
