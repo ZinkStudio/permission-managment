@@ -21,7 +21,7 @@
 
 		<h:form id="UserForm" style="margin-top:20px;">
 			<p:messages id="messages" />
-			<p:dataTable id="refreshUsers" var="user" value="#{dtUserView.users}"
+			<p:dataTable id="refreshUsers" var="user" value="#{userView.users}"
 				rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
 				rowsPerPageTemplate="5,10,15">
@@ -55,12 +55,15 @@
 				</p:column>
 				<!-- Delete User -->
 				<p:column headerText="Delete" width="30">
-					<p:commandButton id="buttonDelete" update="UserForm"
-						action="#{userDeleteView.delete}" icon="fa fa-remove" title="Delete User ?"
+<!-- 					<p:commandButton id="buttonDelete" update="@form" process="buttonDelete" -->
+<!-- 						action="#{userDeleteView.delete}" icon="fa fa-remove" title="Delete User ?" -->
+<!-- 						style="display:block;margin:0 auto;"> -->
+<!-- 						<c:setPropertyActionListener value="#{user}" -->
+<!-- 							target="#{userDeleteView.user}"></c:setPropertyActionListener> -->
+<!-- 					</p:commandButton> -->
+					<p:commandButton id="buttonDelete" update="@all" 
+						actionListener="#{userDeleteView.delete(user.id)}" icon="fa fa-remove" title="Delete User ?"
 						style="display:block;margin:0 auto;">
-						<c:setPropertyActionListener value="#{user}"
-							target="#{userDeleteView.user}"></c:setPropertyActionListener>
-<!-- 					<c:ajax execute="@form" render=":UserForm"/>		 -->
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>

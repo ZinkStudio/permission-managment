@@ -3,14 +3,14 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class UserSaveView implements Serializable {
 
     /**

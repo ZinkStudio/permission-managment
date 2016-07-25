@@ -3,19 +3,18 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import fr.marseille.permissionmanagement.bean.UserController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 
-@ManagedBean(name = "dtUserView")
-@ViewScoped
+@ManagedBean(name = "userView")
+@SessionScoped
 public class UserView implements Serializable {
 
     /**
@@ -33,7 +32,7 @@ public class UserView implements Serializable {
     @ManagedProperty("#{userController}")
     private UserController                controller;
 
-    @PostConstruct
+    // @PostConstruct (appel une seule fois la methode)
     public void init() {
         List<User> users = new ArrayList<>();
         try {
@@ -46,6 +45,7 @@ public class UserView implements Serializable {
     }
 
     public List<User> getUsers() {
+        init();
         return users;
     }
 
