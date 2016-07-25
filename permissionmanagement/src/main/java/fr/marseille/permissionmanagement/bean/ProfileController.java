@@ -1,14 +1,14 @@
 package fr.marseille.permissionmanagement.bean;
 
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
 
 @ManagedBean(name = "profileController")
-@ApplicationScoped
+@SessionScoped
 public class ProfileController {
 
     private ProfileService profileService = new ProfileService();

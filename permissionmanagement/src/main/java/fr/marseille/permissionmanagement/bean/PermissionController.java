@@ -3,14 +3,14 @@ package fr.marseille.permissionmanagement.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.service.PermissionService;
 
 @ManagedBean(name = "permissionController")
-@ApplicationScoped
+@SessionScoped
 public class PermissionController implements Serializable {
 
     /**

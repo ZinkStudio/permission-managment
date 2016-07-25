@@ -3,10 +3,10 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class TabMenuView implements Serializable {
 
     private static final long serialVersionUID = 1L;
