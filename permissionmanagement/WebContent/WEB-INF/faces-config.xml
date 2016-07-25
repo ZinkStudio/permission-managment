@@ -26,6 +26,18 @@
 			<redirect />
 		</navigation-case>
 		
+		
+<!-- 		Antony -->
+		<navigation-case>
+			<from-outcome>permissionIndex</from-outcome>
+			<to-view-id>permissionIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>permissionDelete</from-outcome>
+			<to-view-id>permissionIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	
 </faces-config>
