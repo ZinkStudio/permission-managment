@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import fr.marseille.permissionmanagement.bean.UserController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 
 @ManagedBean(name = "userView")
-@SessionScoped
+@RequestScoped
 public class UserView implements Serializable {
 
     /**

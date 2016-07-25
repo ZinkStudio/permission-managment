@@ -31,8 +31,9 @@ public class PermissionService {
 
     public Permission find(Integer id) throws ServiceException {
         Permission permission = null;
+
         try {
-            Permission find = permissionDAO.find(id);
+            permission = permissionDAO.find(id);
         } catch (DAOException e) {
             LOG.error(e.getMessage());
             throw new ServiceException(e.getMessage(), e);

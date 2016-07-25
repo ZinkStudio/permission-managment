@@ -24,7 +24,7 @@ public class StartPermission {
         insertPermissions();
         insertLanguages();
         localizePermissions();
-        JPAUtil.closeAll();
+        // JPAUtil.closeAll();
     }
 
     protected static void localizePermissions() throws ServiceException {

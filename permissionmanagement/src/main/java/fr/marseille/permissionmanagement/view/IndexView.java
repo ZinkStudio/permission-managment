@@ -5,13 +5,13 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ComponentSystemEvent;
 import fr.marseille.permissionmanagement.bean.PermissionController;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class IndexView implements Serializable {
 
     private static final long             serialVersionUID  = 1L;

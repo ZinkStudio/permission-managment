@@ -1,64 +1,35 @@
 package fr.marseille.permissionmanagement.bean;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.service.PermissionService;
 
 @ManagedBean(name = "permissionController")
-@SessionScoped
+@RequestScoped
 public class PermissionController implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID  = 1L;
 
     private PermissionService permissionService = new PermissionService();
 
-    public void delete() {
-        permissionService.delete(id);
+    public void delete(Permission permission) throws ServiceException {
+        permissionService.delete(permission.getId());
     }
 
     public Permission update(Permission permission) throws ServiceException {
-        Permission update = permission;
-
-        try {
-            update = permissionService.update(permission);
-        } catch (ServiceException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
-
-        return update;
+        return permissionService.update(permission);
     }
 
-    public List<Permission> findAll() {
-        List<Permission> permissions = new ArrayList<>();
-
-        try {
-            permissions = permissionService.findAll();
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
-
-        return permissions;
+    public List<Permission> findAll() throws ServiceException {
+        return permissionService.findAll();
     }
 
-    public Permission find(Integer id) {
-        Permission permission = null;
-
-        try {
-            permission = permissionService.find(id);
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return permission;
+    public Permission find(Permission permission) throws ServiceException {
+        return permissionService.find(permission.getId());
     }
 
     public List<Permission> createPermissions() {

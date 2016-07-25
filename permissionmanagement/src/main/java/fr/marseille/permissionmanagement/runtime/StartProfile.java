@@ -8,6 +8,7 @@ import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.PermissionService;
 import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.service.UserService;
+import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class StartProfile {
     private static ProfileService    profileService    = new ProfileService();
@@ -17,13 +18,11 @@ public class StartProfile {
     public static void main(String[] args) throws ServiceException, DAOException {
 
         // Start.generateDatabase();
-
         insertProfiles();
         // affectUser();
         // includePermission();
 
-        // JPAUtil.closeAll();
-
+        JPAUtil.closeAll();
     }
 
     protected static void affectUser() throws ServiceException, DAOException {
@@ -61,19 +60,13 @@ public class StartProfile {
 
     protected static void insertProfiles() throws ServiceException {
         String[] applications = StartPermission.applications;
+        String[] roles = { "Admin", "Chief", "Editor", "Guest" };
+
         for (String application : applications) {
-            Profile profile = new Profile();
-            profile.setName("Admin " + application);
-            profile.setDescription("administrateur de l'application: " + application);
-            profileService.save(profile);
-            Profile profile1 = new Profile();
-            profile1.setName("Editor " + application);
-            profile1.setDescription("editeur de l'application: " + application);
-            profileService.save(profile1);
-            Profile profile2 = new Profile();
-            profile2.setName("Guest " + application);
-            profile2.setDescription("invite de l'application: " + application);
-            profileService.save(profile2);
+            for (String role : roles) {
+                profileService.save(
+                        new Profile(null, role + "." + application, role + " of " + application + " application"));
+            }
         }
     }
 }

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import fr.marseille.permissionmanagement.bean.ProfileController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 
 @ManagedBean(name = "dtProfileView")
-@SessionScoped
+@RequestScoped
 public class ProfileView implements Serializable {
     private static final long serialVersionUID = 1L;
 

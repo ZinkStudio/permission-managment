@@ -3,13 +3,13 @@ package fr.marseille.permissionmanagement.bean;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean(name = "userController")
-@SessionScoped
+@RequestScoped
 public class UserController implements Serializable {
 
     /**
