@@ -55,12 +55,6 @@
 				</p:column>
 				<!-- Delete User -->
 				<p:column headerText="Delete" width="30">
-<!-- 					<p:commandButton id="buttonDelete" update="@form" process="buttonDelete" -->
-<!-- 						action="#{userDeleteView.delete}" icon="fa fa-remove" title="Delete User ?" -->
-<!-- 						style="display:block;margin:0 auto;"> -->
-<!-- 						<c:setPropertyActionListener value="#{user}" -->
-<!-- 							target="#{userDeleteView.user}"></c:setPropertyActionListener> -->
-<!-- 					</p:commandButton> -->
 					<p:commandButton id="buttonDelete" update="@all" 
 						actionListener="#{userDeleteView.delete(user.id)}" icon="fa fa-remove" title="Delete User ?"
 						style="display:block;margin:0 auto;">

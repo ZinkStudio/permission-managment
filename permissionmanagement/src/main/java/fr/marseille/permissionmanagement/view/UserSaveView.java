@@ -19,7 +19,6 @@ public class UserSaveView implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private UserService       userService      = new UserService();
-
     private User              user             = new User();
 
     public void save() {
@@ -30,6 +29,7 @@ public class UserSaveView implements Serializable {
                     new FacesMessage("Error while Saving User: " + e.getMessage()));
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        user = null;
     }
 
     public User getUser() {
