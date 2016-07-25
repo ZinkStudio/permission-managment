@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3c.org/1999/xhtml"
+<ui:composition template="index.xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>profile : index</title>
-</h:head>
-<h:body>
-<h1>
-		<h:outputText id="headReadAll" value="List of the profiles" />
-		<br />
-	</h1>
 
-	<!-- Redirection statique vers le menu principal -->
-<!-- 	<p:link value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link> -->
+	<ui:define name="title">
+		<h:outputText value="permission-management : profiles" />
+	</ui:define>
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Listing Profiles :" />
+	</ui:define>
+	<ui:define name="content">
+		<p:link value="Back Home" outcome="index.xhtml"></p:link>
 
-	<div style="width:100%;height:50px;">
-	<p:commandButton style="float:right;" value="Create A New Profile"
-		icon="ui-icon-star" title="Create a new Profile" action="profileCreate.xhtml" />
-	</div>
+		<div style="width: 100%; height: 50px;">
+			<p:commandButton style="float:right;" value="Create A New Profile"
+				icon="ui-icon-star" title="Create a new Profile"
+				action="profileCreate.xhtml" />
+		</div>
 	
 	<h:form id="ProfileForm" style="margin-top:20px;"/>
 	<p:messages id="messages" />
@@ -59,7 +57,7 @@
 <!-- Redirection to userAllProfiles -->
 			<p:column headerText="See permissions" width="100">
 				<p:commandButton id="buttonAllPermissions"
-					action="profilePermissions.xhtml" icon=" fa fa-eye"
+					action="indexjsf.xhtml" icon=" fa fa-eye"
 					title="See all the permissions for this profile ?"
 					style="display:block;margin:0 auto;" />
 			</p:column>
@@ -86,5 +84,6 @@
 		<p:link style="float:right;margin-top:20px;"
 			value="Vers Menu Principal" outcome="indexjsf.xhtml"></p:link>
 
-</h:body>
-</html>
+
+	</ui:define>
+</ui:composition>
