@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 import fr.marseille.permissionmanagement.bean.PermissionController;
+import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 
 @ManagedBean
@@ -34,13 +35,18 @@ public class PermissionView implements Serializable {
     }
 
     public void delete() {
-
+        // controller.
     }
 
     public void onRowEdit(RowEditEvent event) {
         Permission permission = (Permission) event.getObject();
 
-        Permission update = this.controller.update(permission);
+        try {
+            this.controller.update(permission);
+        } catch (ServiceException e) {
+            FacesMessage msg = new FacesMessage("Permission Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
 
         FacesMessage msg = new FacesMessage("Permission Edited", ((Permission) event.getObject()).getId().toString());
         FacesContext.getCurrentInstance().addMessage(null, msg);

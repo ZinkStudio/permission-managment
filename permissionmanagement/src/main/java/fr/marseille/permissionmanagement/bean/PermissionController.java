@@ -20,13 +20,13 @@ public class PermissionController implements Serializable {
 
     private PermissionService permissionService = new PermissionService();
 
-    public Permission update(Permission permission) {
+    public Permission update(Permission permission) throws ServiceException {
         Permission update = permission;
 
         try {
             update = permissionService.update(permission);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            throw new ServiceException(e.getMessage(), e);
         }
 
         return update;
