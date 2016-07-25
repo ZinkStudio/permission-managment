@@ -23,7 +23,7 @@
 	</div>
 	
 	<h:form id="ProfileForm" style="margin-top:20px;"/>
-
+	<p:messages id="messages" />
 
 
 <!-- 	<p:outputLabel value="Listing Profiles :" /> -->
@@ -65,16 +65,21 @@
 			</p:column>
 			
 			<p:column headerText="Update" width="60">
-				<p:commandButton id="buttonUpdate" action="profileUpdate.xhtml"
-					icon="fa fa-edit" title="Update User ?"
-					style="display:block;margin:0 auto;" />
+				<p:commandButton id="buttonUpdate" action="profileUpdate"
+					icon="fa fa-edit" title="Update Profile ?"
+					style="display:block;margin:0 auto;" >
+					<c:setPropertyActionListener value="#{profile}" target="#{profileUpdateView.profile}" />
+					
+					</p:commandButton>
 			</p:column>
 			
 			<p:column headerText="Delete" width="60">
 				<p:commandButton id="buttonDelete" update="ProfileForm" 
-				actionListener="#{profileDeleteView.delete(profile)}"
+				action="#{profileDeleteView.delete}"
 					icon=" fa fa-remove" title="Delete Profile ?"
-					 style="display:block;margin:0 auto;"/>
+					 style="display:block;margin:0 auto;">
+					 <c:setPropertyActionListener value="#{profile}" target="#{profileDeleteView.profile}" />
+					</p:commandButton>
 			</p:column>
 		</p:dataTable>
 		<!-- Redirection statique vers le menu principal -->

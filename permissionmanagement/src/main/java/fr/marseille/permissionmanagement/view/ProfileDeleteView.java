@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.view;
 
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -11,26 +12,26 @@ import fr.marseille.permissionmanagement.util.JPAUtil;
 
 @ManagedBean
 @ApplicationScoped
-public class ProfileDeleteView {
-    private ProfileService profileService = new ProfileService();
-    private Profile        profile;
+public class ProfileDeleteView implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private ProfileService    profileService   = new ProfileService();
+    private Profile           profile;
 
-    public ProfileDeleteView() {
-        super();
-    }
-
-    public void delete(Profile profile) {
+    public void delete() {
         try {
             JPAUtil.beginTransaction();
             JPAUtil.getEntityManager().merge(profile);
             JPAUtil.commitTransaction();
             profileService.delete(profile.getId());
-
         } catch (ServiceException e) {
             JPAUtil.closeAll();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error : " + e.getMessage()));
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Profile deleted"));
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("profile deleted"));
     }
 
     public Profile getProfile() {
