@@ -20,6 +20,10 @@ public class PermissionController implements Serializable {
 
     private PermissionService permissionService = new PermissionService();
 
+    public void delete() {
+        permissionService.delete(id);
+    }
+
     public Permission update(Permission permission) throws ServiceException {
         Permission update = permission;
 

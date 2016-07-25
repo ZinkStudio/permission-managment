@@ -35,7 +35,7 @@ public class PermissionView implements Serializable {
     }
 
     public void delete() {
-        // controller.
+        controller.
     }
 
     public void onRowEdit(RowEditEvent event) {
