@@ -59,7 +59,7 @@
 <!-- Redirection to userAllProfiles -->
 			<p:column headerText="See permissions" width="100">
 				<p:commandButton id="buttonAllPermissions"
-					action="profileIndex.xhtml" icon=" fa fa-eye"
+					action="profilePermissions.xhtml" icon=" fa fa-eye"
 					title="See all the permissions for this profile ?"
 					style="display:block;margin:0 auto;" />
 			</p:column>
@@ -71,9 +71,10 @@
 			</p:column>
 			
 			<p:column headerText="Delete" width="60">
-				<p:commandButton id="buttonDelete" action="profileDelete.xhtml"
+				<p:commandButton id="buttonDelete" update="ProfileForm" 
+				actionListener="#{profileDeleteView.delete(profile)}"
 					icon=" fa fa-remove" title="Delete Profile ?"
-					style="display:block;margin:0 auto;" />
+					 style="display:block;margin:0 auto;"/>
 			</p:column>
 		</p:dataTable>
 		<!-- Redirection statique vers le menu principal -->

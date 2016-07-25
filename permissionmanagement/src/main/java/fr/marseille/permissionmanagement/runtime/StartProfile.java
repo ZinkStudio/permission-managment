@@ -19,9 +19,8 @@ public class StartProfile {
 
     public static void main(String[] args) throws ServiceException, DAOException {
 
-        JPAUtil.getEntityManager().getTransaction().begin();
+        // Start.generateDatabase();
 
-        JPAUtil.getEntityManager().getTransaction().commit();
         affectUser();
         createUserAndProfile();
         includePermission();
@@ -30,7 +29,7 @@ public class StartProfile {
 
     }
 
-    private static void affectUser() throws ServiceException, DAOException {
+    protected static void affectUser() throws ServiceException, DAOException {
         User user = userService.findAll().get(0);
         Profile profile = profileService.findAll().get(0);
 
@@ -41,7 +40,7 @@ public class StartProfile {
 
     }
 
-    private static void includePermission() throws ServiceException, DAOException {
+    protected static void includePermission() throws ServiceException, DAOException {
 
         Profile profile = profileService.findAll().get(0);
         Permission permission = permissionService.findAll().get(0);
@@ -52,7 +51,7 @@ public class StartProfile {
 
     }
 
-    private static void excludePermission() throws ServiceException, DAOException {
+    protected static void excludePermission() throws ServiceException, DAOException {
 
         Profile profile = profileService.findAll().get(0);
         Permission permission = permissionService.findAll().get(0);
@@ -63,7 +62,7 @@ public class StartProfile {
 
     }
 
-    private static void insertProfiles() throws DAOException {
+    protected static void insertProfiles() throws ServiceException {
         String[] applications = StartPermission.applications;
         for (String application : applications) {
             Profile profile = new Profile();
@@ -81,7 +80,7 @@ public class StartProfile {
         }
     }
 
-    private static void createUserAndProfile() {
+    protected static void createUserAndProfile() {
         ProfileService profil = new ProfileService();
         UserService use = new UserService();
         User user = new User();
@@ -96,7 +95,7 @@ public class StartProfile {
 
         try {
             profil.save(profile);
-        } catch (DAOException e1) {
+        } catch (ServiceException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }

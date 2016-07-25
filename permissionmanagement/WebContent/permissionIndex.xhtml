@@ -15,16 +15,27 @@
 	<ui:define name="content">
 		<p:link value="To Main Menu" outcome="index.xhtml"></p:link>
 
-		<p:dataTable var="permission" value="#{dtPermissionView.permissions}"
+		<p:dataTable id="dtUsers" var="permission" value="#{dtPermissionView.permissions}"
 			rows="10" paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15">
-			<p:column headerText="Id">
-				<h:outputText value="#{permission.id}" />
-			</p:column>
-
+			
 			<p:column headerText="Entry">
 				<h:outputText value="#{permission.entry}" />
+			</p:column>
+			
+			<!-- Redirection to userUpdate -->
+			<p:column headerText="Update" style="width : 60px;">
+				<p:commandButton id="buttonUpdate" action="permissionUpdate.xhtml"
+					icon="fa fa-edit" title="Update Permission ?"
+					style="display:block;margin:0 auto;" />
+			</p:column>
+			
+			<!-- Delete User -->
+			<p:column headerText="Delete" style="width : 60px;">
+				<p:commandButton id="buttonDelete" update="dtUsers"
+					actionListener="#{permisionDeleteView.delete(user)}" icon="fa fa-remove"
+					title="Delete User ?" style="display:block;margin:0 auto;" />
 			</p:column>
 		</p:dataTable>
 	</ui:define>
