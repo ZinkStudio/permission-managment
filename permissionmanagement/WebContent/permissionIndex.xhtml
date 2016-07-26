@@ -19,8 +19,8 @@
 			<p:growl id="msgs" life="1500" showDetail="true" />
 
 			<p:dataTable id="dtUsers" var="permission"
-				value="#{permissionView.permissions}" editable="true"
-				rows="10" paginator="true"
+				value="#{permissionView.permissions}" editable="true" rows="10"
+				paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
@@ -60,11 +60,9 @@
 					<p:rowEditor />
 				</p:column>
 				<p:column headerText="Delete" style="width:100px;">
-					<p:commandButton id="btnDelete" action="permissionDelete"
-						icon="fa fa-edit" update="@form">
-						<c:setPropertyActionListener target="#{permissionView.permission}"
-							value="#{permission}" />
-					</p:commandButton>
+					<p:commandButton id="btnDelete"
+						actionListener="#{permissionDeleteView.delete(permission)}" icon="fa fa-remove" title="Delete Permission ?"
+						update="@all" />
 				</p:column>
 			</p:dataTable>
 		</h:form>

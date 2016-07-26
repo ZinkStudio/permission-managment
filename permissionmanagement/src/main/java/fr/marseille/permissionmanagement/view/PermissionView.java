@@ -3,7 +3,6 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -28,20 +27,11 @@ public class PermissionView implements Serializable {
     @ManagedProperty("#{permissionController}")
     private PermissionController controller;
 
-    @PostConstruct
+    // @PostConstruct
     public void init() {
         permissions = new ArrayList<Permission>();
         try {
             permissions = controller.findAll();
-        } catch (ServiceException e) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
-    }
-
-    public void delete() {
-        try {
-            controller.delete(permission);
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -79,7 +69,7 @@ public class PermissionView implements Serializable {
     }
 
     public List<Permission> getPermissions() {
-        // init();
+        init();
         return permissions;
     }
 
