@@ -5,33 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
-import fr.marseille.permissionmanagement.bean.PermissionController;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
+import fr.marseille.permissionmanagement.service.PermissionService;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PermissionView implements Serializable {
 
-    private static final long    serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    private List<Permission>     permissions;
+    private PermissionService service          = new PermissionService();
 
-    private Permission           permission;
+    private List<Permission>  permissions;
 
-    @ManagedProperty("#{permissionController}")
-    private PermissionController controller;
+    private Permission        permission;
 
     // @PostConstruct
     public void init() {
         permissions = new ArrayList<Permission>();
         try {
-            permissions = controller.findAll();
+            permissions = service.findAll();
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -42,7 +40,7 @@ public class PermissionView implements Serializable {
         Permission permission = (Permission) event.getObject();
 
         try {
-            this.controller.update(permission);
+            this.service.update(permission);
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -79,9 +77,5 @@ public class PermissionView implements Serializable {
 
     public void setPermission(Permission permission) {
         this.permission = permission;
-    }
-
-    public void setController(PermissionController permissionController) {
-        this.controller = permissionController;
     }
 }

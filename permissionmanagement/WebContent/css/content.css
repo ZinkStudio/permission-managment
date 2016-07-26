@@ -1,3 +1,27 @@
 body {
 	background-color : #EAF0F2;
 }
+.breadCrumb {
+	padding : 6px;
+}
+.breadCrumb a {
+	margin : 0 4px;
+}
+.breadCrumb a:FIRST-CHILD:BEFORE {
+	content : "";
+}
+.breadCrumb a:BEFORE {
+	content : " :: ";
+}
+.backLink {
+	color: #5383d3;
+    text-decoration: none;
+}
+.commandColumn {
+	width:100px;
+}
+
+.commandButton {
+	margin:0 auto;
+	display:block;
+}
