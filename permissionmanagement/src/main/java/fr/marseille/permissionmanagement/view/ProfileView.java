@@ -16,12 +16,12 @@ public class ProfileView implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private List<Profile>     profiles;
+    private Profile           profile;
 
     @ManagedProperty("#{profileController}")
     private ProfileController controller;
 
     // @PostConstruct
-
     public void init() {
         List<Profile> profiles = new ArrayList<>();
         Profile profile = new Profile();
@@ -56,6 +56,14 @@ public class ProfileView implements Serializable {
 
     public void setController(ProfileController controller) {
         this.controller = controller;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
 }

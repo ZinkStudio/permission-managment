@@ -18,9 +18,9 @@ public class StartProfile {
     public static void main(String[] args) throws ServiceException, DAOException {
 
         // Start.generateDatabase();
-        insertProfiles();
-        // affectUser();
-        // includePermission();
+        // insertProfiles();
+        affectUser();
+        includePermission();
 
         JPAUtil.closeAll();
     }

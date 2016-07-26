@@ -17,65 +17,53 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
     }
 
     @Override
-    public void include(Profile profile, List<Permission> permissions) {
-        try {
-            List<Profile> listprofiles = profileService.findAll();
-        } catch (ServiceException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        try {
-            List<Permission> listpermissions = permissionService.findAll();
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void include(Profile profile, List<Permission> permissions) throws ServiceException {
+
+        List<Profile> listprofiles = profileService.findAll();
+
+        List<Permission> listpermissions = permissionService.findAll();
+
         profile.getPermissions().addAll(permissions);
-        try {
-            profileService.update(profile);
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+        profileService.update(profile);
 
         profileService.createProfiles();
 
     }
 
     @Override
-    public void exclude(Integer id_profile, Integer id_permission) {
-        // TODO Auto-generated method stub
+    public void exclude(Integer id_profile, Integer id_permission) throws ServiceException {
+        Profile profile = profileService.find(id_profile);
+        Permission permission = permissionService.find(id_permission);
+        profile.getPermissions().remove(permission);
+        profileService.update(profile);
+
+        profileService.createProfiles();
 
     }
 
     @Override
-    public void include(Profile profile, Permission permission) {
-        try {
-            List<Profile> listprofiles = profileService.findAll();
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            List<Permission> listpermissions = permissionService.findAll();
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void include(Profile profile, Permission permission) throws ServiceException {
+
+        List<Profile> listprofiles = profileService.findAll();
+
+        List<Permission> listpermissions = permissionService.findAll();
+
         profile.getPermissions().add(permission);
-        try {
-            profileService.update(profile);
-        } catch (ServiceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+        profileService.update(profile);
 
         profileService.createProfiles();
 
     }
 
     @Override
-    public void exclude(Integer id_profile, List<Permission> permissions) {
+    public void exclude(Integer id_profile, List<Permission> permissions) throws ServiceException {
+        Profile profile = profileService.find(id_profile);
+        permissions = permissionService.findAll();
+        profile.getPermissions().remove(permissions);
+        profileService.update(profile);
 
+        profileService.createProfiles();
     }
 }

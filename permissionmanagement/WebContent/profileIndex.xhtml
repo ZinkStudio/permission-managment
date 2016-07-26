@@ -40,33 +40,23 @@
     <p:column headerText="Description">
         <h:outputText value="#{profile.description}" />
     </p:column>
- <!-- Redirections vers les pages de MAJ et de suppressions des utilisateurs -->
- 
-<!-- 			<p:column headerText="Update" width="50"> -->
-			
-<!-- 				<p:commandButton id="Update" action= "indexjsf.xhtml"  icon="fa fa-edit" title="Update Profile ?" /> -->
-<!-- 			</p:column> -->
-			
-<!-- 			<p:column headerText="Delete" width="50"> -->
-			
-<!-- 				<p:commandButton id="Delete"  action= "profileDelete.xhtml" icon=" fa fa-remove" title="Delete Profile ?" /> -->
-<!-- 			</p:column> -->
-<!--     <p:column headerText="Allpermissions" width="50"> -->
-<!-- 				<p:commandButton id="buttonAllPermissions" action="userAllProfiles.xhtml" icon=" fa fa-eye" title="See All users'profiles ?" /> -->
-<!-- 				</p:column> -->
-<!-- Redirection to userAllProfiles -->
+
 			<p:column headerText="See permissions" width="100">
 				<p:commandButton id="buttonAllPermissions"
-					action="indexjsf.xhtml" icon=" fa fa-eye"
+					action="profilePermissions.xhtml" icon=" fa fa-eye"
 					title="See all the permissions for this profile ?"
-					style="display:block;margin:0 auto;" />
+					style="display:block;margin:0 auto;" >
+					<c:setPropertyActionListener value="#{profile}" target="#{dtProfileView.profile}" />
+					</p:commandButton>
 			</p:column>
 			
 			<p:column headerText="See users" width="100">
 				<p:commandButton id="buttonAllUsers"
-					action="indexjsf.xhtml" icon=" fa fa-eye"
+					action="profileUsers.xhtml" icon=" fa fa-eye"
 					title="See all the users for this profile ?"
-					style="display:block;margin:0 auto;" />
+					style="display:block;margin:0 auto;" >
+					<c:setPropertyActionListener value="#{profile}" target="#{dtProfileView.profile}" />
+					</p:commandButton>
 			</p:column>
 			
 			<p:column headerText="Update" width="60">
