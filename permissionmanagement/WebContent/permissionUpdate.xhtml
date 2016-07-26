@@ -15,22 +15,24 @@
 		<p:link value="List Permissions" outcome="permissionIndex" styleClass="backLink" />
 	</ui:define>
 	
-	<ui:define name="content">		
+	<ui:define name="content">	
+	
 		<h:form id="formPermissionUpdate">
 			<p:panel id="panel" header="Permission :"
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" />
 				<h:panelGrid columns="3" cellpadding="8">
-					<p:outputLabel for="entry" value="Name : " />
+					<p:outputLabel for="entry" value="Entry : " />
 					<p:inputText id="entry" value="#{permissionUpdateView.permission.entry}"
-						required="true" label="entry">
+						required="true" label="entry" validator="noWhiteSpaceValidator">
 					</p:inputText>
 					<p:message for="entry" />
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="Update" update="panel"
 				actionListener="#{permissionUpdateView.update}" style="margin-right:20px;" />
-		</h:form>
-	
+		</h:form>	
+		
 	</ui:define>
+	
 </ui:composition>
