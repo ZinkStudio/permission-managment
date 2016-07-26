@@ -10,9 +10,12 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="Update a permission :" />
 	</ui:define>
-	<ui:define name="content">
-		<p:link value="Back Home" outcome="index.xhtml"></p:link>
-		
+	
+	<ui:define name="backLink">
+		<p:link value="List Permissions" outcome="permissionIndex" styleClass="backLink" />
+	</ui:define>
+	
+	<ui:define name="content">		
 		<h:form id="formPermissionUpdate">
 			<p:panel id="panel" header="Permission :"
 				style="font-size:20px;margin-bottom:10px;">
@@ -28,10 +31,6 @@
 			<p:commandButton value="Update" update="panel"
 				actionListener="#{permissionUpdateView.update}" style="margin-right:20px;" />
 		</h:form>
-
-			<!-- Redirection to the main menu -->
-			<p:link value="Back Home" outcome="index.xhtml"></p:link>
-			<br />
 	
 	</ui:define>
 </ui:composition>

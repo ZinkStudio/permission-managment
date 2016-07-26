@@ -11,16 +11,18 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="Listing Permissions" />
 	</ui:define>
-
+	
+	<ui:define name="backLink">
+		<p:link value="List Permissions" outcome="permissionIndex" styleClass="backLink" />
+	</ui:define>
+	
 	<ui:define name="content">
-		<p:link value="To Main Menu" outcome="index.xhtml"></p:link>
 
 		<h:form id="form">
 			<p:messages id="messages" />
 
 			<p:dataTable id="dtUsers" var="permission"
-				value="#{permissionView.permissions}" rows="10"
-				paginator="true"
+				value="#{permissionView.permissions}" rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 				rowsPerPageTemplate="5,10,15">
 
@@ -28,28 +30,28 @@
 					<h:outputText id="headerDataTable" value="Listing Permissions" />
 				</c:facet>
 
-				<p:column headerText="Id" style="width:100px;">
+				<p:column headerText="Id" styleClass="commandColumn">
 					<h:outputText value="#{permission.id}" />
 				</p:column>
 
 				<p:column headerText="Entry">
 					<h:outputText value="#{permission.entry}" />
 				</p:column>
-						
+
 				<!-- Redirection to userUpdate -->
-				<p:column headerText="Update" style="width:100px;">
+				<p:column headerText="Update" styleClass="commandColumn">
 					<p:commandButton id="buttonUpdate" action="permissionUpdate"
 						icon="fa fa-edit" title="Update Permission ?"
-						style="display:block;margin:0 auto;">
+						styleClass="commandButton">
 						<c:setPropertyActionListener value="#{permission}"
 							target="#{permissionUpdateView.permission}" />
 					</p:commandButton>
 				</p:column>
-				
-				<p:column headerText="Delete" style="width:100px;">
+
+				<p:column headerText="Delete" styleClass="commandColumn">
 					<p:commandButton id="btnDelete"
-						actionListener="#{permissionDeleteView.delete(permission)}" icon="fa fa-remove" title="Delete Permission ?"
-						update="@all" />
+						actionListener="#{permissionDeleteView.delete(permission)}"
+						icon="fa fa-remove" title="Delete Permission ?" update="@all" styleClass="commandButton" />
 				</p:column>
 			</p:dataTable>
 		</h:form>
