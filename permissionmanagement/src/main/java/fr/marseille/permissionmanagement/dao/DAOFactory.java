@@ -1,5 +1,6 @@
 package fr.marseille.permissionmanagement.dao;
 
+import fr.marseille.permissionmanagement.dao.impl.LanguageJPADAO;
 import fr.marseille.permissionmanagement.dao.impl.PermissionJPADAO;
 import fr.marseille.permissionmanagement.dao.impl.ProfileJPADAO;
 import fr.marseille.permissionmanagement.dao.impl.ProfilePermissionJPADAO;
@@ -13,6 +14,8 @@ public class DAOFactory {
     private static ProfileDAO           profile;
 
     private static PermissionDAO        permission;
+
+    private static LanguageDAO          language;
 
     private static ProfileUserDAO       profileUser;
 
@@ -40,6 +43,14 @@ public class DAOFactory {
         }
 
         return permission;
+    }
+
+    public static LanguageDAO getLanguageDAO() {
+        if (null == language) {
+            language = new LanguageJPADAO();
+        }
+
+        return language;
     }
 
     public static ProfileUserDAO getProfileUserDAO() {
