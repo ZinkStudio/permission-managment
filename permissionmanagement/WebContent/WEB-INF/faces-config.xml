@@ -60,6 +60,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>permissionCreate</from-outcome>
+			<to-view-id>/permissionCreate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>permissionUpdate</from-outcome>
 			<to-view-id>/permissionUpdate.xhtml</to-view-id>
 			<redirect />

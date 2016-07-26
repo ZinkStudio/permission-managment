@@ -5,33 +5,36 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">
-		<h:outputText value="permission-management : permission update" />
+		<h:outputText value="permission-management : permission create" />
 	</ui:define>
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Update a permission :" />
+		<h:outputText id="layoutTitle" value="Create a permission :" />
 	</ui:define>
 	
 	<ui:define name="backLink">
 		<p:link value="List Permissions" outcome="permissionIndex" styleClass="backLink" />
 	</ui:define>
 	
-	<ui:define name="content">	
+	<ui:define name="content">
 	
-		<h:form id="formPermissionUpdate">
-			<p:panel id="panel" header="Permission :"
+		<h:form id="formPermissionCreate">
+			<p:panel id="panel" header="Permission : "
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" showDetail="true" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="entry" value="Entry : " />
-					<p:inputText id="entry" value="#{permissionUpdateView.permission.entry}"
-						required="true" label="entry" validator="noWhiteSpaceValidator" />
+					<p:inputText id="entry" value="#{permissionSaveView.permission.entry}"
+						required="true" label="name" validator="noWhiteSpaceValidator" />
 					<p:message for="entry" />
 				</h:panelGrid>
+
 			</p:panel>
-			<p:commandButton value="Update" update="panel"
-				actionListener="#{permissionUpdateView.update}" style="margin-right:20px;" />
-		</h:form>	
-		
+			<p:commandButton value="Save" update="panel"
+				action="#{permissionSaveView.save}" style="margin-right:20px;">
+			<c:setPropertyActionListener value="#{permissionSaveView.permission}" target="#{permissionSaveView.permission}" />
+			</p:commandButton>
+		</h:form>
+
+
 	</ui:define>
-	
 </ui:composition>

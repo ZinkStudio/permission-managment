@@ -14,7 +14,7 @@ import fr.marseille.permissionmanagement.service.ProfileService;
 public class ProfileView implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private ProfileService    service;
+    private ProfileService    service          = new ProfileService();
     private List<Profile>     profiles;
     private Profile           profile;
 

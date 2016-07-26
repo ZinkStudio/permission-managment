@@ -28,9 +28,9 @@ public class PermissionJPADAO implements PermissionDAO {
             status = true;
         } catch (RuntimeException e) {
             status = false;
-            JPAUtil.closeAll();
             String msg = "persist : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.getTransaction().rollback();
             throw new DAOException(msg, e);
         }
 
@@ -79,9 +79,9 @@ public class PermissionJPADAO implements PermissionDAO {
             Date date = new Date();
             LOG.debug("test EditDataTable : " + date.toString());
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.getTransaction().rollback();
             throw new DAOException(msg, e);
         }
 
@@ -102,9 +102,9 @@ public class PermissionJPADAO implements PermissionDAO {
                 status = true;
             } catch (RuntimeException e) {
                 status = false;
-                JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
                 LOG.error(msg);
+                JPAUtil.getTransaction().rollback();
                 throw new DAOException(msg, e);
             }
         }

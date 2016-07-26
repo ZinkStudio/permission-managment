@@ -3,7 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<p:tabMenu activeIndex="#{IndexView.index}">
+	<p:tabMenu activeIndex="#{param.index}">
 		<p:menuitem value="Users" outcome="userReadAll" icon="ui-icon-star">
 			<c:param name="index" value="0" />
 		</p:menuitem>

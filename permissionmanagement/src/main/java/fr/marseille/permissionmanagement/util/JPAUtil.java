@@ -92,6 +92,15 @@ public class JPAUtil {
     }
 
     /**
+     * Commit the entity manager transaction.
+     */
+    public synchronized static void rollbackTransaction() {
+        if (getTransaction().isActive()) {
+            getTransaction().rollback();
+        }
+    }
+
+    /**
      * Close all.
      */
     public static void closeAll() {
