@@ -1,11 +1,52 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Insert title here</title>
-</head>
-<body>
+<ui:composition template="index.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-</body>
-</html>
+	<ui:define name="title">
+		<h:outputText value="permission-management : users" />
+	</ui:define>
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Listing Users :" />
+	</ui:define>
+	<ui:define name="content">
+		<div style="margin-top: 20px;">
+			<p:link value="Back Home" outcome="index.xhtml"></p:link>
+			<p:commandButton value="Affect/Unaffect a profile for this user"
+				action="userProfileAffect" />
+		</div>
+		<h:form id="formUserProfiles">
+			<p:panel id="panel"
+				header="LISTING OF PROFILES FOR THE FOLLOWING USER "
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" />
+
+				<h:panelGrid columns="3" cellpadding="10">
+					<p:outputLabel for="name" value="Name : " />
+					<h:outputText id="name" value="#{userView.user.name}" />
+					<p:message for="name" />
+
+					<p:outputLabel for="firstName" value="FirstName : " />
+					<h:outputText id="firstName" value="#{userView.user.firstName}" />
+					<p:message for="firstName" />
+				</h:panelGrid>
+			</p:panel>
+
+			<p:dataTable var="profile" value="#{dtProfileView.profiles}"
+				rows="10" paginator="true"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+				rowsPerPageTemplate="5,10,15">
+				<p:column headerText="Id" width="30">
+					<h:outputText value="#{profile.id}" />
+				</p:column>
+				<p:column headerText="Name" width="60">
+					<h:outputText value="#{profile.name}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<!-- Redirection to the main menu -->
+		<p:link style="float:right;margin-top:20px;" value="Back Home"
+			outcome="index.xhtml"></p:link>
+	</ui:define>
+</ui:composition>

@@ -19,6 +19,7 @@ public class UserView implements Serializable {
      */
     private static final long serialVersionUID = 1L;
     private List<User>        users;
+    private User              user;
 
     @ManagedProperty("#{userController}")
     private UserController    controller;
@@ -47,5 +48,13 @@ public class UserView implements Serializable {
 
     public void setController(UserController controller) {
         this.controller = controller;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

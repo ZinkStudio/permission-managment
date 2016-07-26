@@ -42,7 +42,10 @@
 					<p:commandButton id="buttonAllProfiles"
 						action="userAllProfiles.xhtml" icon=" fa fa-eye"
 						title="See all the profiles for this user ?"
-						style="display:block;margin:0 auto;" />
+						style="display:block;margin:0 auto;">
+						<c:setPropertyActionListener value="#{user}"
+							target="#{userView.user}" />
+						</p:commandButton>
 				</p:column>
 				<!-- Redirection to userUpdate -->
 				<p:column headerText="Update" width="30">
