@@ -27,7 +27,7 @@ public class IndexView implements Serializable {
     }
 
     public void redirectIndex(ComponentSystemEvent event) {
-        navigationHandler.performNavigation("userReadAll.jsf?index=0&jftfdi=&jffi=userReadAll");
+        // navigationHandler.performNavigation("userReadAll.jsf?index=0&jftfdi=&jffi=userReadAll");
     }
 
     public void setController(PermissionController permissionController) {

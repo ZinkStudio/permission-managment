@@ -10,8 +10,10 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
+	<ui:define name="backLink">
+	</ui:define>
+	
 	<ui:define name="content">
-		<p:link value="Back Home" outcome="index.xhtml"></p:link>
 
 		<div style="width: 100%; height: 50px;">
 			<p:commandButton style="float:right;" value="Create A New User"
@@ -40,7 +42,7 @@
 				<!-- Redirection to userAllProfiles -->
 				<p:column headerText="See Profiles" width="30">
 					<p:commandButton id="buttonAllProfiles"
-						action="userAllProfiles.xhtml" icon=" fa fa-eye"
+						action="userAllProfiles" icon=" fa fa-eye"
 						title="See all the profiles for this user ?"
 						style="display:block;margin:0 auto;">
 						<c:setPropertyActionListener value="#{user}"
@@ -65,10 +67,6 @@
 				</p:column>
 			</p:dataTable>
 
-
-			<!-- Redirection statique vers le menu principal -->
-			<p:link style="float:right;margin-top:20px;" value="Back Home"
-				outcome="index.xhtml"></p:link>
 		</h:form>
 	</ui:define>
 </ui:composition>

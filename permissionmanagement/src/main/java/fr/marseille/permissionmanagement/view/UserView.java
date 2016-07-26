@@ -3,15 +3,16 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import fr.marseille.permissionmanagement.bean.UserController;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
+import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean(name = "userView")
-@RequestScoped
+@SessionScoped
 public class UserView implements Serializable {
 
     /**
@@ -20,19 +21,20 @@ public class UserView implements Serializable {
     private static final long serialVersionUID = 1L;
     private List<User>        users;
     private User              user;
+    private UserService       userService      = new UserService();
 
-    @ManagedProperty("#{userController}")
-    private UserController    controller;
+    // @ManagedProperty("#{userController}")
+    // private UserController controller;
 
     // @PostConstruct (appel une seule fois la methode)
     public void init() {
         List<User> users = new ArrayList<>();
+
         try {
-            users = controller.findAll();
-
+            users = userService.findAll();
         } catch (ServiceException e) {
-            // e.printStackTrace(); METTRE LOGGER
-
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Error while initializing : " + e.getMessage()));
         }
         this.users = users;
     }
@@ -44,10 +46,6 @@ public class UserView implements Serializable {
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
-
-    public void setController(UserController controller) {
-        this.controller = controller;
     }
 
     public User getUser() {

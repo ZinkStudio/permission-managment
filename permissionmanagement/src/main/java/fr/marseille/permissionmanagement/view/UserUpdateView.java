@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
-import fr.marseille.permissionmanagement.util.JPAUtil;
 
 @ManagedBean
 @SessionScoped
@@ -22,12 +21,10 @@ public class UserUpdateView implements Serializable {
 
     public void update() {
         try {
-            // JPAUtil.beginTransaction();
-            // JPAUtil.getEntityManager().merge(user);
-            // JPAUtil.commitTransaction();
+
             userService.update(user);
         } catch (ServiceException e) {
-            JPAUtil.closeAll();
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Error while Updating the User : " + e.getMessage()));
         }

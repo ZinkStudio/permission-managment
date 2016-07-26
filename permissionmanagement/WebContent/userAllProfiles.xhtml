@@ -11,42 +11,62 @@
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
 	<ui:define name="content">
-		<div style="margin-top: 20px;">
-			<p:link value="Back Home" outcome="index.xhtml"></p:link>
-			<p:commandButton value="Affect/Unaffect a profile for this user"
-				action="userProfileAffect" />
-		</div>
-		<h:form id="formUserProfiles">
+		<h:form id="userRecover">
 			<p:panel id="panel"
 				header="LISTING OF PROFILES FOR THE FOLLOWING USER "
-				style="font-size:20px;margin-bottom:10px;">
+				style="font-size:20px;margin-bottom:30px;">
 				<p:messages id="messages" />
 
-				<h:panelGrid columns="3" cellpadding="10">
+				<h:panelGrid columns="5" cellpadding="5">
 					<p:outputLabel for="name" value="Name : " />
 					<h:outputText id="name" value="#{userView.user.name}" />
 					<p:message for="name" />
-
 					<p:outputLabel for="firstName" value="FirstName : " />
 					<h:outputText id="firstName" value="#{userView.user.firstName}" />
 					<p:message for="firstName" />
 				</h:panelGrid>
 			</p:panel>
-
-			<p:dataTable var="profile" value="#{dtProfileView.profiles}"
-				rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-				rowsPerPageTemplate="5,10,15">
-				<p:column headerText="Id" width="30">
-					<h:outputText value="#{profile.id}" />
-				</p:column>
-				<p:column headerText="Name" width="60">
-					<h:outputText value="#{profile.name}" />
-				</p:column>
-			</p:dataTable>
 		</h:form>
-		<!-- Redirection to the main menu -->
-		<p:link style="float:right;margin-top:20px;" value="Back Home"
-			outcome="index.xhtml"></p:link>
+
+		<h:form>
+			<p:growl id="msg" showDetail="true" escape="false" />
+
+			<h3 style="margin-top: 0">AFFECTING/UNAFFECTING PROFILES</h3>
+			<p:pickList id="pickList" value="#{userProfilesView.profiles}" var="profiles"
+				itemLabel="#{profiles}" itemValue="#{profiles}" />
+			<p:commandButton id="profileSubmit" value="Submit" update="displayProfiles" oncomplete="PF('profileDialog').show()"
+				style="margin-top:5px" />
+		</h:form>
+		
+			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+				widgetVar="profileDialog">
+				<h:panelGrid id="displayProfiles" columns="2">
+					<h:outputText value="Source: " style="font-weight:bold" />
+					<ui:repeat value="#{userProfilesView.profiles.source}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+
+					<h:outputText value="Target: " style="font-weight:bold" />
+					<ui:repeat value="#{userProfilesView.profiles.target}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+				</h:panelGrid>
+			</p:dialog>
+		
+		
+		
+		
+		
+		
+		
+<!-- 		<h:form> -->
+<!-- 			<p:growl id="msg" showDetail="true" escape="false" /> -->
+<!-- 			<h3 style="margin-top: 10px">AFFECTING/UNAFFECTING PROFILES</h3> -->
+<!-- 			<p:pickList id="pickList2" value="#{userProfilesView.profiles}" -->
+<!-- 				var="profiles" itemLabel="#{profiles}" itemValue="#{profiles}" /> -->
+<!-- 			<p:commandButton id="profileSubmit" value="Submit" -->
+<!-- 				style="margin-top:5px" /> -->
+	
+<!-- 		</h:form> -->
 	</ui:define>
 </ui:composition>

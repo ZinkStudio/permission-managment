@@ -47,11 +47,11 @@
 			<redirect />
 		</navigation-case>
 
-<!-- 		<navigation-case> -->
-<!-- 			<from-outcome>userModify</from-outcome> -->
-<!-- 			<to-view-id>/userAllProfiles.xhtml</to-view-id> -->
-<!-- 			<redirect /> -->
-<!-- 		</navigation-case> -->
+		<navigation-case>
+			<from-outcome>userAllProfiles</from-outcome>
+			<to-view-id>/userAllProfiles.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 
 		<!-- Antony -->
 		<navigation-case>

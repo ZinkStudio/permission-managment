@@ -2,6 +2,7 @@ body {
 	background-color : #EAF0F2;
 }
 .breadCrumb {
+	clear:left;
 	padding : 6px;
 }
 .breadCrumb a {
