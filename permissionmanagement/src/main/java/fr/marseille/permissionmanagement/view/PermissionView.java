@@ -26,6 +26,7 @@ public class PermissionView implements Serializable {
     // @PostConstruct
     public void init() {
         permissions = new ArrayList<Permission>();
+
         try {
             permissions = service.findAll();
         } catch (ServiceException e) {
