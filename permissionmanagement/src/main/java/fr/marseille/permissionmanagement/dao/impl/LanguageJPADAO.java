@@ -27,9 +27,9 @@ public class LanguageJPADAO implements LanguageDAO {
             status = true;
         } catch (RuntimeException e) {
             status = false;
-            JPAUtil.closeAll();
             String msg = "persist : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -43,7 +43,6 @@ public class LanguageJPADAO implements LanguageDAO {
         try {
             languages = JPAUtil.getEntityManager().createQuery("from Language", Language.class).getResultList();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -77,9 +76,9 @@ public class LanguageJPADAO implements LanguageDAO {
             mergeLanguage = JPAUtil.getEntityManager().merge(language);
             JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -94,12 +93,14 @@ public class LanguageJPADAO implements LanguageDAO {
 
         if (null != language) {
             try {
-
+                JPAUtil.beginTransaction();
+                JPAUtil.getEntityManager().remove(language);
+                JPAUtil.commitTransaction();
             } catch (RuntimeException e) {
                 status = false;
-                JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
                 LOG.error(msg);
+                JPAUtil.rollbackTransaction();
                 throw new DAOException(msg, e);
             }
         }
