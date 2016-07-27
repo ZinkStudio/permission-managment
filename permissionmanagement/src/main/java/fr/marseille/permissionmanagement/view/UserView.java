@@ -23,10 +23,6 @@ public class UserView implements Serializable {
     private User              user;
     private UserService       userService      = new UserService();
 
-    // @ManagedProperty("#{userController}")
-    // private UserController controller;
-
-    // @PostConstruct (appel une seule fois la methode)
     public void init() {
         List<User> users = new ArrayList<>();
 

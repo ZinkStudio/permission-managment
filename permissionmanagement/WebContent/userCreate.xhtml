@@ -11,25 +11,30 @@
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
 	<ui:define name="content">
-		<p:link value="Back Home" outcome="index.xhtml"></p:link>
 
 		<h:form id="formUser">
-			<p:panel id="panel" header="PERSONAL INFORMATION FOR ADDING A NEW USER "
+			<p:panel id="panel"
+				header="PERSONAL INFORMATION FOR ADDING A NEW USER "
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="Name : " />
 					<p:inputText id="name" value="#{userSaveView.user.name}"
 						required="true" label="name">
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
 						<c:validateLength minimum="2" />
 					</p:inputText>
 					<p:message for="name" />
 
 					<p:outputLabel for="firstName" value="FirstName : " />
 					<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
-						required="true" label="firstName" />
-					<p:message for="firstName" />
-
+						required="true" validator="noWhiteSpaceValidator"
+						label="firstName">
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+						<p:message for="firstName" />
+					</p:inputText>
 					<p:outputLabel for="comment" value="Comment : " />
 					<p:inputText id="comment" value="#{userSaveView.user.comment}"
 						required="false" label="comment" />
@@ -40,10 +45,6 @@
 			<p:commandButton value="Save" update="panel"
 				actionListener="#{userSaveView.save}" style="margin-right:20px;" />
 		</h:form>
-
-		<!-- Redirection to the main menu -->
-		<p:link value="Back Home" outcome="index.xhtml"></p:link>
-
 
 	</ui:define>
 </ui:composition>

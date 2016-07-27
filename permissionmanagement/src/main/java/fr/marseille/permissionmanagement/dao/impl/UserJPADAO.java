@@ -27,9 +27,9 @@ public class UserJPADAO implements UserDAO {
             JPAUtil.getEntityManager().persist(user);
             JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "save : " + e.getMessage();
             LOG.warn(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return true;
@@ -41,9 +41,9 @@ public class UserJPADAO implements UserDAO {
         try {
             users = (List<User>) JPAUtil.getEntityManager().createQuery("from User").getResultList();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
             LOG.warn(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return users;
@@ -55,9 +55,9 @@ public class UserJPADAO implements UserDAO {
         try {
             user = JPAUtil.getEntityManager().find(User.class, id);
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "find : " + e.getMessage();
             LOG.warn(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return user;
@@ -71,9 +71,9 @@ public class UserJPADAO implements UserDAO {
             JPAUtil.getEntityManager().merge(user);
             JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
             LOG.warn(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return user;
@@ -89,9 +89,9 @@ public class UserJPADAO implements UserDAO {
                 JPAUtil.getEntityManager().remove(user);
                 JPAUtil.commitTransaction();
             } catch (RuntimeException e) {
-                JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
                 LOG.warn(msg);
+                JPAUtil.rollbackTransaction();
                 throw new DAOException(msg, e);
             }
         }

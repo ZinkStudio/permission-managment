@@ -18,17 +18,22 @@
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="Name : " />
 					<p:inputText id="name" value="#{userUpdateView.user.name}"
-						required="true" label="name">
+						required="true" label="name" >
 						<c:validateLength minimum="2" />
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
 					</p:inputText>
 					<p:message for="name" />
 
 					<p:outputLabel for="firstName" value="FirstName : " />
 					<p:inputText id="firstName"
 						value="#{userUpdateView.user.firstName}" required="true"
-						label="firstName" />
+						label="firstName" >
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+						</p:inputText>
 					<p:message for="firstName" />
-
+					
 					<p:outputLabel for="comment" value="Comment : " />
 					<p:inputText id="comment" value="#{userUpdateView.user.comment}"
 						required="false" label="comment" />

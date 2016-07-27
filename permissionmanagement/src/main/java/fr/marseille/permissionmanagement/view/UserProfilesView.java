@@ -41,9 +41,9 @@ public class UserProfilesView implements Serializable {
 
         for (Profile profile : allProfiles) {
             if (userView.getUser().getProfiles().contains(profile)) {
-                profilesTarget.add(profile.getName());
+                profilesTarget.add(profile.getId() + " # " + profile.getName());
             } else {
-                profilesSource.add(profile.getName());
+                profilesSource.add(profile.getId() + " # " + profile.getName());
             }
         }
 
@@ -64,6 +64,10 @@ public class UserProfilesView implements Serializable {
 
     public void setUserView(UserView userView) {
         this.userView = userView;
+    }
+
+    private void updateUserProfiles(Profile profile) {
+
     }
 
 }
