@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
 
 @ManagedBean(name = "dtProfileView")
-@RequestScoped
+@SessionScoped
 public class ProfileView implements Serializable {
     private static final long serialVersionUID = 1L;
 

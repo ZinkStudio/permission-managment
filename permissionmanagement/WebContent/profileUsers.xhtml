@@ -11,54 +11,46 @@
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
 	<ui:define name="content">
-		<div style="margin-top: 20px;">
-<!-- 			<p:link value="Back Home" outcome="index.xhtml"></p:link> -->
-			<p:commandButton value="Include/Exclude a user for this profile"
-				action="profilePermissionInclude" />
-		</div>
-		<h:form id="formUserProfiles">
+		<h:form id="userRecover">
 			<p:panel id="panel"
-				header=" Users Of this  Profile "
-				style="font-size:20px;margin-bottom:10px;">
+				header="LISTING OF PROFILES FOR THE FOLLOWING USER "
+				style="font-size:20px;margin-bottom:30px;">
 				<p:messages id="messages" />
 
-				<h:panelGrid columns="3" cellpadding="10">
+				<h:panelGrid columns="5" cellpadding="5">
 					<p:outputLabel for="name" value="Name : " />
 					<h:outputText id="name" value="#{dtProfileView.profile.name}" />
 					<p:message for="name" />
-
 					<p:outputLabel for="description" value="Description : " />
 					<h:outputText id="description" value="#{dtProfileView.profile.description}" />
 					<p:message for="description" />
 				</h:panelGrid>
 			</p:panel>
-</h:form>
+		</h:form>
 
 		<h:form>
 			<p:growl id="msg" showDetail="true" escape="false" />
 
-			<h3 style="margin-top: 0">Include/Exclude users</h3>
-			<p:pickList id="pickList" value="#{profileUserInclude.users}" var="users"
+			<h3 style="margin-top: 0">Include/ Exclude Users</h3>
+			<p:pickList id="pickList" value="#{profileUserView.userNames}" var="users"
 				itemLabel="#{users}" itemValue="#{users}" />
-			<p:commandButton id="profileSubmit" value="Submit" update="displayProfiles" oncomplete="PF('userDialog').show()"
+			<p:commandButton id="userSubmit" value="Submit"   update="displayUsers" oncomplete="PF('userDialog').show()"
 				style="margin-top:5px" />
-		</h:form>
+			</h:form>
 		
 			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
-				widgetVar="profileDialog">
+				widgetVar="userDialog">
 				<h:panelGrid id="displayUsers" columns="2">
 					<h:outputText value="Source: " style="font-weight:bold" />
-					<ui:repeat value="#{profileUserInclude.users.source}" var="item">
+					<ui:repeat value="#{profileUserView.userNames.source}" var="item">
 						<h:outputText value="#{item}" style="margin-right:5px" />
 					</ui:repeat>
 
 					<h:outputText value="Target: " style="font-weight:bold" />
-					<ui:repeat value="#{profileUserInclude.users.target}" var="item">
+					<ui:repeat value="#{profileUserView.userNames.target}" var="item">
 						<h:outputText value="#{item}" style="margin-right:5px" />
 					</ui:repeat>
 				</h:panelGrid>
 			</p:dialog>
-			
-		
 	</ui:define>
 </ui:composition>

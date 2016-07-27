@@ -11,64 +11,46 @@
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
 	<ui:define name="content">
-		<div style="margin-top: 20px;">
-<!-- 			<p:link value="Back Home" outcome="index.xhtml"></p:link> -->
-			<p:commandButton value="Include/Exclude a permission for this profile"
-				action="profilePermissionInclude" />
-		</div>
-		<h:form id="formPermissionProfiles">
+		<h:form id="userRecover">
 			<p:panel id="panel"
-				header="Permissions Of This  Profile "
-				style="font-size:20px;margin-bottom:10px;">
+				header="LISTING OF Permissions For This Profile "
+				style="font-size:20px;margin-bottom:30px;">
 				<p:messages id="messages" />
 
-				<h:panelGrid columns="3" cellpadding="10">
+				<h:panelGrid columns="5" cellpadding="5">
 					<p:outputLabel for="name" value="Name : " />
 					<h:outputText id="name" value="#{dtProfileView.profile.name}" />
 					<p:message for="name" />
-
 					<p:outputLabel for="description" value="Description : " />
 					<h:outputText id="description" value="#{dtProfileView.profile.description}" />
 					<p:message for="description" />
 				</h:panelGrid>
 			</p:panel>
-			<p:dataTable id="dtUsers" var="permission"
-				value="#{permissionView.permissions}" editable="true" rows="10"
-				paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-				rowsPerPageTemplate="5,10,15">
-
-				<c:facet name="header">
-					<h:outputText id="headerDataTable" value="Listing Permissions" />
-				</c:facet>
-								<p:column headerText="Id" style="width:auto;">
-					<p:cellEditor>
-						<c:facet name="output">
-							<h:outputText value="#{permission.id}" />
-						</c:facet>
-						<c:facet name="input">
-							<p:inputText id="modelInput" value="#{permission.id}"
-								style="width:100%" />
-						</c:facet>
-					</p:cellEditor>
-				</p:column>
-
-				<p:column headerText="Entry">
-					<p:cellEditor>
-						<c:facet name="output">
-							<h:outputText value="#{permission.entry}" />
-						</c:facet>
-						<c:facet name="input">
-							<p:inputText value="#{permission.entry}" required="true"
-								style="width:100%" label="Entry" />
-						</c:facet>
-					</p:cellEditor>
-				</p:column>
-					
-			</p:dataTable>
 		</h:form>
-		<!-- Redirection to the main menu -->
-<!-- 		<p:link style="float:right;margin-top:20px;" value="Back Home" -->
-<!-- 			outcome="index.xhtml"></p:link> -->
+
+		<h:form>
+			<p:growl id="msg" showDetail="true" escape="false" />
+
+			<h3 style="margin-top: 0">Include/ Exclude Permissions</h3>
+			<p:pickList id="pickList" value="#{profilePermissionView.permissionNames}" var="permissions"
+				itemLabel="#{permissions}" itemValue="#{permissions}" />
+			<p:commandButton id="permissionSubmit" value="Submit"  update="displayPermissions" oncomplete="PF('permissionDialog').show()" 
+				style="margin-top:5px" />
+			</h:form>
+		
+			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+				widgetVar="permissionDialog">
+				<h:panelGrid id="displayPermissions" columns="2">
+					<h:outputText value="Source: " style="font-weight:bold" />
+					<ui:repeat value="#{profilePermissionView.permissionNames.source}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+
+					<h:outputText value="Target: " style="font-weight:bold" />
+					<ui:repeat value="#{profilePermissionView.permissionNames.target}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+				</h:panelGrid>
+			</p:dialog>
 	</ui:define>
 </ui:composition>
