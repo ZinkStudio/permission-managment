@@ -7,40 +7,40 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
-import fr.marseille.permissionmanagement.model.Permission;
-import fr.marseille.permissionmanagement.service.PermissionService;
+import fr.marseille.permissionmanagement.model.Language;
+import fr.marseille.permissionmanagement.service.LanguageService;
 
 @ManagedBean
 @RequestScoped
-public class PermissionSaveView implements Serializable {
+public class LanguageSaveView implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private PermissionService service          = new PermissionService();
+    private LanguageService   service          = new LanguageService();
 
-    private Permission        permission;
+    private Language          language;
 
     @PostConstruct
     public void init() {
-        permission = new Permission();
+        language = new Language();
     }
 
     public void save() {
         try {
-            service.save(permission);
+            service.save(language);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
         } catch (ServiceException e) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Language Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
 
-    public Permission getPermission() {
-        return permission;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setPermission(Permission permission) {
-        this.permission = permission;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
 }

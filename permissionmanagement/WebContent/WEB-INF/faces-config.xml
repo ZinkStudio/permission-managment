@@ -74,6 +74,26 @@
 			<to-view-id>/permissionIndex.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>languageIndex</from-outcome>
+			<to-view-id>/languageIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>languageCreate</from-outcome>
+			<to-view-id>/languageCreate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>languageUpdate</from-outcome>
+			<to-view-id>/languageUpdate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>languageDelete</from-outcome>
+			<to-view-id>/languageIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 
 </faces-config>

@@ -1,0 +1,44 @@
+<ui:composition template="index.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">
+		<h:outputText value="permission-management : language create" />
+	</ui:define>
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Create a language :" />
+	</ui:define>
+	
+	<ui:define name="backLink">
+		<p:link value="List Languages" outcome="languageIndex" styleClass="backLink" />
+	</ui:define>
+	
+	<ui:define name="content">
+	
+		<h:form id="formLanguageCreate">
+			<p:panel id="panel" header="Language : "
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" showDetail="true" />
+				<h:panelGrid columns="3" cellpadding="8">
+					<p:outputLabel for="locale" value="Locale : " />
+					<p:inputText id="locale" value="#{languageSaveView.language.locale}"
+						required="true" label="locale" validator="noWhiteSpaceValidator" />
+					<p:message for="locale" />
+					
+					<p:outputLabel for="isDefault" value="isDefault : " />
+					<p:selectBooleanCheckbox id="isDefault" value="#{languageSaveView.language.locale}" />
+					<p:message for="isDefault" />
+				</h:panelGrid>
+
+			</p:panel>
+			<p:commandButton value="Save" update="panel"
+				action="#{languageSaveView.save}" style="margin-right:20px;">
+			<c:setPropertyActionListener value="#{languageSaveView.language}" target="#{languageSaveView.language}" />
+			</p:commandButton>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>
