@@ -19,9 +19,7 @@ public class UserProfilesView implements Serializable {
     * 
     */
     private static final long     serialVersionUID = 1L;
-
     private DualListModel<String> profileNames     = new DualListModel<String>();
-
     private ProfileService        profileService   = new ProfileService();
 
     @ManagedProperty("#{userView}")
@@ -31,11 +29,6 @@ public class UserProfilesView implements Serializable {
     public void init() {
         List<String> profilesSource = new ArrayList<String>();
         List<String> profilesTarget = new ArrayList<String>();
-
-        // for (int i = 0; i < 10; i++) {
-        // profilesSource.add("testSource" + i);
-        //
-        // }
 
         profilesSource.add("");
         List<Profile> allProfiles = new ArrayList<Profile>();
