@@ -7,13 +7,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
+import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.ProfileService;
+import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean
+@RequestScoped
 public class UserProfilesView implements Serializable {
     /**
     * 
@@ -21,6 +25,7 @@ public class UserProfilesView implements Serializable {
     private static final long     serialVersionUID = 1L;
     private DualListModel<String> profileNames     = new DualListModel<String>();
     private ProfileService        profileService   = new ProfileService();
+    private UserService           userService      = new UserService();
 
     @ManagedProperty("#{userView}")
     private UserView              userView;
@@ -41,9 +46,9 @@ public class UserProfilesView implements Serializable {
 
         for (Profile profile : allProfiles) {
             if (userView.getUser().getProfiles().contains(profile)) {
-                profilesTarget.add(profile.getId() + " # " + profile.getName());
+                profilesTarget.add(profile.getId() + "#" + profile.getName());
             } else {
-                profilesSource.add(profile.getId() + " # " + profile.getName());
+                profilesSource.add(profile.getId() + "#" + profile.getName());
             }
         }
 
@@ -66,8 +71,23 @@ public class UserProfilesView implements Serializable {
         this.userView = userView;
     }
 
-    private void updateUserProfiles(Profile profile) {
+    public void update() throws ServiceException {
+        User user = userView.getUser();
+        user.setProfiles(new ArrayList<Profile>());
 
+        for (Profile profile : profileService.findAll()) {
+            profile.getUsers().remove(user);
+            profileService.update(profile);
+        }
+
+        for (String profileString : profileNames.getTarget()) {
+            String[] split = profileString.split("#");
+            int profileId = Integer.parseInt(split[0]);
+            Profile profile = profileService.find(profileId);
+            profile.getUsers().add(user);
+            profileService.update(profile);
+        }
+        // userService.update(user);
     }
 
 }
