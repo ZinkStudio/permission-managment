@@ -29,14 +29,11 @@ public class UserProfilesView implements Serializable {
     public void init() {
         List<String> profilesSource = new ArrayList<String>();
         List<String> profilesTarget = new ArrayList<String>();
-
-        profilesSource.add("");
         List<Profile> allProfiles = new ArrayList<Profile>();
-        List<Profile> almostAllProfiles = new ArrayList<Profile>();
 
         try {
             allProfiles = profileService.findAll();
-            almostAllProfiles.addAll(allProfiles);
+
         } catch (ServiceException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Error while Getting Profiles: " + e.getMessage()));
@@ -44,25 +41,11 @@ public class UserProfilesView implements Serializable {
 
         for (Profile profile : allProfiles) {
             if (userView.getUser().getProfiles().contains(profile)) {
-                almostAllProfiles.remove(profile);
+                profilesTarget.add(profile.getName());
+            } else {
+                profilesSource.add(profile.getName());
             }
         }
-
-        for (Profile profile : userView.getUser().getProfiles()) {
-            profilesTarget.add(profile.getName());
-        }
-
-        for (Profile profile : almostAllProfiles) {
-            profilesSource.add(profile.getName());
-        }
-        // for (Profile item : myProfiles) {
-        // profilesSource.add(item.getName().toString());
-        // }
-
-        // List<Profile> userProfiles = user.getProfiles();
-        // for (Profile element : userProfiles) {
-        // profilesTarget.add(element.getName().toString());
-        // }
 
         profileNames = new DualListModel<String>(profilesSource, profilesTarget);
     }
