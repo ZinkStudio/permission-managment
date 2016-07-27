@@ -23,13 +23,13 @@
 				<p:messages id="messages" showDetail="true" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="entry" value="Entry : " />
-					<p:inputText id="entry" value="#{permissionUpdateView.permission.entry}"
+					<p:inputText id="entry" value="#{permissionView.permission.entry}"
 						required="true" label="entry" validator="noWhiteSpaceValidator" />
 					<p:message for="entry" />
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="Update" update="panel"
-				actionListener="#{permissionUpdateView.update}" style="margin-right:20px;" />
+				actionListener="#{permissionView.update}" style="margin-right:20px;" />
 		</h:form>	
 		
 	</ui:define>

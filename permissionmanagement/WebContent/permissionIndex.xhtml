@@ -49,14 +49,16 @@
 						icon="fa fa-edit" title="Update Permission ?"
 						styleClass="commandButton">
 						<c:setPropertyActionListener value="#{permission}"
-							target="#{permissionUpdateView.permission}" />
+							target="#{permissionView.permission}" />
 					</p:commandButton>
 				</p:column>
 
 				<p:column headerText="Delete" styleClass="commandColumn">
 					<p:commandButton id="btnDelete"
-						actionListener="#{permissionDeleteView.delete(permission)}"
-						icon="fa fa-remove" title="Delete Permission ?" update="@all" styleClass="commandButton" />
+						action="#{permissionView.delete}"
+						icon="fa fa-remove" title="Delete Permission ?" update="@all" styleClass="commandButton">
+					<c:setPropertyActionListener value="#{permission}" target="#{permissionView.permission}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>

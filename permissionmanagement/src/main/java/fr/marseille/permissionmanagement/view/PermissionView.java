@@ -35,6 +35,27 @@ public class PermissionView implements Serializable {
         }
     }
 
+    public void update() {
+        try {
+            service.update(permission);
+        } catch (ServiceException e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated"));
+    }
+
+    public void delete() {
+        try {
+            service.delete(permission.getId());
+        } catch (ServiceException e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Permission" + permission.getId() + " deleted "));
+    }
+
     public List<Permission> getPermissions() {
         init();
         return permissions;
