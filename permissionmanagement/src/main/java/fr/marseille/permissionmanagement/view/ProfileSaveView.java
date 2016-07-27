@@ -17,7 +17,7 @@ public class ProfileSaveView {
     public void save() throws ServiceException {
         profileService.save(profile);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
-        // profile = new Profile();
+
     }
 
     public ProfileService getProfileService() {

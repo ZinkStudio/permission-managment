@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Indexjsf.xhtml</title>
+</h:head>
+<h:body>
+<h:form>
+    <p:growl id="msg" showDetail="true" escape="false" />
+ 
+    <h3 style="margin-top: 0">Basic PickList</h3>
+    <p:pickList id="pickList" value="#{pickListView.cities}" var="cities" itemLabel="#{cities}" itemValue="#{cities}" />
+ 
+    <p:commandButton id="citySubmit" value="Submit"  />
+    </h:form>
+</h:body>
+
+</html>

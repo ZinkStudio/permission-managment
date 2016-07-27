@@ -12,7 +12,7 @@
 	</ui:define>
 	<ui:define name="content">
 		<div style="margin-top: 20px;">
-			<p:link value="Back Home" outcome="index.xhtml"></p:link>
+<!-- 			<p:link value="Back Home" outcome="index.xhtml"></p:link> -->
 			<p:commandButton value="Include/Exclude a user for this profile"
 				action="profilePermissionInclude" />
 		</div>
@@ -32,25 +32,33 @@
 					<p:message for="description" />
 				</h:panelGrid>
 			</p:panel>
+</h:form>
 
-			<p:dataTable id="refreshUsers" var="user" value="#{userView.users}"
-				rows="10" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
-				rowsPerPageTemplate="5,10,15">
-				<p:column headerText="Id" width="30">
-					<h:outputText value="#{user.id}" />
-				</p:column>
-				<p:column headerText="Name" width="60">
-					<h:outputText value="#{user.name}" />
-				</p:column>
-				<p:column headerText="FirstName" width="60">
-					<h:outputText value="#{user.firstName}" />
-				</p:column>
-				
-				</p:dataTable>
+		<h:form>
+			<p:growl id="msg" showDetail="true" escape="false" />
+
+			<h3 style="margin-top: 0">Include/Exclude users</h3>
+			<p:pickList id="pickList" value="#{profileUserInclude.users}" var="users"
+				itemLabel="#{users}" itemValue="#{users}" />
+			<p:commandButton id="profileSubmit" value="Submit" update="displayProfiles" oncomplete="PF('userDialog').show()"
+				style="margin-top:5px" />
 		</h:form>
-		<!-- Redirection to the main menu -->
-		<p:link style="float:right;margin-top:20px;" value="Back Home"
-			outcome="index.xhtml"></p:link>
+		
+			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+				widgetVar="profileDialog">
+				<h:panelGrid id="displayUsers" columns="2">
+					<h:outputText value="Source: " style="font-weight:bold" />
+					<ui:repeat value="#{profileUserInclude.users.source}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+
+					<h:outputText value="Target: " style="font-weight:bold" />
+					<ui:repeat value="#{profileUserInclude.users.target}" var="item">
+						<h:outputText value="#{item}" style="margin-right:5px" />
+					</ui:repeat>
+				</h:panelGrid>
+			</p:dialog>
+			
+		
 	</ui:define>
 </ui:composition>

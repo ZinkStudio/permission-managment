@@ -3,8 +3,10 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
@@ -18,19 +20,14 @@ public class ProfileView implements Serializable {
     private List<Profile>     profiles;
     private Profile           profile;
 
-    // @PostConstruct
     public void init() {
         List<Profile> profiles = new ArrayList<>();
         profile = new Profile();
-        // profile.setName("tota");
-        // profile.setDescription("dsds");
-
-        // profiles.addAll(service.createProfiles());
 
         try {
             profiles = service.findAll();
         } catch (ServiceException e) {
-            e.printStackTrace();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error : " + e.getMessage()));
         }
 
         this.profiles = profiles;

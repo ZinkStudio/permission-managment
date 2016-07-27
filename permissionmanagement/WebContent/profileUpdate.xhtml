@@ -18,7 +18,7 @@
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="Name : " />
 					<p:inputText id="name" value="#{profileUpdateView.profile.name}"
-						required="true" label="name">
+						required="true" label="name" validator="noWhiteSpaceValidator" >
 						<c:validateLength minimum="2" />
 					</p:inputText>
 					<p:message for="name" />
@@ -41,7 +41,7 @@
 		style="width: 350px; display: block; float: left; margin-top: 20px;">
 		
 		
-		<p:link value="Vers Menu Principal" outcome="profileIndex.xhtml"></p:link>
+		
 	</div>
 
 </ui:define>
