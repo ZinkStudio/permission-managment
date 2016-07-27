@@ -4,12 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import org.apache.log4j.Logger;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class JPAUtil.
  */
 public class JPAUtil {
+
+    private static final Logger         LOG              = Logger.getLogger(JPAUtil.class);
 
     /** The Constant PERSISTANCE_UNIT. */
     private static final String         PERSISTANCE_UNIT = "permissionmanagement";
@@ -96,7 +99,7 @@ public class JPAUtil {
      */
     public synchronized static void rollbackTransaction() {
         if (getTransaction().isActive()) {
-            getTransaction().rollback();
+            LOG.debug("rollback transaction");
         }
     }
 
