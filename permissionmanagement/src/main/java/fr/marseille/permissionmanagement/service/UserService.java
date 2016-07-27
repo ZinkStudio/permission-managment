@@ -107,17 +107,35 @@ public class UserService {
     }
 
     /**
-     * 
+     * @return
      */
-    public void affect(User user, Profile profile) {
-        // TODO implement here
+    public List<Profile> affect(User user, Profile profile) {
+        List<Profile> userProfiles = user.getProfiles();
+        try {
+            user = userDAO.find(user.getId());
+            userProfiles.add(profile);
+            userDAO.update(user);
+            UserService.LOG.debug("Log profile affected to user OK : " + user + "added new profile " + profile);
+        } catch (DAOException e) {
+            UserService.LOG.error("affect : " + e.getMessage());
+        }
+        return userProfiles;
     }
 
     /**
-     * 
+     * @return
      */
-    public void unaffect(User user, Profile profile) {
-        // TODO implement here
+    public List<Profile> unaffect(User user, Profile profile) {
+        List<Profile> userProfiles = user.getProfiles();
+        try {
+            user = userDAO.find(user.getId());
+            userProfiles.remove(profile);
+            userDAO.update(user);
+            UserService.LOG.debug("Log profile affected to user OK : " + user + "added new profile " + profile);
+        } catch (DAOException e) {
+            UserService.LOG.error("affect : " + e.getMessage());
+        }
+        return userProfiles;
     }
 
 }

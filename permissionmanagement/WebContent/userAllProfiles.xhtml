@@ -19,10 +19,10 @@
 
 				<h:panelGrid columns="5" cellpadding="5">
 					<p:outputLabel for="name" value="Name : " />
-					<h:outputText id="name" value="#{userView.user.name}" />
+					<h:outputText id="name" value="#{userProfilesView.userView.user.name}" />
 					<p:message for="name" />
 					<p:outputLabel for="firstName" value="FirstName : " />
-					<h:outputText id="firstName" value="#{userView.user.firstName}" />
+					<h:outputText id="firstName" value="#{userProfilesView.userView.user.firstName}" />
 					<p:message for="firstName" />
 				</h:panelGrid>
 			</p:panel>
@@ -36,7 +36,7 @@
 				itemLabel="#{profiles}" itemValue="#{profiles}" />
 			<p:commandButton id="profileSubmit" value="Submit" update="displayProfiles" oncomplete="PF('profileDialog').show()"
 				style="margin-top:5px" />
-		</h:form>
+			</h:form>
 		
 			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
 				widgetVar="profileDialog">
@@ -52,21 +52,5 @@
 					</ui:repeat>
 				</h:panelGrid>
 			</p:dialog>
-		
-		
-		
-		
-		
-		
-		
-<!-- 		<h:form> -->
-<!-- 			<p:growl id="msg" showDetail="true" escape="false" /> -->
-<!-- 			<h3 style="margin-top: 10px">AFFECTING/UNAFFECTING PROFILES</h3> -->
-<!-- 			<p:pickList id="pickList2" value="#{userProfilesView.profiles}" -->
-<!-- 				var="profiles" itemLabel="#{profiles}" itemValue="#{profiles}" /> -->
-<!-- 			<p:commandButton id="profileSubmit" value="Submit" -->
-<!-- 				style="margin-top:5px" /> -->
-	
-<!-- 		</h:form> -->
 	</ui:define>
 </ui:composition>

@@ -11,7 +11,7 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
 
-@ManagedBean(name = "userView")
+@ManagedBean
 @SessionScoped
 public class UserView implements Serializable {
 

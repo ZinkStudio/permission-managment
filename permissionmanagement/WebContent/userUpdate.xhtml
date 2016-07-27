@@ -11,8 +11,6 @@
 		<h:outputText id="layoutTitle" value="Listing Users :" />
 	</ui:define>
 	<ui:define name="content">
-		<p:link value="Back Home" outcome="index.xhtml"></p:link>
-		
 		<h:form id="formUserUpdate">
 			<p:panel id="panel" header="PERSONAL INFORMATION FOR UPDATING THIS USER"
 				style="font-size:20px;margin-bottom:10px;">
@@ -40,10 +38,5 @@
 			<p:commandButton value="Update" update="panel"
 				actionListener="#{userUpdateView.update}" style="margin-right:20px;" />
 		</h:form>
-
-			<!-- Redirection to the main menu -->
-			<p:link value="Back Home" outcome="index.xhtml"></p:link>
-			<br />
-	
 	</ui:define>
 </ui:composition>
