@@ -18,8 +18,12 @@
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="Name : " />
 					<p:inputText id="name" value="#{profileUpdateView.profile.name}"
-						required="true" label="name" validator="noWhiteSpaceValidator" >
+						required="true" label="name"  >
+						
 						<c:validateLength minimum="2" />
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+						
 					</p:inputText>
 					<p:message for="name" />
 

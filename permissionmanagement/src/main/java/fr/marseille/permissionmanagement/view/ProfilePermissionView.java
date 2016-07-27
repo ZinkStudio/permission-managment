@@ -11,13 +11,16 @@ import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
+import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.PermissionService;
+import fr.marseille.permissionmanagement.service.ProfileService;
 
 @ManagedBean
 
 public class ProfilePermissionView implements Serializable {
     private DualListModel<String> permissionNames   = new DualListModel<String>();
     private PermissionService     permissionService = new PermissionService();
+    private ProfileService        profileService    = new ProfileService();
 
     @ManagedProperty("#{dtProfileView}")
     private ProfileView           profileView;
@@ -38,9 +41,9 @@ public class ProfilePermissionView implements Serializable {
 
         for (Permission permission : allPermissions) {
             if (profileView.getProfile().getPermissions().contains(permission)) {
-                permissionsTarget.add(permission.getEntry());
+                permissionsTarget.add(permission.getId() + "#" + permission.getEntry());
             } else {
-                permissionSource.add(permission.getEntry());
+                permissionSource.add(permission.getId() + "#" + permission.getEntry());
             }
         }
 
@@ -69,6 +72,25 @@ public class ProfilePermissionView implements Serializable {
 
     public void setProfileView(ProfileView profileView) {
         this.profileView = profileView;
+    }
+
+    public void update() throws ServiceException {
+        Profile profile = profileView.getProfile();
+        profile.setPermissions(new ArrayList<Permission>());
+
+        for (Permission permission : permissionService.findAll()) {
+            permission.getProfiles().remove(profile);
+            permissionService.update(permission);
+        }
+        // le mappedby oblige à mettre à jour le profile
+        for (String permissionString : permissionNames.getTarget()) {
+            String[] split = permissionString.split("#");
+            int permissionId = Integer.parseInt(split[0]);
+            Permission permission = permissionService.find(permissionId);
+            profile.getPermissions().add(permission);
+
+        }
+        profileService.update(profile);
     }
 
 }

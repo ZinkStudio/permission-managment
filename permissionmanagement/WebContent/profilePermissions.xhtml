@@ -34,7 +34,7 @@
 			<h3 style="margin-top: 0">Include/ Exclude Permissions</h3>
 			<p:pickList id="pickList" value="#{profilePermissionView.permissionNames}" var="permissions"
 				itemLabel="#{permissions}" itemValue="#{permissions}" />
-			<p:commandButton id="permissionSubmit" value="Submit"  update="displayPermissions" oncomplete="PF('permissionDialog').show()" 
+			<p:commandButton id="permissionSubmit" actionListener="#{profilePermissionView.update}" value="Include/Exclude"  update="displayPermissions" oncomplete="PF('permissionDialog').show()" 
 				style="margin-top:5px" />
 			</h:form>
 		

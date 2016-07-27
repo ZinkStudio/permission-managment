@@ -33,9 +33,10 @@ public class ProfileJPADAO implements ProfileDAO {
             JPAUtil.commitTransaction();
 
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
+
             String msg = "persist : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return status;
@@ -51,9 +52,10 @@ public class ProfileJPADAO implements ProfileDAO {
             profiles = (List<Profile>) JPAUtil.getEntityManager().createQuery("from Profile").getResultList();
 
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
+
             String msg = "findAll : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -71,9 +73,10 @@ public class ProfileJPADAO implements ProfileDAO {
             profile = JPAUtil.getEntityManager().find(Profile.class, id);
 
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
+
             String msg = "find : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -89,9 +92,10 @@ public class ProfileJPADAO implements ProfileDAO {
             JPAUtil.getEntityManager().merge(profile);
             JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
+
             String msg = "update : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
         return profile;
@@ -108,9 +112,10 @@ public class ProfileJPADAO implements ProfileDAO {
                 JPAUtil.commitTransaction();
 
             } catch (RuntimeException e) {
-                JPAUtil.closeAll();
+
                 String msg = "delete : " + e.getMessage();
                 LOG.error(msg);
+                JPAUtil.rollbackTransaction();
                 throw new DAOException(msg, e);
             }
         }

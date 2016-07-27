@@ -32,8 +32,8 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
     }
 
     @Override
-    public void exclude(Integer id_profile, Integer id_permission) throws ServiceException {
-        Profile profile = profileService.find(id_profile);
+    public void exclude(Integer idProfile, Integer id_permission) throws ServiceException {
+        Profile profile = profileService.find(idProfile);
         Permission permission = permissionService.find(id_permission);
         profile.getPermissions().remove(permission);
         profileService.update(profile);

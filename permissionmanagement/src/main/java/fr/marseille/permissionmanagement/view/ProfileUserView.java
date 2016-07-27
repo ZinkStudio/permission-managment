@@ -10,7 +10,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
+import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.model.User;
+import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.service.UserService;
 
 @ManagedBean
@@ -22,6 +24,7 @@ public class ProfileUserView implements Serializable {
 
     private DualListModel<String> userNames        = new DualListModel<String>();
     private UserService           userService      = new UserService();
+    private ProfileService        profileService   = new ProfileService();
 
     @ManagedProperty("#{dtProfileView}")
     private ProfileView           profileView;
@@ -42,9 +45,9 @@ public class ProfileUserView implements Serializable {
 
         for (User user : allUsers) {
             if (profileView.getProfile().getUsers().contains(user)) {
-                usersTarget.add(user.getName());
+                usersTarget.add((user.getId() + "#" + user.getName()));
             } else {
-                usersSource.add(user.getName());
+                usersSource.add(user.getId() + "#" + user.getName());
             }
         }
 
@@ -59,14 +62,6 @@ public class ProfileUserView implements Serializable {
         this.userNames = userNames;
     }
 
-    // public UserService getUserService() {
-    // return userService;
-    // }
-    //
-    // public void setUserService(UserService userService) {
-    // this.userService = userService;
-    // }
-
     public ProfileView getProfileView() {
         return profileView;
     }
@@ -75,4 +70,22 @@ public class ProfileUserView implements Serializable {
         this.profileView = profileView;
     }
 
+    public void update() throws ServiceException {
+        Profile profile = profileView.getProfile();
+        profile.setUsers(new ArrayList<User>());
+
+        for (User user : userService.findAll()) {
+            user.getProfiles().remove(profile);
+            userService.update(user);
+        }
+        // le mappedby oblige à mettre à jour le profile
+        for (String userString : userNames.getTarget()) {
+            String[] split = userString.split("#");
+            int userId = Integer.parseInt(split[0]);
+            User user = userService.find(userId);
+            profile.getUsers().add(user);
+
+        }
+        profileService.update(profile);
+    }
 }

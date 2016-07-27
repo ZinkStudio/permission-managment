@@ -34,7 +34,7 @@
 			<h3 style="margin-top: 0">Include/ Exclude Users</h3>
 			<p:pickList id="pickList" value="#{profileUserView.userNames}" var="users"
 				itemLabel="#{users}" itemValue="#{users}" />
-			<p:commandButton id="userSubmit" value="Submit"   update="displayUsers" oncomplete="PF('userDialog').show()"
+			<p:commandButton id="userSubmit" actionListener="#{profileUserView.update}" value="Include/Exclude"   update="displayUsers" oncomplete="PF('userDialog').show()"
 				style="margin-top:5px" />
 			</h:form>
 		

@@ -25,6 +25,8 @@
 					<p:inputText id="name" value="#{profileSaveView.profile.name}"
 						required="true" label="name">
 						<c:validateLength minimum="2" />
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
 					</p:inputText>
 					<p:message for="name" />
 
