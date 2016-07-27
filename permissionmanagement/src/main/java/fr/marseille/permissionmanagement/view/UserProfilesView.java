@@ -87,7 +87,6 @@ public class UserProfilesView implements Serializable {
             profile.getUsers().add(user);
             profileService.update(profile);
         }
-        // userService.update(user);
     }
 
 }
