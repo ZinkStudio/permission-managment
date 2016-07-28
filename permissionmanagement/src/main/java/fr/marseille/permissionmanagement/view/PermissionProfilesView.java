@@ -3,6 +3,7 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -25,13 +26,13 @@ public class PermissionProfilesView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long     serialVersionUID  = 1L;
-    
+
     /** The profile names. */
     private DualListModel<String> profileNames      = new DualListModel<String>();
-    
+
     /** The profile service. */
     private ProfileService        profileService    = new ProfileService();
-    
+
     /** The permission service. */
     private PermissionService     permissionService = new PermissionService();
 
@@ -42,7 +43,7 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Inits the.
      */
-    // @PostConstruct
+    @PostConstruct
     public void init() {
         List<String> profilesSource = new ArrayList<String>();
         List<String> profilesTarget = new ArrayList<String>();
@@ -79,7 +80,8 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Sets the profile names.
      *
-     * @param profileNames the new profile names
+     * @param profileNames
+     *            the new profile names
      */
     public void setProfileNames(DualListModel<String> profileNames) {
         this.profileNames = profileNames;
@@ -97,7 +99,8 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Sets the permission view.
      *
-     * @param permissionView the new permission view
+     * @param permissionView
+     *            the new permission view
      */
     public void setPermissionView(PermissionView permissionView) {
         this.permissionView = permissionView;
@@ -115,7 +118,8 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Sets the profile service.
      *
-     * @param profileService the new profile service
+     * @param profileService
+     *            the new profile service
      */
     public void setProfileService(ProfileService profileService) {
         this.profileService = profileService;
@@ -133,7 +137,8 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Sets the permission service.
      *
-     * @param permissionService the new permission service
+     * @param permissionService
+     *            the new permission service
      */
     public void setPermissionService(PermissionService permissionService) {
         this.permissionService = permissionService;
@@ -142,7 +147,8 @@ public class PermissionProfilesView implements Serializable {
     /**
      * Update.
      *
-     * @throws ServiceException the service exception
+     * @throws ServiceException
+     *             the service exception
      */
     public void update() throws ServiceException {
         Permission permission = permissionView.getPermission();
