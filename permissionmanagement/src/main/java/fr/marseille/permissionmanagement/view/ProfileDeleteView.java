@@ -10,16 +10,28 @@ import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileDeleteView.
+ */
 @ManagedBean
 @SessionScoped
 public class ProfileDeleteView implements Serializable {
-    /**
-     * 
-     */
+    
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
+    
+    /** The profile service. */
     private ProfileService    profileService   = new ProfileService();
+    
+    /** The profile. */
     private Profile           profile;
 
+    /**
+     * Delete.
+     *
+     * @param id the id
+     */
     public void delete(Integer id) {
         try {
             profileService.delete(id);
@@ -31,10 +43,20 @@ public class ProfileDeleteView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("profile deleted"));
     }
 
+    /**
+     * Gets the profile.
+     *
+     * @return the profile
+     */
     public Profile getProfile() {
         return profile;
     }
 
+    /**
+     * Sets the profile.
+     *
+     * @param profile the new profile
+     */
     public void setProfile(Profile profile) {
         this.profile = profile;
     }

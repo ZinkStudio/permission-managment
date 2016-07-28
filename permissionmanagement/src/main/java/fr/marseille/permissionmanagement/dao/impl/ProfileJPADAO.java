@@ -8,17 +8,26 @@ import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class ProfileJPADAO.
  */
 
 public class ProfileJPADAO implements ProfileDAO {
+    
+    /** The Constant LOG. */
     private static final Logger LOG = Logger.getLogger(ProfileJPADAO.class);
 
+    /**
+     * Instantiates a new profile jpadao.
+     */
     public ProfileJPADAO() {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfileDAO#save(fr.marseille.permissionmanagement.model.Profile)
+     */
     @Override
     public boolean save(Profile profile) throws DAOException {
 
@@ -43,6 +52,9 @@ public class ProfileJPADAO implements ProfileDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfileDAO#findAll()
+     */
     @Override
     public List<Profile> findAll() throws DAOException {
 
@@ -63,6 +75,9 @@ public class ProfileJPADAO implements ProfileDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfileDAO#find(java.lang.Integer)
+     */
     @Override
     public Profile find(Integer id) throws DAOException {
 
@@ -84,6 +99,9 @@ public class ProfileJPADAO implements ProfileDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfileDAO#update(fr.marseille.permissionmanagement.model.Profile)
+     */
     @Override
     public Profile update(Profile profile) throws DAOException {
 
@@ -101,6 +119,9 @@ public class ProfileJPADAO implements ProfileDAO {
         return profile;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfileDAO#delete(java.lang.Integer)
+     */
     @Override
     public boolean delete(Integer id) throws DAOException {
         boolean status = false;

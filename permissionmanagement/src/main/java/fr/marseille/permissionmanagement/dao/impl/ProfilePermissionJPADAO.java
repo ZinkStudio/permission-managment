@@ -8,14 +8,27 @@ import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.PermissionService;
 import fr.marseille.permissionmanagement.service.ProfileService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfilePermissionJPADAO.
+ */
 public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
 
+    /** The profile service. */
     private static ProfileService    profileService    = new ProfileService();
+    
+    /** The permission service. */
     private static PermissionService permissionService = new PermissionService();
 
+    /**
+     * Instantiates a new profile permission jpadao.
+     */
     public ProfilePermissionJPADAO() {
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfilePermissionDAO#include(fr.marseille.permissionmanagement.model.Profile, java.util.List)
+     */
     @Override
     public void include(Profile profile, List<Permission> permissions) throws ServiceException {
 
@@ -31,6 +44,9 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfilePermissionDAO#exclude(java.lang.Integer, java.lang.Integer)
+     */
     @Override
     public void exclude(Integer idProfile, Integer id_permission) throws ServiceException {
         Profile profile = profileService.find(idProfile);
@@ -42,6 +58,9 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfilePermissionDAO#include(fr.marseille.permissionmanagement.model.Profile, fr.marseille.permissionmanagement.model.Permission)
+     */
     @Override
     public void include(Profile profile, Permission permission) throws ServiceException {
 
@@ -57,6 +76,9 @@ public class ProfilePermissionJPADAO implements ProfilePermissionDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.ProfilePermissionDAO#exclude(java.lang.Integer, java.util.List)
+     */
     @Override
     public void exclude(Integer id_profile, List<Permission> permissions) throws ServiceException {
         Profile profile = profileService.find(id_profile);

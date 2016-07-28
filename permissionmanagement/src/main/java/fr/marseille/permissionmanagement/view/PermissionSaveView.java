@@ -10,21 +10,34 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.service.PermissionService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PermissionSaveView.
+ */
 @ManagedBean
 @RequestScoped
 public class PermissionSaveView implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The service. */
     private PermissionService service          = new PermissionService();
 
+    /** The permission. */
     private Permission        permission;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     public void init() {
         permission = new Permission();
     }
 
+    /**
+     * Save.
+     */
     public void save() {
         try {
             service.save(permission);
@@ -35,10 +48,20 @@ public class PermissionSaveView implements Serializable {
         }
     }
 
+    /**
+     * Gets the permission.
+     *
+     * @return the permission
+     */
     public Permission getPermission() {
         return permission;
     }
 
+    /**
+     * Sets the permission.
+     *
+     * @param permission the new permission
+     */
     public void setPermission(Permission permission) {
         this.permission = permission;
     }

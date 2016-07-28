@@ -9,18 +9,26 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserSaveView.
+ */
 @ManagedBean
 @SessionScoped
 public class UserSaveView implements Serializable {
 
-    /**
-     * 
-     */
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The user service. */
     private UserService       userService      = new UserService();
+    
+    /** The user. */
     private User              user             = new User();
 
+    /**
+     * Save.
+     */
     public void save() {
         try {
             userService.save(user);
@@ -32,10 +40,18 @@ public class UserSaveView implements Serializable {
         user = null;
     }
 
+    /**
+     * Gets the user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return this.user;
     }
 
+    /**
+     * Instantiates a new user save view.
+     */
     public UserSaveView() {
         super();
     }

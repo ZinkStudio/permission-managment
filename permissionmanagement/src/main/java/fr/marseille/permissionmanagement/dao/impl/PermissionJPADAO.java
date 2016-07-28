@@ -8,14 +8,25 @@ import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PermissionJPADAO.
+ */
 public class PermissionJPADAO implements PermissionDAO {
 
+    /** The Constant LOG. */
     private static final Logger LOG = Logger.getLogger(PermissionJPADAO.class);
 
+    /**
+     * Instantiates a new permission jpadao.
+     */
     public PermissionJPADAO() {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionDAO#save(fr.marseille.permissionmanagement.model.Permission)
+     */
     @Override
     public boolean save(Permission permission) throws DAOException {
         boolean status = false;
@@ -36,6 +47,9 @@ public class PermissionJPADAO implements PermissionDAO {
         return status;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionDAO#findAll()
+     */
     @Override
     public List<Permission> findAll() throws DAOException {
         List<Permission> permissions = new ArrayList<Permission>();
@@ -52,6 +66,9 @@ public class PermissionJPADAO implements PermissionDAO {
         return permissions;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionDAO#find(java.lang.Integer)
+     */
     @Override
     public Permission find(Integer id) throws DAOException {
         Permission permission = null;
@@ -67,6 +84,9 @@ public class PermissionJPADAO implements PermissionDAO {
         return permission;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionDAO#update(fr.marseille.permissionmanagement.model.Permission)
+     */
     @Override
     public Permission update(Permission permission) throws DAOException {
         Permission mergePermission = permission;
@@ -85,6 +105,9 @@ public class PermissionJPADAO implements PermissionDAO {
         return mergePermission;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionDAO#delete(java.lang.Integer)
+     */
     @Override
     public boolean delete(Integer id) throws DAOException {
         boolean status = false;

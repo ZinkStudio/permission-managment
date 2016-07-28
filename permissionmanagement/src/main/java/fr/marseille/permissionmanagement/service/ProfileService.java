@@ -10,16 +10,31 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileService.
+ */
 public class ProfileService {
+    
+    /** The Constant LOG. */
     private static final Logger LOG        = Logger.getLogger(ProfileService.class);
+    
+    /** The profile dao. */
     private ProfileDAO          profileDAO = DAOFactory.getProfileDAO();
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public ProfileService() {
     }
 
+    /**
+     * Find.
+     *
+     * @param id the id
+     * @return the profile
+     * @throws ServiceException the service exception
+     */
     public Profile find(Integer id) throws ServiceException {
         Profile profile = null;
         try {
@@ -34,7 +49,10 @@ public class ProfileService {
     }
 
     /**
-     * 
+     * Find all.
+     *
+     * @return the list
+     * @throws ServiceException the service exception
      */
 
     /**
@@ -54,8 +72,11 @@ public class ProfileService {
     }
 
     /**
-     * @throws DAOException
-     * @throws ServiceException
+     * Update.
+     *
+     * @param profile the profile
+     * @return the profile
+     * @throws ServiceException the service exception
      */
     public Profile update(Profile profile) throws ServiceException {
 
@@ -70,8 +91,11 @@ public class ProfileService {
     }
 
     /**
-     * @throws DAOException
-     * @throws ServiceException
+     * Delete.
+     *
+     * @param id the id
+     * @return the boolean
+     * @throws ServiceException the service exception
      */
     public Boolean delete(Integer id) throws ServiceException {
         boolean status = false;
@@ -87,8 +111,11 @@ public class ProfileService {
     }
 
     /**
-     * @throws DAOException
-     * @throws ServiceException
+     * Save.
+     *
+     * @param profile the profile
+     * @return true, if successful
+     * @throws ServiceException the service exception
      */
     public boolean save(Profile profile) throws ServiceException {
         boolean status = false;
@@ -104,19 +131,30 @@ public class ProfileService {
     }
 
     /**
-     * 
+     * Exclude.
+     *
+     * @param profile the profile
+     * @param permission the permission
      */
     public void exclude(Profile profile, Permission permission) {
 
     }
 
     /**
-     * 
+     * Include.
+     *
+     * @param profile the profile
+     * @param permission the permission
      */
     public void include(Profile profile, Permission permission) {
         // TODO implement here
     }
 
+    /**
+     * Creates the profiles.
+     *
+     * @return the list
+     */
     public List<Profile> createProfiles() {
         List<Profile> profiles = new ArrayList<Profile>();
 

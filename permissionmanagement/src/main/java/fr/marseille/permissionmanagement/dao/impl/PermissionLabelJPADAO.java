@@ -8,14 +8,25 @@ import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.PermissionLabel;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PermissionLabelJPADAO.
+ */
 public class PermissionLabelJPADAO implements PermissionLabelDAO {
 
+    /** The Constant LOG. */
     private static final Logger LOG = Logger.getLogger(PermissionLabelJPADAO.class);
 
+    /**
+     * Instantiates a new permission label jpadao.
+     */
     public PermissionLabelJPADAO() {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionLabelDAO#save(fr.marseille.permissionmanagement.model.PermissionLabel)
+     */
     @Override
     public boolean save(PermissionLabel label) throws DAOException {
         boolean status = false;
@@ -36,6 +47,9 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
         return status;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionLabelDAO#findAll()
+     */
     @Override
     public List<PermissionLabel> findAll() throws DAOException {
         List<PermissionLabel> labels = new ArrayList<PermissionLabel>();
@@ -52,6 +66,9 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
         return labels;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionLabelDAO#find(java.lang.Integer)
+     */
     @Override
     public PermissionLabel find(Integer id) throws DAOException {
         PermissionLabel label = null;
@@ -67,6 +84,9 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
         return label;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionLabelDAO#update(fr.marseille.permissionmanagement.model.PermissionLabel)
+     */
     @Override
     public PermissionLabel update(PermissionLabel label) throws DAOException {
         PermissionLabel mergeLabel = label;
@@ -85,6 +105,9 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
         return mergeLabel;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.PermissionLabelDAO#delete(java.lang.Integer)
+     */
     @Override
     public boolean delete(Integer id) throws DAOException {
         boolean status = false;

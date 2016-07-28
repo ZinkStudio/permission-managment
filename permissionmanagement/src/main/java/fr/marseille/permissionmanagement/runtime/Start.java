@@ -2,6 +2,7 @@ package fr.marseille.permissionmanagement.runtime;
 
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.exception.ServiceException;
+import fr.marseille.permissionmanagement.runtime.Start.MODE;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class Start {

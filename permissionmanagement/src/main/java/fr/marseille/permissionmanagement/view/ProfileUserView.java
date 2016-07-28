@@ -15,20 +15,32 @@ import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.service.UserService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ProfileUserView.
+ */
 @ManagedBean
 public class ProfileUserView implements Serializable {
-    /**
-     * 
-     */
+    
+    /** The Constant serialVersionUID. */
     private static final long     serialVersionUID = 1L;
 
+    /** The user names. */
     private DualListModel<String> userNames        = new DualListModel<String>();
+    
+    /** The user service. */
     private UserService           userService      = new UserService();
+    
+    /** The profile service. */
     private ProfileService        profileService   = new ProfileService();
 
+    /** The profile view. */
     @ManagedProperty("#{dtProfileView}")
     private ProfileView           profileView;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     public void init() {
         List<String> usersSource = new ArrayList<String>();
@@ -54,22 +66,47 @@ public class ProfileUserView implements Serializable {
         userNames = new DualListModel<String>(usersSource, usersTarget);
     }
 
+    /**
+     * Gets the user names.
+     *
+     * @return the user names
+     */
     public DualListModel<String> getUserNames() {
         return userNames;
     }
 
+    /**
+     * Sets the user names.
+     *
+     * @param userNames the new user names
+     */
     public void setUserNames(DualListModel<String> userNames) {
         this.userNames = userNames;
     }
 
+    /**
+     * Gets the profile view.
+     *
+     * @return the profile view
+     */
     public ProfileView getProfileView() {
         return profileView;
     }
 
+    /**
+     * Sets the profile view.
+     *
+     * @param profileView the new profile view
+     */
     public void setProfileView(ProfileView profileView) {
         this.profileView = profileView;
     }
 
+    /**
+     * Update.
+     *
+     * @throws ServiceException the service exception
+     */
     public void update() throws ServiceException {
         Profile profile = profileView.getProfile();
         profile.setUsers(new ArrayList<User>());

@@ -8,7 +8,6 @@ import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.PermissionService;
 import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.service.UserService;
-import fr.marseille.permissionmanagement.util.JPAUtil;
 
 public class StartProfile {
     private static ProfileService    profileService    = new ProfileService();
@@ -18,11 +17,11 @@ public class StartProfile {
     public static void main(String[] args) throws ServiceException, DAOException {
 
         // Start.generateDatabase();
-        // insertProfiles();
+        insertProfiles();
         affectUser();
         includePermission();
 
-        JPAUtil.closeAll();
+        // JPAUtil.closeAll();
     }
 
     protected static void affectUser() throws ServiceException, DAOException {

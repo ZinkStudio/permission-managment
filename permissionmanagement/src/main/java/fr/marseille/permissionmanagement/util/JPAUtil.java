@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class JPAUtil {
 
+    /** The Constant LOG. */
     private static final Logger         LOG              = Logger.getLogger(JPAUtil.class);
 
     /** The Constant PERSISTANCE_UNIT. */
@@ -23,7 +24,7 @@ public class JPAUtil {
     /** The entity manager. */
     private static EntityManager        entityManager;
 
-    /** The entity transaction */
+    /**  The entity transaction. */
     private static EntityTransaction    transaction;
 
     /**

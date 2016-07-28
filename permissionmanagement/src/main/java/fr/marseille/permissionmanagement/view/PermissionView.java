@@ -11,18 +11,29 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.service.PermissionService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PermissionView.
+ */
 @ManagedBean
 @SessionScoped
 public class PermissionView implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
+    /** The service. */
     private PermissionService service          = new PermissionService();
 
+    /** The permissions. */
     private List<Permission>  permissions;
 
+    /** The permission. */
     private Permission        permission;
 
+    /**
+     * Inits the.
+     */
     // @PostConstruct
     public void init() {
         permissions = new ArrayList<Permission>();
@@ -35,6 +46,9 @@ public class PermissionView implements Serializable {
         }
     }
 
+    /**
+     * Update.
+     */
     public void update() {
         try {
             service.update(permission);
@@ -45,6 +59,9 @@ public class PermissionView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated"));
     }
 
+    /**
+     * Delete.
+     */
     public void delete() {
         try {
             service.delete(permission.getId());
@@ -56,15 +73,30 @@ public class PermissionView implements Serializable {
                 new FacesMessage("Permission" + permission.getId() + " deleted "));
     }
 
+    /**
+     * Gets the permissions.
+     *
+     * @return the permissions
+     */
     public List<Permission> getPermissions() {
         init();
         return permissions;
     }
 
+    /**
+     * Gets the permission.
+     *
+     * @return the permission
+     */
     public Permission getPermission() {
         return permission;
     }
 
+    /**
+     * Sets the permission.
+     *
+     * @param permission the new permission
+     */
     public void setPermission(Permission permission) {
         this.permission = permission;
     }

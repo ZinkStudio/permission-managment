@@ -8,18 +8,24 @@ import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.util.JPAUtil;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class UserJPADAO.
  */
 public class UserJPADAO implements UserDAO {
+    
+    /** The Constant LOG. */
     private static final Logger LOG = Logger.getLogger(UserJPADAO.class);
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public UserJPADAO() {
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.UserDAO#save(fr.marseille.permissionmanagement.model.User)
+     */
     @Override
     public boolean save(User user) throws DAOException {
         try {
@@ -35,6 +41,9 @@ public class UserJPADAO implements UserDAO {
         return true;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.UserDAO#findAll()
+     */
     @Override
     public List<User> findAll() throws DAOException {
         List<User> users = new ArrayList<>();
@@ -49,6 +58,9 @@ public class UserJPADAO implements UserDAO {
         return users;
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.UserDAO#find(java.lang.Integer)
+     */
     @Override
     public User find(Integer id) throws DAOException {
         User user = null;
@@ -64,6 +76,9 @@ public class UserJPADAO implements UserDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.UserDAO#update(fr.marseille.permissionmanagement.model.User)
+     */
     @Override
     public User update(User user) throws DAOException {
         try {
@@ -80,6 +95,9 @@ public class UserJPADAO implements UserDAO {
 
     }
 
+    /* (non-Javadoc)
+     * @see fr.marseille.permissionmanagement.dao.UserDAO#delete(java.lang.Integer)
+     */
     @Override
     public boolean delete(Integer id) throws DAOException {
         User user = this.find(id);

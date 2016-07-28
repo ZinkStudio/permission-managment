@@ -10,21 +10,29 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.model.User;
 
+// TODO: Auto-generated Javadoc
 /**
- * 
+ * The Class UserService.
  */
 public class UserService {
 
+    /** The Constant LOG. */
     private static final Logger LOG     = Logger.getLogger(UserService.class);
 
+    /** The user dao. */
     private UserDAO             userDAO = DAOFactory.getUserDAO();
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public UserService() {
     }
 
+    /**
+     * Creates the users.
+     *
+     * @return the list
+     */
     public List<User> createUsers() {
         List<User> users = new ArrayList<User>();
 
@@ -35,7 +43,10 @@ public class UserService {
     }
 
     /**
-     * @throws ServiceException
+     * Find all.
+     *
+     * @return the list
+     * @throws ServiceException the service exception
      */
     public List<User> findAll() throws ServiceException {
         List<User> users = new ArrayList<>();
@@ -50,7 +61,11 @@ public class UserService {
     }
 
     /**
-     * @throws ServiceException
+     * Update.
+     *
+     * @param user the user
+     * @return the user
+     * @throws ServiceException the service exception
      */
     public User update(User user) throws ServiceException {
         try {
@@ -64,7 +79,10 @@ public class UserService {
     }
 
     /**
-     * @throws ServiceException
+     * Delete.
+     *
+     * @param id the id
+     * @throws ServiceException the service exception
      */
     public void delete(Integer id) throws ServiceException {
         try {
@@ -77,7 +95,11 @@ public class UserService {
     }
 
     /**
-     * @throws ServiceException
+     * Save.
+     *
+     * @param user the user
+     * @return the user
+     * @throws ServiceException the service exception
      */
     public User save(User user) throws ServiceException {
         try {
@@ -91,7 +113,11 @@ public class UserService {
     }
 
     /**
-     * @throws ServiceException
+     * Find.
+     *
+     * @param id the id
+     * @return the user
+     * @throws ServiceException the service exception
      */
 
     public User find(Integer id) throws ServiceException {
@@ -107,7 +133,11 @@ public class UserService {
     }
 
     /**
-     * @return
+     * Affect.
+     *
+     * @param user the user
+     * @param profile the profile
+     * @return the list
      */
     public List<Profile> affect(User user, Profile profile) {
         List<Profile> userProfiles = user.getProfiles();
@@ -123,7 +153,11 @@ public class UserService {
     }
 
     /**
-     * @return
+     * Unaffect.
+     *
+     * @param user the user
+     * @param profile the profile
+     * @return the list
      */
     public List<Profile> unaffect(User user, Profile profile) {
         List<Profile> userProfiles = user.getProfiles();

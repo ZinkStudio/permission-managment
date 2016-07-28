@@ -9,14 +9,21 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IndexView.
+ */
 @ManagedBean
 @SessionScoped
 public class IndexView implements Serializable {
 
+    /** The Constant serialVersionUID. */
     private static final long          serialVersionUID = 1L;
 
+    /** The locale code. */
     private String                     localeCode;
 
+    /** The countries. */
     private static Map<String, Object> countries;
 
     static {
@@ -25,18 +32,38 @@ public class IndexView implements Serializable {
         countries.put("French", Locale.FRENCH);
     }
 
+    /**
+     * Gets the countries in map.
+     *
+     * @return the countries in map
+     */
     public Map<String, Object> getCountriesInMap() {
         return countries;
     }
 
+    /**
+     * Gets the locale code.
+     *
+     * @return the locale code
+     */
     public String getLocaleCode() {
         return localeCode;
     }
 
+    /**
+     * Sets the locale code.
+     *
+     * @param localeCode the new locale code
+     */
     public void setLocaleCode(String localeCode) {
         this.localeCode = localeCode;
     }
 
+    /**
+     * Country locale code changed.
+     *
+     * @param e the e
+     */
     // value change event listener
     public void countryLocaleCodeChanged(ValueChangeEvent e) {
 

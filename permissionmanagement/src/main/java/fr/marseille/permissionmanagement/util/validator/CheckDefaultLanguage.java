@@ -13,12 +13,22 @@ import fr.marseille.permissionmanagement.dao.LanguageDAO;
 import fr.marseille.permissionmanagement.exception.DAOException;
 import fr.marseille.permissionmanagement.model.Language;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CheckDefaultLanguage.
+ */
 @FacesValidator
 public class CheckDefaultLanguage implements Validator {
 
+    /** The language dao. */
     private LanguageDAO languageDAO  = DAOFactory.getLanguageDAO();
+    
+    /** The error message. */
     private String      errorMessage = "there is no default language yet ! this one has to be a default one";
 
+    /* (non-Javadoc)
+     * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, java.lang.Object)
+     */
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         List<Language> languages = new ArrayList<Language>();

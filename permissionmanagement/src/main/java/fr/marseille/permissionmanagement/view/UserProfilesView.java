@@ -14,18 +14,29 @@ import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.ProfileService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserProfilesView.
+ */
 @ManagedBean
 public class UserProfilesView implements Serializable {
-    /**
-    * 
-    */
+    
+    /** The Constant serialVersionUID. */
     private static final long     serialVersionUID = 1L;
+    
+    /** The profile names. */
     private DualListModel<String> profileNames     = new DualListModel<String>();
+    
+    /** The profile service. */
     private ProfileService        profileService   = new ProfileService();
 
+    /** The user view. */
     @ManagedProperty("#{userView}")
     private UserView              userView;
 
+    /**
+     * Inits the.
+     */
     @PostConstruct
     public void init() {
         List<String> profilesSource = new ArrayList<String>();
@@ -51,22 +62,47 @@ public class UserProfilesView implements Serializable {
         profileNames = new DualListModel<String>(profilesSource, profilesTarget);
     }
 
+    /**
+     * Gets the profiles.
+     *
+     * @return the profiles
+     */
     public DualListModel<String> getProfiles() {
         return profileNames;
     }
 
+    /**
+     * Sets the profiles.
+     *
+     * @param profilesView the new profiles
+     */
     public void setProfiles(DualListModel<String> profilesView) {
         this.profileNames = profilesView;
     }
 
+    /**
+     * Gets the user view.
+     *
+     * @return the user view
+     */
     public UserView getUserView() {
         return userView;
     }
 
+    /**
+     * Sets the user view.
+     *
+     * @param userView the new user view
+     */
     public void setUserView(UserView userView) {
         this.userView = userView;
     }
 
+    /**
+     * Update.
+     *
+     * @throws ServiceException the service exception
+     */
     public void update() throws ServiceException {
         User user = userView.getUser();
         user.setProfiles(new ArrayList<Profile>());
