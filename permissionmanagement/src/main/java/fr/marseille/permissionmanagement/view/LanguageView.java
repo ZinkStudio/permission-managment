@@ -65,6 +65,7 @@ public class LanguageView implements Serializable {
     }
 
     public List<Language> getLanguages() {
+        init();
         return languages;
     }
 

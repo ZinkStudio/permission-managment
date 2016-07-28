@@ -27,9 +27,9 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
             status = true;
         } catch (RuntimeException e) {
             status = false;
-            JPAUtil.closeAll();
             String msg = "persist : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -44,7 +44,6 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
             labels = JPAUtil.getEntityManager().createQuery("from PermissionLabel", PermissionLabel.class)
                     .getResultList();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "findAll : " + e.getMessage();
             LOG.error(msg);
             throw new DAOException(msg, e);
@@ -75,10 +74,11 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
         try {
             JPAUtil.beginTransaction();
             mergeLabel = JPAUtil.getEntityManager().merge(label);
+            JPAUtil.commitTransaction();
         } catch (RuntimeException e) {
-            JPAUtil.closeAll();
             String msg = "update : " + e.getMessage();
             LOG.error(msg);
+            JPAUtil.rollbackTransaction();
             throw new DAOException(msg, e);
         }
 
@@ -93,12 +93,15 @@ public class PermissionLabelJPADAO implements PermissionLabelDAO {
 
         if (null != label) {
             try {
-
+                JPAUtil.beginTransaction();
+                JPAUtil.getEntityManager().remove(label);
+                JPAUtil.commitTransaction();
+                status = true;
             } catch (RuntimeException e) {
                 status = false;
-                JPAUtil.closeAll();
                 String msg = "remove : " + e.getMessage();
                 LOG.error(msg);
+                JPAUtil.rollbackTransaction();
                 throw new DAOException(msg, e);
             }
         }

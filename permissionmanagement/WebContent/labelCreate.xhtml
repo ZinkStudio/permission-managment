@@ -1,0 +1,70 @@
+<ui:composition template="index.xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">
+		<h:outputText value="permission-management : label create" />
+	</ui:define>
+	<ui:define name="headerTitle">
+		<h:outputText id="layoutTitle" value="Create a label :" />
+	</ui:define>
+
+	<ui:define name="backLink">
+		<p:link value="List Languages" outcome="labelIndex"
+			styleClass="backLink" />
+	</ui:define>
+
+	<ui:define name="content">
+
+		<h:form id="formLanguageCreate">
+			<p:panel id="panel" header="Language : "
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" showDetail="true" />
+				<h:panelGrid columns="3" cellpadding="8">
+					<p:outputLabel for="language" value="language : "
+						styleClass="commandColumn"  style="width:200px;" />
+					<p:selectOneMenu id="language"
+						value="#{labelSaveView.label.language}" required="true"
+						panelStyle="width:180px">
+						<c:selectItem itemLabel="Select Language" itemValue="" />
+						<c:selectItems value="#{labelSaveView.languages}" var="language"
+							itemLabel="#{language.locale}" itemValue="#{language}" />
+					</p:selectOneMenu>
+					<p:message for="language" />
+					
+					<p:outputLabel for="permission" value="Permission : "
+						styleClass="commandColumn" style="width:200px;" />
+					<p:selectOneMenu id="permission"
+						value="#{labelSaveView.label.permission}" required="true"
+						panelStyle="width:180px">
+						<c:selectItem itemLabel="Select Permission" itemValue="" />
+						<c:selectItems value="#{labelSaveView.permissions}"
+							var="permission" itemLabel="#{permission.entry}"
+							itemValue="#{permission}" />
+					</p:selectOneMenu>
+					<p:message for="permission" />
+
+					<p:outputLabel for="label" value="Label : " style="width:200px;" />
+					<p:inputText id="label" value="#{labelSaveView.label.label}"
+						required="true">
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+					</p:inputText>
+					<p:message for="label" />
+
+
+				</h:panelGrid>
+
+			</p:panel>
+			<p:commandButton value="Save" update="panel"
+				action="#{labelSaveView.save}" style="margin-right:20px;">
+				<c:setPropertyActionListener value="#{labelSaveView.label}"
+					target="#{labelSaveView.label}" />
+			</p:commandButton>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

@@ -75,6 +75,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>permissionProfiles</from-outcome>
+			<to-view-id>/permissionProfiles.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>languageIndex</from-outcome>
 			<to-view-id>/languageIndex.xhtml</to-view-id>
 			<redirect />
@@ -92,6 +97,16 @@
 		<navigation-case>
 			<from-outcome>languageDelete</from-outcome>
 			<to-view-id>/languageIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>labelIndex</from-outcome>
+			<to-view-id>/labelIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>labelCreate</from-outcome>
+			<to-view-id>/labelCreate.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

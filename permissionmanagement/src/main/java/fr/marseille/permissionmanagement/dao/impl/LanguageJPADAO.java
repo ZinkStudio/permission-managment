@@ -67,6 +67,24 @@ public class LanguageJPADAO implements LanguageDAO {
         return language;
     }
 
+    public void setDefault(Language language) throws DAOException {
+        if (true == language.getIsDefault()) {
+            List<Language> languages = this.findDefaultLanguages();
+            languages.remove(language);
+
+            for (Language lang : languages) {
+                lang.setIsDefault(false);
+                this.update(lang);
+            }
+        }
+    }
+
+    public List<Language> findDefaultLanguages() throws DAOException {
+        return JPAUtil.getEntityManager()
+                .createQuery("Select lang from Language lang where lang.isDefault=:arg1", Language.class)
+                .setParameter("arg1", true).getResultList();
+    }
+
     @Override
     public Language update(Language language) throws DAOException {
         Language mergeLanguage = language;
@@ -75,6 +93,7 @@ public class LanguageJPADAO implements LanguageDAO {
             JPAUtil.beginTransaction();
             mergeLanguage = JPAUtil.getEntityManager().merge(language);
             JPAUtil.commitTransaction();
+            this.setDefault(mergeLanguage);
         } catch (RuntimeException e) {
             String msg = "update : " + e.getMessage();
             LOG.error(msg);

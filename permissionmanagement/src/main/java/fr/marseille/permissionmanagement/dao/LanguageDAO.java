@@ -16,4 +16,6 @@ public interface LanguageDAO {
 
     public boolean delete(Integer id) throws DAOException;
 
+    public List<Language> findDefaultLanguages() throws DAOException;
+
 }

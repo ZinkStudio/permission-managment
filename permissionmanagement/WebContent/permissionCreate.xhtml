@@ -24,7 +24,10 @@
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="entry" value="Entry : " />
 					<p:inputText id="entry" value="#{permissionSaveView.permission.entry}"
-						required="true" label="name" validator="noWhiteSpaceValidator" />
+						required="true" label="name">
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+					</p:inputText>
 					<p:message for="entry" />
 				</h:panelGrid>
 

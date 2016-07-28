@@ -75,7 +75,10 @@
 	line-height: 40px;
 	box-sizing: border-box;
 }
-
+.localeSwitcher {
+	display: inline-block;
+	float: right;	
+}
 
 /* Second Bar */
 

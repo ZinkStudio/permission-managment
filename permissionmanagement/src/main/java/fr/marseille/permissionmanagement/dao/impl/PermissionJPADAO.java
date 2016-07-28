@@ -1,7 +1,6 @@
 package fr.marseille.permissionmanagement.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
 import fr.marseille.permissionmanagement.dao.PermissionDAO;
@@ -76,8 +75,6 @@ public class PermissionJPADAO implements PermissionDAO {
             JPAUtil.beginTransaction();
             mergePermission = JPAUtil.getEntityManager().merge(permission);
             JPAUtil.commitTransaction();
-            Date date = new Date();
-            LOG.debug("test EditDataTable : " + date.toString());
         } catch (RuntimeException e) {
             String msg = "update : " + e.getMessage();
             LOG.error(msg);

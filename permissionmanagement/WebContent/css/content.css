@@ -26,3 +26,7 @@ body {
 	margin:0 auto;
 	display:block;
 }
+
+.ui-datatable tbody td span[title="true"] {
+	font-weight : bold;
+}
