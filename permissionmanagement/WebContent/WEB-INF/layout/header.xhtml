@@ -3,26 +3,37 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	<header class="header-two-bars">
-	<div class="header-first-bar">
-		<div class="header-limiter">
-			<h1><a href="#">Permission<span>Management</span></a></h1>
-			<nav>
-				<ui:insert name="headerTitle"><a href="#"><h:outputText id="headerTitle" value="permission-management : home" /></a></ui:insert>
-			</nav>
-			
-			<p:link styleClass="logout-button" icon="fa fa-globe" ><i class="fa fa-globe" aria-hidden="true" /> EN</p:link>
-			<p:spacer />
-			<p:link styleClass="logout-button" icon="fa fa-globe" ><i class="fa fa-globe" aria-hidden="true" /> FR</p:link>
+		<div class="header-first-bar">
+			<div class="header-limiter">
+				<h1>
+					<a href="#">Permission<span>Management</span></a>
+				</h1>
+				<nav>
+					<ui:insert name="headerTitle">
+						<a href="#"><h:outputText id="headerTitle"
+								value="permission-management : home" /></a>
+					</ui:insert>
+				</nav>
+				
+				<div class="localeSwitcher">
+					<h:form>
+			            <p:selectOneMenu value="#{localeView.language}" onchange="submit()">
+			                <c:selectItem itemValue="en" itemLabel="English" />
+			                <c:selectItem itemValue="fr" itemLabel="Français" />
+			                <c:selectItem itemValue="it" itemLabel="Italia" />
+			            </p:selectOneMenu>
+			        </h:form>
+		        </div>
+			</div>
 		</div>
-	</div>
 
-	<div class="header-second-bar">	
-		<div class="header-limiter">	
-			<ui:insert name="tabmenu">		
-				<ui:include src="tabmenu.xhtml" />
-			</ui:insert>
-		</div>		
-	</div>
-	
-</header>
+		<div class="header-second-bar">
+			<div class="header-limiter">
+				<ui:insert name="tabmenu">
+					<ui:include src="tabmenu.xhtml" />
+				</ui:insert>
+			</div>
+		</div>
+
+	</header>
 </ui:composition>

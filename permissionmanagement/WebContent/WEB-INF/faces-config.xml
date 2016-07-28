@@ -74,11 +74,11 @@
 			<to-view-id>/permissionIndex.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		<navigation-case>
-			<from-outcome>permissionProfiles</from-outcome>
-			<to-view-id>/permissionProfiles.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
+<!-- 		<navigation-case> -->
+<!-- 			<from-outcome>permissionProfiles</from-outcome> -->
+<!-- 			<to-view-id>/permissionProfiles.xhtml</to-view-id> -->
+<!-- 			<redirect /> -->
+<!-- 		</navigation-case> -->
 		<navigation-case>
 			<from-outcome>languageIndex</from-outcome>
 			<to-view-id>/languageIndex.xhtml</to-view-id>

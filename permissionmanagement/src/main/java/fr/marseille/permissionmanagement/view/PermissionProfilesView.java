@@ -3,7 +3,6 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -13,20 +12,22 @@ import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Permission;
 import fr.marseille.permissionmanagement.model.Profile;
+import fr.marseille.permissionmanagement.service.PermissionService;
 import fr.marseille.permissionmanagement.service.ProfileService;
 
 @ManagedBean
 @RequestScoped
 public class PermissionProfilesView implements Serializable {
 
-    private static final long     serialVersionUID = 1L;
-    private DualListModel<String> profileNames     = new DualListModel<String>();
-    private ProfileService        profileService   = new ProfileService();
+    private static final long     serialVersionUID  = 1L;
+    private DualListModel<String> profileNames      = new DualListModel<String>();
+    private ProfileService        profileService    = new ProfileService();
+    private PermissionService     permissionService = new PermissionService();
 
     @ManagedProperty("#{permissionView}")
     private PermissionView        permissionView;
 
-    @PostConstruct
+    // @PostConstruct
     public void init() {
         List<String> profilesSource = new ArrayList<String>();
         List<String> profilesTarget = new ArrayList<String>();
@@ -51,12 +52,12 @@ public class PermissionProfilesView implements Serializable {
         profileNames = new DualListModel<String>(profilesSource, profilesTarget);
     }
 
-    public DualListModel<String> getProfiles() {
+    public DualListModel<String> getProfileNames() {
         return profileNames;
     }
 
-    public void setProfiles(DualListModel<String> profilesView) {
-        this.profileNames = profilesView;
+    public void setProfileNames(DualListModel<String> profileNames) {
+        this.profileNames = profileNames;
     }
 
     public PermissionView getPermissionView() {
@@ -65,6 +66,22 @@ public class PermissionProfilesView implements Serializable {
 
     public void setPermissionView(PermissionView permissionView) {
         this.permissionView = permissionView;
+    }
+
+    public ProfileService getProfileService() {
+        return profileService;
+    }
+
+    public void setProfileService(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
+    public PermissionService getPermissionService() {
+        return permissionService;
+    }
+
+    public void setPermissionService(PermissionService permissionService) {
+        this.permissionService = permissionService;
     }
 
     public void update() throws ServiceException {
