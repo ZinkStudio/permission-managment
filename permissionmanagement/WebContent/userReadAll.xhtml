@@ -4,20 +4,21 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+
 	<ui:define name="title">
-		<h:outputText value="#{msg['label.title']}" />
+		<h:outputText value="#{msg['label.title1']}" />
 	</ui:define>
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Listing Users :" />
+		<h:outputText id="layoutTitle" value="#{msg['label.layout1']}" />
 	</ui:define>
 	<ui:define name="backLink">
 	</ui:define>
-	
 	<ui:define name="content">
-
+		<c:loadBundle var="msg" basename="messages" />
 		<div style="width: 100%; height: 50px;">
-			<p:commandButton style="float:right;" value="Create A New User"
-				icon="ui-icon-star" title="Create a new User?" action="userCreate">
+			<p:commandButton style="float:right;" value="#{msg['btn.create1']}"
+				icon="ui-icon-star" title="#{msg['lbl.btn.create1']}"
+				action="userCreate">
 			</p:commandButton>
 		</div>
 
@@ -30,39 +31,39 @@
 				<p:column headerText="Id" width="30">
 					<h:outputText value="#{user.id}" />
 				</p:column>
-				<p:column headerText="Name" width="60">
+				<p:column headerText="#{msg['label.name']}" width="60">
 					<h:outputText value="#{user.name}" />
 				</p:column>
-				<p:column headerText="FirstName" width="60">
+				<p:column headerText="#{msg['label.firstname']}" width="60">
 					<h:outputText value="#{user.firstName}" />
 				</p:column>
-				<p:column headerText="Comment" width="80">
+				<p:column headerText="#{msg['label.comment']}" width="80">
 					<h:outputText value="#{user.comment}" />
 				</p:column>
 				<!-- Redirection to userAllProfiles -->
-				<p:column headerText="See Profiles" width="30">
-					<p:commandButton id="buttonAllProfiles"
-						action="userAllProfiles" icon=" fa fa-eye"
-						title="See all the profiles for this user ?"
+				<p:column headerText="#{msg['btn.seeProfiles']}" width="30">
+					<p:commandButton id="buttonAllProfiles" action="userAllProfiles"
+						icon=" fa fa-eye" title="#{msg['lbl.btn.seeProfiles']}"
 						style="display:block;margin:0 auto;">
 						<c:setPropertyActionListener value="#{user}"
 							target="#{userView.user}" />
-							<c:param value=""></c:param>
-						</p:commandButton>
+						<c:param value=""></c:param>
+					</p:commandButton>
 				</p:column>
 				<!-- Redirection to userUpdate -->
-				<p:column headerText="Update" width="30">
+				<p:column headerText="#{msg['btn.update']}" width="30">
 					<p:commandButton id="buttonUpdate" action="userUpdate"
-						icon="fa fa-edit" title="Update User ?"
+						icon="fa fa-edit" title="#{msg['lbl.btn.update']}"
 						style="display:block;margin:0 auto;">
 						<c:setPropertyActionListener value="#{user}"
 							target="#{userUpdateView.user}" />
 					</p:commandButton>
 				</p:column>
 				<!-- Delete User -->
-				<p:column headerText="Delete" width="30">
-					<p:commandButton id="buttonDelete" update="@all" 
-						actionListener="#{userDeleteView.delete(user.id)}" icon="fa fa-remove" title="Delete User ?"
+				<p:column headerText="#{msg['btn.delete']}" width="30">
+					<p:commandButton id="buttonDelete" update="@all"
+						actionListener="#{userDeleteView.delete(user.id)}"
+						icon="fa fa-remove" title="#{msg['lbl.btn.delete']}"
 						style="display:block;margin:0 auto;">
 					</p:commandButton>
 				</p:column>

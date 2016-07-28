@@ -5,52 +5,58 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">
-		<h:outputText value="permission-management : users" />
+		<h:outputText value="#{msg['label.title2']}" />
 	</ui:define>
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Listing Users :" />
+		<h:outputText id="layoutTitle" value="#{msg['label.layout2']}" />
 	</ui:define>
 	<ui:define name="content">
+		<c:loadBundle var="msg" basename="messages" />
 		<h:form id="userRecover">
-			<p:panel id="panel"
-				header="LISTING OF PROFILES FOR THE FOLLOWING USER "
+			<p:panel id="panel" header="#{msg['label.header2']}"
 				style="font-size:20px;margin-bottom:30px;">
 				<p:messages id="messages" />
 
 				<h:panelGrid columns="5" cellpadding="5">
-					<p:outputLabel for="name" value="Name : " />
+					<p:outputLabel for="name" value="#{msg['label.name']} :" />
 					<h:outputText id="name" value="#{dtProfileView.profile.name}" />
 					<p:message for="name" />
-					<p:outputLabel for="description" value="Description : " />
-					<h:outputText id="description" value="#{dtProfileView.profile.description}" />
+					<p:outputLabel for="description"
+						value="#{msg['label.description']} :" />
+					<h:outputText id="description"
+						value="#{dtProfileView.profile.description}" />
 					<p:message for="description" />
 				</h:panelGrid>
 			</p:panel>
 		</h:form>
 
-		<h:form>
+		<h:form style="margin-left:400px;margin-right:400px">
 			<p:growl id="msg" showDetail="true" escape="false" />
-
-			<h3 style="margin-top: 0">Include/ Exclude Users</h3>
-			<p:pickList id="pickList" value="#{profileUserView.userNames}" var="users"
-				itemLabel="#{users}" itemValue="#{users}" />
-			<p:commandButton id="userSubmit" actionListener="#{profileUserView.update}" value="Include/Exclude"   update="displayUsers" oncomplete="PF('userDialog').show()"
+			<br />
+			<p:pickList id="pickList" value="#{profileUserView.userNames}"
+				var="users" itemLabel="#{users}" itemValue="#{users}" />
+			<p:commandButton id="userSubmit"
+				actionListener="#{profileUserView.update}"
+				value="#{msg['btn.save']}" title="#{msg['lbl.btn.save']}"
+				update="displayUsers" oncomplete="PF('userDialog').show()"
 				style="margin-top:5px" />
-			</h:form>
-		
-			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
-				widgetVar="userDialog">
-				<h:panelGrid id="displayUsers" columns="2">
-					<h:outputText value="Source: " style="font-weight:bold" />
-					<ui:repeat value="#{profileUserView.userNames.source}" var="item">
-						<h:outputText value="#{item}" style="margin-right:5px" />
-					</ui:repeat>
+		</h:form>
 
-					<h:outputText value="Target: " style="font-weight:bold" />
-					<ui:repeat value="#{profileUserView.userNames.target}" var="item">
-						<h:outputText value="#{item}" style="margin-right:5px" />
-					</ui:repeat>
-				</h:panelGrid>
-			</p:dialog>
+		<p:dialog modal="true" showEffect="fade" hideEffect="fade"
+			widgetVar="userDialog">
+			<h:panelGrid id="displayUsers" columns="2">
+				<h:outputText value="#{msg['lbl.dialogBox.source']}"
+					style="font-weight:bold" />
+				<ui:repeat value="#{profileUserView.userNames.source}" var="item">
+					<h:outputText value="#{item}" style="margin-right:5px" />
+				</ui:repeat>
+
+				<h:outputText value="#{msg['lbl.dialogBox.target']}"
+					style="font-weight:bold" />
+				<ui:repeat value="#{profileUserView.userNames.target}" var="item">
+					<h:outputText value="#{item}" style="margin-right:5px" />
+				</ui:repeat>
+			</h:panelGrid>
+		</p:dialog>
 	</ui:define>
 </ui:composition>

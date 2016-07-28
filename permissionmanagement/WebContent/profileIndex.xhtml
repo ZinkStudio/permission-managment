@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <ui:composition template="index.xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
@@ -6,81 +5,72 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">
-		<h:outputText value="permission-management : profiles" />
+		<h:outputText value="#{msg['label.title2']}" />
 	</ui:define>
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Listing Profiles :" />
+		<h:outputText id="layoutTitle" value="#{msg['label.layout2']}" />
 	</ui:define>
 	<ui:define name="content">
-<!-- 		<p:link value="Back Home" outcome="index.xhtml"></p:link> -->
-
+		<c:loadBundle var="msg" basename="messages" />
 		<div style="width: 100%; height: 50px;">
-			<p:commandButton style="float:right;" value="Create A New Profile"
-				icon="ui-icon-star" title="Create a new Profile"
+			<p:commandButton style="float:right;" value="#{msg['btn.create2']}"
+				icon="ui-icon-star" title="#{msg['lbl.btn.create2']}"
 				action="profileCreate.xhtml" />
 		</div>
-	
-	<h:form id="ProfileForm" style="margin-top:20px;"/>
-	<p:messages id="messages" />
+		<h:form id="ProfileForm" style="margin-top:20px;" />
+		<p:messages id="messages" />
+		<p:dataTable var="profile" value="#{dtProfileView.profiles}" rows="10"
+			paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Id">
+				<h:outputText value="#{profile.id}" />
+			</p:column>
 
+			<p:column headerText="#{msg['label.name']}">
+				<h:outputText value="#{profile.name}" />
+			</p:column>
 
-<!-- 	<p:outputLabel value="Listing Profiles :" /> -->
-	<p:dataTable var="profile" value="#{dtProfileView.profiles}"
-		rows="10" paginator="true"
-		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
-		<p:column headerText="Id">
-        <h:outputText value="#{profile.id}" />
-    </p:column>
- 
-    <p:column headerText="Name">
-        <h:outputText value="#{profile.name}" />
-    </p:column>
- 
-    <p:column headerText="Description">
-        <h:outputText value="#{profile.description}" />
-    </p:column>
+			<p:column headerText="#{msg['label.description']}">
+				<h:outputText value="#{profile.description}" />
+			</p:column>
 
-			<p:column headerText="See permissions" width="100">
+			<p:column headerText="#{msg['btn.seePermissions']}" width="100">
 				<p:commandButton id="buttonAllPermissions"
 					action="profilePermissions.xhtml" icon=" fa fa-eye"
-					title="See all the permissions for this profile ?"
-					style="display:block;margin:0 auto;" >
-					<c:setPropertyActionListener value="#{profile}" target="#{dtProfileView.profile}" />
-					</p:commandButton>
+					title="#{msg['lbl.btn.seePermissions']}"
+					style="display:block;margin:0 auto;">
+					<c:setPropertyActionListener value="#{profile}"
+						target="#{dtProfileView.profile}" />
+				</p:commandButton>
 			</p:column>
-			
-			<p:column headerText="See users" width="100">
-				<p:commandButton id="buttonAllUsers"
-					action="profileUsers.xhtml" icon=" fa fa-eye"
-					title="See all the users for this profile ?"
-					style="display:block;margin:0 auto;" >
-					<c:setPropertyActionListener value="#{profile}" target="#{dtProfileView.profile}" />
-					</p:commandButton>
+
+			<p:column headerText="#{msg['btn.seeUsers']}" width="100">
+				<p:commandButton id="buttonAllUsers" action="profileUsers.xhtml"
+					icon=" fa fa-eye" title="#{msg['lbl.btn.seeUsers']}"
+					style="display:block;margin:0 auto;">
+					<c:setPropertyActionListener value="#{profile}"
+						target="#{dtProfileView.profile}" />
+				</p:commandButton>
 			</p:column>
-			
-			<p:column headerText="Update" width="60">
+
+			<p:column headerText="#{msg['btn.update']}" width="70">
 				<p:commandButton id="buttonUpdate" action="profileUpdate"
 					icon="fa fa-edit" title="Update Profile ?"
-					style="display:block;margin:0 auto;" >
-					<c:setPropertyActionListener value="#{profile}" target="#{profileUpdateView.profile}" />
-					
-					</p:commandButton>
+					style="display:block;margin:0 auto;">
+					<c:setPropertyActionListener value="#{profile}"
+						target="#{profileUpdateView.profile}" />
+
+				</p:commandButton>
 			</p:column>
-			
-			<p:column headerText="Delete" width="60">
-				<p:commandButton id="buttonDelete" update="@all" 
-				actionListener="#{profileDeleteView.delete(profile.id)}"
-					icon=" fa fa-remove" title="Delete Profile ?"
-					 style="display:block;margin:0 auto;">
-					</p:commandButton>
+
+			<p:column headerText="#{msg['btn.delete']}" width="80">
+				<p:commandButton id="buttonDelete" update="@all"
+					actionListener="#{profileDeleteView.delete(profile.id)}"
+					icon=" fa fa-remove" title="#{msg['lbl.btn.delete']}"
+					style="display:block;margin:0 auto;">
+				</p:commandButton>
 			</p:column>
-			
-		
-			
 		</p:dataTable>
-		
-
-
 	</ui:define>
 </ui:composition>

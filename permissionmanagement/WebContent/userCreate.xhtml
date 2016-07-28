@@ -5,20 +5,20 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">
-		<h:outputText value="permission-management : users" />
+		<h:outputText value="#{msg['label.title1']}" />
 	</ui:define>
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="Listing Users :" />
+		<h:outputText id="layoutTitle" value="#{msg['label.layout1']}" />
 	</ui:define>
 	<ui:define name="content">
 
+		<c:loadBundle var="msg" basename="messages" />
 		<h:form id="formUser">
-			<p:panel id="panel"
-				header="PERSONAL INFORMATION FOR ADDING A NEW USER "
+			<p:panel id="panel" header="#{msg['label.header1']}"
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" />
-				<h:panelGrid columns="3" cellpadding="8">
-					<p:outputLabel for="name" value="Name : " />
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="name" value="#{msg['label.name']}" />
 					<p:inputText id="name" value="#{userSaveView.user.name}"
 						required="true" label="name">
 						<c:validator validatorId="noWhiteSpaceValidator" />
@@ -27,7 +27,7 @@
 					</p:inputText>
 					<p:message for="name" />
 
-					<p:outputLabel for="firstName" value="FirstName : " />
+					<p:outputLabel for="firstName" value="#{msg['label.firstname']}" />
 					<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
 						required="true" validator="noWhiteSpaceValidator"
 						label="firstName">
@@ -35,14 +35,15 @@
 						<c:validator validatorId="noSeparatorValidator" />
 						<p:message for="firstName" />
 					</p:inputText>
-					<p:outputLabel for="comment" value="Comment : " />
+					<br />
+					<p:outputLabel for="comment" value="#{msg['label.comment']}" />
 					<p:inputText id="comment" value="#{userSaveView.user.comment}"
 						required="false" label="comment" />
 					<p:message for="comment" />
 				</h:panelGrid>
 
 			</p:panel>
-			<p:commandButton value="Save" update="panel"
+			<p:commandButton value="#{msg['btn.save']}" update="panel"
 				actionListener="#{userSaveView.save}" style="margin-right:20px;" />
 		</h:form>
 
