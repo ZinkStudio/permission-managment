@@ -17,7 +17,7 @@ import fr.marseille.permissionmanagement.service.LanguageService;
  */
 @ManagedBean
 @SessionScoped
-public class LanguageView implements Serializable {
+public class LanguageView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
@@ -56,7 +56,11 @@ public class LanguageView implements Serializable {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Language Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated"));
+
+        this.redirectWithMessages("languageIndex.jsf");
+
     }
 
     /**

@@ -21,6 +21,7 @@
 			<p:panel id="panel" header="Language :"
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" showDetail="true" />
+				<p:growl id="growl" showDetail="true" sticky="true" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="locale" value="Locale : " />
 					<p:inputText id="locale" value="#{languageView.language.locale}"
@@ -34,7 +35,7 @@
 					<p:message for="isDefault" />
 				</h:panelGrid>
 			</p:panel>
-			<p:commandButton value="Update" update="panel"
+			<p:commandButton id="cmd-flash" value="Update" update="panel"
 				actionListener="#{languageView.update}" style="margin-right:20px;" />
 		</h:form>	
 		
