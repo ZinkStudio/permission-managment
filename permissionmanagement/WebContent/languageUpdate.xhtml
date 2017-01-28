@@ -10,13 +10,14 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="Update a language :" />
 	</ui:define>
-	
+
 	<ui:define name="backLink">
-		<p:link value="List Languages" outcome="languageIndex" styleClass="backLink" />
+		<p:link value="List Languages" outcome="languageIndex"
+			styleClass="backLink" />
 	</ui:define>
-	
-	<ui:define name="content">	
-	
+
+	<ui:define name="content">
+
 		<h:form id="formLanguageUpdate">
 			<p:panel id="panel" header="Language :"
 				style="font-size:20px;margin-bottom:10px;">
@@ -27,18 +28,20 @@
 					<p:inputText id="locale" value="#{languageView.language.locale}"
 						required="true" label="locale" validator="noWhiteSpaceValidator" />
 					<p:message for="locale" />
-					
-					<p:outputLabel for="isDefault" value="isDefault : " />
-					<p:selectBooleanCheckbox id="isDefault" value="#{languageView.language.isDefault}">
-					<c:validator validatorId="checkDefaultLanguage" />
+
+					<p:outputLabel for="isDefault" value="isDefault : " rendered="#{languageView.language.isDefault == false}" />
+					<p:selectBooleanCheckbox id="isDefault"
+						value="#{languageView.language.isDefault}"
+						rendered="#{languageView.language.isDefault == false}">
+						<c:validator validatorId="checkDefaultLanguage" />
 					</p:selectBooleanCheckbox>
 					<p:message for="isDefault" />
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton id="cmd-flash" value="Update" update="panel"
 				actionListener="#{languageView.update}" style="margin-right:20px;" />
-		</h:form>	
-		
+		</h:form>
+
 	</ui:define>
-	
+
 </ui:composition>
