@@ -85,7 +85,8 @@ public class LanguageView implements Serializable {
     /**
      * Sets the language.
      *
-     * @param language the new language
+     * @param language
+     *            the new language
      */
     public void setLanguage(Language language) {
         this.language = language;

@@ -62,7 +62,13 @@
 						action="#{languageView.delete}"
 						icon="fa fa-remove" title="Delete Language ?" update="@all" styleClass="commandButton">
 					<c:setPropertyActionListener value="#{language}" target="#{languageView.language}" />
+					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 					</p:commandButton>
+					
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			    	</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>
