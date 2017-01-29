@@ -28,19 +28,19 @@ public class LabelSaveView implements Serializable {
 
     /** The service. */
     private LabelService      service           = new LabelService();
-    
+
     /** The permission service. */
     private PermissionService permissionService = new PermissionService();
-    
+
     /** The language service. */
     private LanguageService   languageService   = new LanguageService();
 
     /** The label. */
     private PermissionLabel   label;
-    
+
     /** The languages. */
     private List<Language>    languages;
-    
+
     /** The permissions. */
     private List<Permission>  permissions;
 
@@ -67,7 +67,6 @@ public class LabelSaveView implements Serializable {
      */
     public void save() {
         try {
-
             service.save(label);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
         } catch (ServiceException e) {
@@ -88,7 +87,8 @@ public class LabelSaveView implements Serializable {
     /**
      * Sets the permissions.
      *
-     * @param permissions the new permissions
+     * @param permissions
+     *            the new permissions
      */
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
@@ -106,7 +106,8 @@ public class LabelSaveView implements Serializable {
     /**
      * Sets the languages.
      *
-     * @param languages the new languages
+     * @param languages
+     *            the new languages
      */
     public void setLanguages(List<Language> languages) {
         this.languages = languages;
@@ -124,7 +125,8 @@ public class LabelSaveView implements Serializable {
     /**
      * Sets the label.
      *
-     * @param label the new label
+     * @param label
+     *            the new label
      */
     public void setLabel(PermissionLabel label) {
         this.label = label;

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
@@ -19,14 +20,15 @@ import fr.marseille.permissionmanagement.service.ProfileService;
  * The Class UserProfilesView.
  */
 @ManagedBean
+@SessionScoped
 public class UserProfilesView implements Serializable {
-    
+
     /** The Constant serialVersionUID. */
     private static final long     serialVersionUID = 1L;
-    
+
     /** The profile names. */
     private DualListModel<String> profileNames     = new DualListModel<String>();
-    
+
     /** The profile service. */
     private ProfileService        profileService   = new ProfileService();
 
@@ -74,7 +76,8 @@ public class UserProfilesView implements Serializable {
     /**
      * Sets the profiles.
      *
-     * @param profilesView the new profiles
+     * @param profilesView
+     *            the new profiles
      */
     public void setProfiles(DualListModel<String> profilesView) {
         this.profileNames = profilesView;
@@ -92,7 +95,8 @@ public class UserProfilesView implements Serializable {
     /**
      * Sets the user view.
      *
-     * @param userView the new user view
+     * @param userView
+     *            the new user view
      */
     public void setUserView(UserView userView) {
         this.userView = userView;
@@ -101,7 +105,8 @@ public class UserProfilesView implements Serializable {
     /**
      * Update.
      *
-     * @throws ServiceException the service exception
+     * @throws ServiceException
+     *             the service exception
      */
     public void update() throws ServiceException {
         User user = userView.getUser();
