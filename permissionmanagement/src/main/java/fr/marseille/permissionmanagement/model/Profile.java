@@ -49,9 +49,12 @@ public class Profile implements Serializable {
     /**
      * Instantiates a new profile.
      *
-     * @param id the id
-     * @param name the name
-     * @param description the description
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param description
+     *            the description
      */
     public Profile(Integer id, String name, String description) {
         super();
@@ -63,11 +66,16 @@ public class Profile implements Serializable {
     /**
      * Instantiates a new profile.
      *
-     * @param id the id
-     * @param name the name
-     * @param description the description
-     * @param permissions the permissions
-     * @param users the users
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param description
+     *            the description
+     * @param permissions
+     *            the permissions
+     * @param users
+     *            the users
      */
     public Profile(Integer id, String name, String description, List<Permission> permissions, List<User> users) {
         this(id, name, description);
@@ -87,7 +95,8 @@ public class Profile implements Serializable {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
+     *            the new id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -105,7 +114,8 @@ public class Profile implements Serializable {
     /**
      * Sets the name.
      *
-     * @param name the new name
+     * @param name
+     *            the new name
      */
     public void setName(String name) {
         this.name = name;
@@ -123,7 +133,8 @@ public class Profile implements Serializable {
     /**
      * Sets the description.
      *
-     * @param description the new description
+     * @param description
+     *            the new description
      */
     public void setDescription(String description) {
         this.description = description;
@@ -141,7 +152,8 @@ public class Profile implements Serializable {
     /**
      * Sets the permissions.
      *
-     * @param permissions the new permissions
+     * @param permissions
+     *            the new permissions
      */
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
@@ -159,10 +171,16 @@ public class Profile implements Serializable {
     /**
      * Sets the users.
      *
-     * @param users the new users
+     * @param users
+     *            the new users
      */
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
 
 }

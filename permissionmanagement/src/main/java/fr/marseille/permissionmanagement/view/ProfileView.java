@@ -10,24 +10,25 @@ import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
+import fr.marseille.permissionmanagement.util.JPAUtil;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ProfileView.
  */
-@ManagedBean(name = "dtProfileView")
+@ManagedBean
 @SessionScoped
-public class ProfileView implements Serializable {
-    
+public class ProfileView extends BaseView implements Serializable {
+
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** The service. */
     private ProfileService    service          = new ProfileService();
-    
+
     /** The profiles. */
     private List<Profile>     profiles;
-    
+
     /** The profile. */
     private Profile           profile;
 
@@ -48,9 +49,41 @@ public class ProfileView implements Serializable {
     }
 
     /**
+     * Update.
+     */
+    public void update() {
+        try {
+            service.update(profile);
+        } catch (ServiceException e) {
+            JPAUtil.closeAll();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error while Updating the Profile", e.getMessage()));
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + profile.toString()));
+
+        this.redirectWithMessages("profileIndex.jsf");
+    }
+
+    /**
+     * Delete.
+     */
+    public void delete() {
+        try {
+            service.delete(profile.getId());
+        } catch (ServiceException e) {
+            JPAUtil.closeAll();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error : ", e.getMessage()));
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Profile " + profile.getId() + " deleted"));
+    }
+
+    /**
      * Sets the profiles.
      *
-     * @param profiles the new profiles
+     * @param profiles
+     *            the new profiles
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
@@ -78,7 +111,8 @@ public class ProfileView implements Serializable {
     /**
      * Sets the profile.
      *
-     * @param profile the new profile
+     * @param profile
+     *            the new profile
      */
     public void setProfile(Profile profile) {
         this.profile = profile;

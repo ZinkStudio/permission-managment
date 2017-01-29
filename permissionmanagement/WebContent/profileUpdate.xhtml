@@ -17,7 +17,7 @@
 				<p:messages id="messages" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="#{msg['label.name']}" />
-					<p:inputText id="name" value="#{profileUpdateView.profile.name}"
+					<p:inputText id="name" value="#{profileView.profile.name}"
 						required="true" label="name"  >
 						
 						<c:validateLength minimum="2" />
@@ -29,7 +29,7 @@
 
 					<p:outputLabel for="description" value="#{msg['label.description']}" />
 					<p:inputText id="description"
-						value="#{profileUpdateView.profile.description}" 
+						value="#{profileView.profile.description}" 
 						label="description" />
 					<p:message for="description" />
 					
@@ -37,7 +37,7 @@
 
 			</p:panel>
 			<p:commandButton value="#{msg['btn.update']}" update="panel" title="#{msg['lbl.btn.update']}"
-				actionListener="#{profileUpdateView.update}" style="margin-right:20px;" />
+				actionListener="#{profileView.update}" style="margin-right:20px;" />
 		</h:form>
 </ui:define>
 </ui:composition>

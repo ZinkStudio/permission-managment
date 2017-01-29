@@ -19,7 +19,7 @@
 		</div>
 		<h:form id="ProfileForm" style="margin-top:20px;" />
 		<p:messages id="messages" />
-		<p:dataTable var="profile" value="#{dtProfileView.profiles}" rows="10"
+		<p:dataTable var="profile" value="#{profileView.profiles}" rows="10"
 			paginator="true"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 			rowsPerPageTemplate="5,10,15">
@@ -41,7 +41,7 @@
 					title="#{msg['lbl.btn.seePermissions']}"
 					style="display:block;margin:0 auto;">
 					<c:setPropertyActionListener value="#{profile}"
-						target="#{dtProfileView.profile}" />
+						target="#{profileView.profile}" />
 				</p:commandButton>
 			</p:column>
 
@@ -50,26 +50,31 @@
 					icon=" fa fa-eye" title="#{msg['lbl.btn.seeUsers']}"
 					style="display:block;margin:0 auto;">
 					<c:setPropertyActionListener value="#{profile}"
-						target="#{dtProfileView.profile}" />
+						target="#{profileView.profile}" />
 				</p:commandButton>
 			</p:column>
 
 			<p:column headerText="#{msg['btn.update']}" width="70">
 				<p:commandButton id="buttonUpdate" action="profileUpdate"
 					icon="fa fa-edit" title="Update Profile ?"
-					style="display:block;margin:0 auto;">
+					styleClass="commandButton">
 					<c:setPropertyActionListener value="#{profile}"
-						target="#{profileUpdateView.profile}" />
-
+						target="#{profileView.profile}" />
 				</p:commandButton>
 			</p:column>
 
 			<p:column headerText="#{msg['btn.delete']}" width="80">
 				<p:commandButton id="buttonDelete" update="@all"
-					actionListener="#{profileDeleteView.delete(profile.id)}"
+					action="#{profileView.delete}"
 					icon=" fa fa-remove" title="#{msg['lbl.btn.delete']}"
-					style="display:block;margin:0 auto;">
-				</p:commandButton>
+					styleClass="commandButton">
+					<c:setPropertyActionListener value="#{profile}" target="#{profileView.profile}" />
+					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+				</p:commandButton>							
+				<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		    	</p:confirmDialog>
 			</p:column>
 		</p:dataTable>
 	</ui:define>
