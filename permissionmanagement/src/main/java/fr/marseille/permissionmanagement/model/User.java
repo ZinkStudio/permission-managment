@@ -45,10 +45,14 @@ public class User implements Serializable {
     /**
      * Instantiates a new user.
      *
-     * @param id the id
-     * @param name the name
-     * @param firstName the first name
-     * @param comment the comment
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param firstName
+     *            the first name
+     * @param comment
+     *            the comment
      */
     public User(Integer id, String name, String firstName, String comment) {
         this();
@@ -61,11 +65,16 @@ public class User implements Serializable {
     /**
      * Instantiates a new user.
      *
-     * @param id the id
-     * @param name the name
-     * @param firstName the first name
-     * @param comment the comment
-     * @param profiles the profiles
+     * @param id
+     *            the id
+     * @param name
+     *            the name
+     * @param firstName
+     *            the first name
+     * @param comment
+     *            the comment
+     * @param profiles
+     *            the profiles
      */
     public User(Integer id, String name, String firstName, String comment, List<Profile> profiles) {
         this(id, name, firstName, comment);
@@ -84,7 +93,8 @@ public class User implements Serializable {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
+     *            the new id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -102,7 +112,8 @@ public class User implements Serializable {
     /**
      * Sets the name.
      *
-     * @param name the new name
+     * @param name
+     *            the new name
      */
     public void setName(String name) {
         this.name = name;
@@ -120,7 +131,8 @@ public class User implements Serializable {
     /**
      * Sets the first name.
      *
-     * @param firstName the new first name
+     * @param firstName
+     *            the new first name
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -138,7 +150,8 @@ public class User implements Serializable {
     /**
      * Sets the comment.
      *
-     * @param comment the new comment
+     * @param comment
+     *            the new comment
      */
     public void setComment(String comment) {
         this.comment = comment;
@@ -156,10 +169,15 @@ public class User implements Serializable {
     /**
      * Sets the profiles.
      *
-     * @param profiles the new profiles
+     * @param profiles
+     *            the new profiles
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
     }
 
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", firstName=" + firstName + ", comment=" + comment + "]";
+    }
 }

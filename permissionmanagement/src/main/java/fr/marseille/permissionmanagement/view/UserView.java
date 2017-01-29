@@ -17,17 +17,17 @@ import fr.marseille.permissionmanagement.service.UserService;
  */
 @ManagedBean
 @SessionScoped
-public class UserView implements Serializable {
+public class UserView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
-    
+
     /** The users. */
     private List<User>        users;
-    
+
     /** The user. */
     private User              user;
-    
+
     /** The user service. */
     private UserService       userService      = new UserService();
 
@@ -47,6 +47,36 @@ public class UserView implements Serializable {
     }
 
     /**
+     * Update.
+     */
+    public void update() {
+        try {
+            userService.update(user);
+        } catch (ServiceException e) {
+
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Error while Updating the User : " + e.getMessage()));
+        }
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + user.toString()));
+
+        this.redirectWithMessages("userReadAll.jsf");
+    }
+
+    /**
+     * Delete.
+     */
+    public void delete() {
+        try {
+            userService.delete(user.getId());
+        } catch (ServiceException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error : " + e.getMessage()));
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User " + user.getId() + " deleted"));
+
+    }
+
+    /**
      * Gets the users.
      *
      * @return the users
@@ -59,7 +89,8 @@ public class UserView implements Serializable {
     /**
      * Sets the users.
      *
-     * @param users the new users
+     * @param users
+     *            the new users
      */
     public void setUsers(List<User> users) {
         this.users = users;
@@ -77,7 +108,8 @@ public class UserView implements Serializable {
     /**
      * Sets the user.
      *
-     * @param user the new user
+     * @param user
+     *            the new user
      */
     public void setUser(User user) {
         this.user = user;

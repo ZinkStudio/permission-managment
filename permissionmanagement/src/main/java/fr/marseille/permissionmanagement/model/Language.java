@@ -43,8 +43,10 @@ public class Language implements Serializable {
     /**
      * Instantiates a new language.
      *
-     * @param locale the locale
-     * @param isDefault the is default
+     * @param locale
+     *            the locale
+     * @param isDefault
+     *            the is default
      */
     public Language(String locale, Boolean isDefault) {
         super();
@@ -64,7 +66,8 @@ public class Language implements Serializable {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
+     *            the new id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -82,7 +85,8 @@ public class Language implements Serializable {
     /**
      * Sets the locale.
      *
-     * @param locale the new locale
+     * @param locale
+     *            the new locale
      */
     public void setLocale(String locale) {
         this.locale = locale;
@@ -100,10 +104,16 @@ public class Language implements Serializable {
     /**
      * Sets the checks if is default.
      *
-     * @param isDefault the new checks if is default
+     * @param isDefault
+     *            the new checks if is default
      */
     public void setIsDefault(Boolean isDefault) {
         this.isDefault = isDefault;
+    }
+
+    @Override
+    public String toString() {
+        return "Language [id=" + id + ", locale=" + locale + ", isDefault=" + isDefault + "]";
     }
 
 }

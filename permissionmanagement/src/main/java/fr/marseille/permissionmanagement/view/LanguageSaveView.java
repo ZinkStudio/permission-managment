@@ -16,7 +16,7 @@ import fr.marseille.permissionmanagement.service.LanguageService;
  */
 @ManagedBean
 @RequestScoped
-public class LanguageSaveView implements Serializable {
+public class LanguageSaveView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
@@ -41,11 +41,13 @@ public class LanguageSaveView implements Serializable {
     public void save() {
         try {
             service.save(language);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + language.toString()));
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Language Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+
+        this.redirectWithMessages("languageIndex.jsf");
     }
 
     /**
@@ -60,7 +62,8 @@ public class LanguageSaveView implements Serializable {
     /**
      * Sets the language.
      *
-     * @param language the new language
+     * @param language
+     *            the new language
      */
     public void setLanguage(Language language) {
         this.language = language;

@@ -16,7 +16,7 @@ import fr.marseille.permissionmanagement.service.PermissionService;
  */
 @ManagedBean
 @RequestScoped
-public class PermissionSaveView implements Serializable {
+public class PermissionSaveView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
@@ -41,11 +41,15 @@ public class PermissionSaveView implements Serializable {
     public void save() {
         try {
             service.save(permission);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Data Saved : " + permission.toString()));
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Permission Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+
+        this.redirectWithMessages("permissionIndex.jsf");
+
     }
 
     /**
@@ -60,7 +64,8 @@ public class PermissionSaveView implements Serializable {
     /**
      * Sets the permission.
      *
-     * @param permission the new permission
+     * @param permission
+     *            the new permission
      */
     public void setPermission(Permission permission) {
         this.permission = permission;

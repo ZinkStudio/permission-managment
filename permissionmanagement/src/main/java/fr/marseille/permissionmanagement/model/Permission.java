@@ -50,8 +50,10 @@ public class Permission implements Serializable {
     /**
      * Instantiates a new permission.
      *
-     * @param id the id
-     * @param entry the entry
+     * @param id
+     *            the id
+     * @param entry
+     *            the entry
      */
     public Permission(Integer id, String entry) {
         super();
@@ -71,7 +73,8 @@ public class Permission implements Serializable {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
+     *            the new id
      */
     public void setId(Integer id) {
         this.id = id;
@@ -89,7 +92,8 @@ public class Permission implements Serializable {
     /**
      * Sets the entry.
      *
-     * @param entry the new entry
+     * @param entry
+     *            the new entry
      */
     public void setEntry(String entry) {
         this.entry = entry;
@@ -107,7 +111,8 @@ public class Permission implements Serializable {
     /**
      * Sets the profiles.
      *
-     * @param profiles the new profiles
+     * @param profiles
+     *            the new profiles
      */
     public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
@@ -125,10 +130,16 @@ public class Permission implements Serializable {
     /**
      * Sets the labels.
      *
-     * @param labels the new labels
+     * @param labels
+     *            the new labels
      */
     public void setLabels(List<PermissionLabel> labels) {
         this.labels = labels;
+    }
+
+    @Override
+    public String toString() {
+        return "Permission [id=" + id + ", entry=" + entry + "]";
     }
 
 }

@@ -38,7 +38,7 @@
 				</h:panelGrid>
 
 			</p:panel>
-			<p:commandButton value="Save" update="panel"
+			<p:commandButton id="cmd-flash" value="Save" update="panel"
 				action="#{languageSaveView.save}" style="margin-right:20px;">
 				<c:setPropertyActionListener value="#{languageSaveView.language}"
 					target="#{languageSaveView.language}" />

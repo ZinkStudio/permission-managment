@@ -15,14 +15,14 @@ import fr.marseille.permissionmanagement.service.UserService;
  */
 @ManagedBean
 @SessionScoped
-public class UserSaveView implements Serializable {
+public class UserSaveView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long serialVersionUID = 1L;
 
     /** The user service. */
     private UserService       userService      = new UserService();
-    
+
     /** The user. */
     private User              user             = new User();
 
@@ -38,6 +38,8 @@ public class UserSaveView implements Serializable {
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
         user = null;
+
+        this.redirectWithMessages("userReadAll.jsf");
     }
 
     /**

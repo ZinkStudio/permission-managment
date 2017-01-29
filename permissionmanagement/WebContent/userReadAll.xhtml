@@ -54,18 +54,27 @@
 				<p:column headerText="#{msg['btn.update']}" width="30">
 					<p:commandButton id="buttonUpdate" action="userUpdate"
 						icon="fa fa-edit" title="#{msg['lbl.btn.update']}"
-						style="display:block;margin:0 auto;">
+						styleClass="commandButton">
 						<c:setPropertyActionListener value="#{user}"
-							target="#{userUpdateView.user}" />
+							target="#{userView.user}" />
 					</p:commandButton>
 				</p:column>
 				<!-- Delete User -->
 				<p:column headerText="#{msg['btn.delete']}" width="30">
 					<p:commandButton id="buttonDelete" update="@all"
-						actionListener="#{userDeleteView.delete(user.id)}"
-						icon="fa fa-remove" title="#{msg['lbl.btn.delete']}"
-						style="display:block;margin:0 auto;">
+						action="#{userView.delete}" icon="fa fa-remove"
+						title="#{msg['lbl.btn.delete']}" styleClass="commandButton">
+						<c:setPropertyActionListener value="#{user}"
+							target="#{userView.user}" />
+						<p:confirm header="Confirmation" message="Are you sure?"
+							icon="ui-icon-alert" />
 					</p:commandButton>
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>

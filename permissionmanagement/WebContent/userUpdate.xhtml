@@ -17,7 +17,7 @@
 				<p:messages id="messages" />
 				<h:panelGrid columns="3" cellpadding="8">
 					<p:outputLabel for="name" value="#{msg['label.name']}" />
-					<p:inputText id="name" value="#{userUpdateView.user.name}"
+					<p:inputText id="name" value="#{userView.user.name}"
 						required="true" label="name">
 						<c:validateLength minimum="2" />
 						<c:validator validatorId="noWhiteSpaceValidator" />
@@ -27,7 +27,7 @@
 
 					<p:outputLabel for="firstName" value="#{msg['label.firstname']}" />
 					<p:inputText id="firstName"
-						value="#{userUpdateView.user.firstName}" required="true"
+						value="#{userView.user.firstName}" required="true"
 						label="firstName">
 						<c:validator validatorId="noWhiteSpaceValidator" />
 						<c:validator validatorId="noSeparatorValidator" />
@@ -35,13 +35,13 @@
 					<p:message for="firstName" />
 
 					<p:outputLabel for="comment" value="#{msg['label.comment']}" />
-					<p:inputText id="comment" value="#{userUpdateView.user.comment}"
+					<p:inputText id="comment" value="#{userView.user.comment}"
 						required="false" label="comment" />
 					<p:message for="comment" />
 				</h:panelGrid>
 			</p:panel>
 			<p:commandButton value="#{msg['btn.update']}" update="panel"
-				actionListener="#{userUpdateView.update}" style="margin-right:20px;"
+				actionListener="#{userView.update}" style="margin-right:20px;"
 				title="#{msg['lbl.btn.update']}" />
 		</h:form>
 	</ui:define>
