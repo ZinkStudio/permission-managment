@@ -3,7 +3,7 @@ package fr.marseille.permissionmanagement.view;
 import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
@@ -14,7 +14,7 @@ import fr.marseille.permissionmanagement.service.UserService;
  * The Class UserSaveView.
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class UserSaveView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
@@ -37,7 +37,6 @@ public class UserSaveView extends BaseView implements Serializable {
                     new FacesMessage("Error while Saving User: " + e.getMessage()));
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
-        user = null;
 
         this.redirectWithMessages("userReadAll.jsf");
     }
