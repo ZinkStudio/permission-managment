@@ -60,7 +60,6 @@ public class LanguageView extends BaseView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + language.toString()));
 
         this.redirectWithMessages("languageIndex.jsf");
-
     }
 
     /**

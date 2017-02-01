@@ -1,6 +1,7 @@
 package fr.marseille.permissionmanagement.view;
 
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,7 +25,15 @@ public class UserSaveView extends BaseView implements Serializable {
     private UserService       userService      = new UserService();
 
     /** The user. */
-    private User              user             = new User();
+    private User              user;
+
+    /**
+     * Inits the.
+     */
+    @PostConstruct
+    public void init() {
+        user = new User();
+    }
 
     /**
      * Save.

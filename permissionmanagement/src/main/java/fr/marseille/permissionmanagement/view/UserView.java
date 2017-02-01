@@ -34,16 +34,16 @@ public class UserView extends BaseView implements Serializable {
     /**
      * Inits the.
      */
+    // @PostConstruct
     public void init() {
-        List<User> users = new ArrayList<>();
+        users = new ArrayList<User>();
 
         try {
             users = userService.findAll();
         } catch (ServiceException e) {
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Error while initializing : " + e.getMessage()));
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
-        this.users = users;
     }
 
     /**
@@ -53,9 +53,8 @@ public class UserView extends BaseView implements Serializable {
         try {
             userService.update(user);
         } catch (ServiceException e) {
-
-            FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Error while Updating the User : " + e.getMessage()));
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "User Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
         }
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + user.toString()));

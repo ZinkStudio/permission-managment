@@ -31,32 +31,15 @@
 		</h:form>
 
 		<h:form style="margin-left:400px;margin-right:400px">
-			<p:growl id="msg" showDetail="true" escape="false" />
 			<br />
 			<p:pickList id="pickList" value="#{userProfilesView.profiles}"
 				var="profiles" itemLabel="#{profiles}" itemValue="#{profiles}" />
 			<p:commandButton id="profileSubmit"
 				actionListener="#{userProfilesView.update}"
 				value="#{msg['btn.save']}" title="#{msg['lbl.btn.save']}"
-				update="displayProfiles" oncomplete="PF('profileDialog').show()"
 				style="margin-top:5px">
 			</p:commandButton>
 		</h:form>
 
-		<p:dialog modal="true" showEffect="fade" hideEffect="fade"
-			widgetVar="profileDialog">
-			<h:panelGrid id="displayProfiles" columns="2">
-				<h:outputText value="#{msg['lbl.dialogBox.source']}"
-					style="font-weight:bold" />
-				<ui:repeat value="#{userProfilesView.profiles.source}" var="item">
-					<h:outputText value="#{item}" style="margin-right:5px" />
-				</ui:repeat>
-				<h:outputText value="#{msg['lbl.dialogBox.target']}"
-					style="font-weight:bold" />
-				<ui:repeat value="#{userProfilesView.profiles.target}" var="item">
-					<h:outputText value="#{item}" style="margin-right:5px" />
-				</ui:repeat>
-			</h:panelGrid>
-		</p:dialog>
 	</ui:define>
 </ui:composition>

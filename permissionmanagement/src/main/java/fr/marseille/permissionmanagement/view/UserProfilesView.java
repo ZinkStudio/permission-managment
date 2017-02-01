@@ -7,21 +7,20 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.model.DualListModel;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.ProfileService;
+import fr.marseille.permissionmanagement.service.UserService;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class UserProfilesView.
  */
 @ManagedBean
-@SessionScoped
-public class UserProfilesView implements Serializable {
+public class UserProfilesView extends BaseView implements Serializable {
 
     /** The Constant serialVersionUID. */
     private static final long     serialVersionUID = 1L;
@@ -31,6 +30,9 @@ public class UserProfilesView implements Serializable {
 
     /** The profile service. */
     private ProfileService        profileService   = new ProfileService();
+
+    /** The user service. */
+    private UserService           userService      = new UserService();
 
     /** The user view. */
     @ManagedProperty("#{userView}")
@@ -44,6 +46,17 @@ public class UserProfilesView implements Serializable {
         List<String> profilesSource = new ArrayList<String>();
         List<String> profilesTarget = new ArrayList<String>();
         List<Profile> allProfiles = new ArrayList<Profile>();
+
+        User user;
+
+        try {
+            user = userService.find(userView.getUser().getId());
+            this.userView.setUser(user);
+
+        } catch (ServiceException e1) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Error while Getting User: " + e1.getMessage()));
+        }
 
         try {
             allProfiles = profileService.findAll();
@@ -62,6 +75,7 @@ public class UserProfilesView implements Serializable {
         }
 
         profileNames = new DualListModel<String>(profilesSource, profilesTarget);
+
     }
 
     /**
@@ -122,8 +136,12 @@ public class UserProfilesView implements Serializable {
             int profileId = Integer.parseInt(split[0]);
             Profile profile = profileService.find(profileId);
             profile.getUsers().add(user);
-            profileService.update(profile);
+            userView.getUser().getProfiles().add(profileService.update(profile));
         }
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User's profiles successfully updated."));
+
+        this.redirectWithMessages("userReadAll.jsf");
     }
 
 }

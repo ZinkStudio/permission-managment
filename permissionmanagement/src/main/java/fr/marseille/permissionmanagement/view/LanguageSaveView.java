@@ -38,16 +38,17 @@ public class LanguageSaveView extends BaseView implements Serializable {
     /**
      * Save.
      */
-    public void save() {
+    public String save() {
         try {
             service.save(language);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + language.toString()));
         } catch (ServiceException e) {
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Language Error", e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
 
-        this.redirectWithMessages("languageIndex.jsf");
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + language.toString()));
+
+        return "languageIndex.jsf";
     }
 
     /**
