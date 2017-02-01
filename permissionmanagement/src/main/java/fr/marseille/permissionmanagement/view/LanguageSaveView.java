@@ -38,7 +38,7 @@ public class LanguageSaveView extends BaseView implements Serializable {
     /**
      * Save.
      */
-    public String save() {
+    public void save() {
         try {
             service.save(language);
         } catch (ServiceException e) {
@@ -48,7 +48,22 @@ public class LanguageSaveView extends BaseView implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + language.toString()));
 
-        return "languageIndex.jsf";
+        this.redirectWithMessages("languageIndex.jsf");
+    }
+
+    /**
+     * @return the service
+     */
+    public LanguageService getService() {
+        return service;
+    }
+
+    /**
+     * @param service
+     *            the service to set
+     */
+    public void setService(LanguageService service) {
+        this.service = service;
     }
 
     /**

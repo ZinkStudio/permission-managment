@@ -1,50 +1,55 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <ui:composition template="index.xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:c="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
+
 	<ui:define name="title">
-		<h:outputText value="#{msg['label.title2']}" />
+		<h:outputText value="#{msg['profile.create.html.title']}" />
 	</ui:define>
+
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="#{msg['label.layout2']}" />
+		<h:outputText id="layoutTitle" value="#{msg['profile.layout.title']}" />
 	</ui:define>
+
+	<ui:define name="backLink">
+		<p:link value="#{msg['profile.create.breadcrumb']}" outcome="profileIndex"
+			styleClass="backLink" />
+	</ui:define>
+
 	<ui:define name="content">
+
 		<c:loadBundle var="msg" basename="messages" />
+
 		<h:form id="formProfile">
-			<p:panelGrid columns="2" cellpadding="5">
-				<p:panel id="panel" header="#{msg['label.header2']}"
-					style="font-size:20px;margin-bottom:10px;">
-					<p:messages id="messages" />
+			<p:panel id="panel" header="#{msg['profile.create.form.header']} : "
+				style="font-size:20px;margin-bottom:10px;">
+				<p:messages id="messages" />
 
-					<h:panelGrid columns="3" cellpadding="5">
-						<p:outputLabel for="name" value="#{msg['label.name']}" />
-						<p:inputText id="name" value="#{profileSaveView.profile.name}"
-							required="true" label="name">
-							<c:validateLength minimum="2" />
-							<c:validator validatorId="noWhiteSpaceValidator" />
-							<c:validator validatorId="noSeparatorValidator" />
-						</p:inputText>
-						<p:message for="name" />
+				<h:panelGrid columns="3" cellpadding="5">
+					<p:outputLabel for="name" value="#{msg['profile.create.form.label.name']}" />
+					<p:inputText id="name" value="#{profileSaveView.profile.name}"
+						required="true" label="name">
+						<c:validateLength minimum="2" />
+						<c:validator validatorId="noWhiteSpaceValidator" />
+						<c:validator validatorId="noSeparatorValidator" />
+					</p:inputText>
+					<p:message for="name" />
 
-						<p:outputLabel for="description"
-							value="#{msg['label.description']}" />
-						<p:inputText id="description"
-							value="#{profileSaveView.profile.description}"
-							label="description" />
-						<p:message for="description" />
+					<p:outputLabel for="description"
+						value="#{msg['profile.create.form.label.description']}" />
+					<p:inputText id="description"
+						value="#{profileSaveView.profile.description}" label="description" />
+					<p:message for="description" />
 
-					</h:panelGrid>
-				</p:panel>
-			</p:panelGrid>
-			<p:toolbar>
-				<c:facet name="left">
-					<p:commandButton value="#{msg['btn.save']}" update="panel"
-						actionListener="#{profileSaveView.save}" />
-				</c:facet>
-			</p:toolbar>
-
+				</h:panelGrid>
+			</p:panel>
+			<p:commandButton id="cmd-flash" value="#{msg['profile.create.form.command.submit']}"
+				update="panel" action="#{profileSaveView.save}">
+				<c:setPropertyActionListener value="#{profileSaveView.profile}"
+					target="#{profileSaveView.profile}" />
+			</p:commandButton>
 		</h:form>
+
 	</ui:define>
 </ui:composition>

@@ -1,8 +1,10 @@
 package fr.marseille.permissionmanagement.view;
 
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
@@ -13,24 +15,40 @@ import fr.marseille.permissionmanagement.service.ProfileService;
  * The Class ProfileSaveView.
  */
 @ManagedBean
-@ViewScoped
-public class ProfileSaveView {
-    
+@RequestScoped
+public class ProfileSaveView extends BaseView implements Serializable {
+
+    /** The Constant serialVersionUID. */
+    private static final long serialVersionUID = 1L;
+
     /** The profile service. */
-    private ProfileService profileService = new ProfileService();
-    
+    private ProfileService    profileService   = new ProfileService();
+
     /** The profile. */
-    private Profile        profile        = new Profile();
+    private Profile           profile;
+
+    /**
+     * Inits the.
+     */
+    @PostConstruct
+    public void init() {
+        profile = new Profile();
+    }
 
     /**
      * Save.
-     *
-     * @throws ServiceException the service exception
      */
     public void save() throws ServiceException {
-        profileService.save(profile);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
+        try {
+            profileService.save(profile);
+        } catch (ServiceException e) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Error", e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
 
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + profile.toString()));
+
+        this.redirectWithMessages("profileIndex.jsf");
     }
 
     /**
@@ -45,7 +63,8 @@ public class ProfileSaveView {
     /**
      * Sets the profile service.
      *
-     * @param profileService the new profile service
+     * @param profileService
+     *            the new profile service
      */
     public void setProfileService(ProfileService profileService) {
         this.profileService = profileService;
@@ -63,18 +82,11 @@ public class ProfileSaveView {
     /**
      * Sets the profile.
      *
-     * @param profile the new profile
+     * @param profile
+     *            the new profile
      */
     public void setProfile(Profile profile) {
         this.profile = profile;
-    }
-
-    /**
-     * Instantiates a new profile save view.
-     */
-    public ProfileSaveView() {
-        super();
-
     }
 
 }

@@ -73,7 +73,7 @@ public class LanguageView extends BaseView implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage("Language " + language.getId() + " deleted"));
+                new FacesMessage("Language Deleted : " + language.toString()));
     }
 
     /**

@@ -11,20 +11,27 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="Listing Languages" />
 	</ui:define>
-	
+
 	<ui:define name="backLink">
-		<p:link value="List Languages" outcome="languageIndex" styleClass="backLink" />
+		<p:link value="List Languages" outcome="languageIndex"
+			styleClass="backLink" />
 	</ui:define>
-	
+
 	<ui:define name="content">
+
+		<c:loadBundle var="msg" basename="messages" />
+
 		<div style="width: 100%; height: 50px;">
 			<p:commandButton style="float:right;" value="Create a New Language"
-				icon="ui-icon-star" title="Create a New Language?" action="languageCreate">
+				icon="ui-icon-star" title="Create a New Language?"
+				action="languageCreate">
 			</p:commandButton>
 		</div>
-		
+
 		<h:form id="form">
+		
 			<p:messages id="messages" />
+			
 			<p:dataTable id="languageView" var="language"
 				value="#{languageView.languages}" rows="10" paginator="true"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -43,7 +50,8 @@
 				</p:column>
 
 				<p:column headerText="isDefault">
-					<h:outputText title="#{language.isDefault}" value="#{language.isDefault}" />
+					<h:outputText title="#{language.isDefault}"
+						value="#{language.isDefault}" />
 				</p:column>
 
 				<!-- Redirection to userUpdate -->
@@ -57,16 +65,20 @@
 				</p:column>
 
 				<p:column headerText="Delete" styleClass="commandColumn">
-					<p:commandButton id="btnDelete"
-						action="#{languageView.delete}"
-						icon="fa fa-remove" title="Delete Language ?" update="@all" styleClass="commandButton">
-					<c:setPropertyActionListener value="#{language}" target="#{languageView.language}" />
-					<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-					</p:commandButton>					
+					<p:commandButton id="btnDelete" action="#{languageView.delete}"
+						icon="fa fa-remove" title="Delete Language ?" update="@all"
+						styleClass="commandButton">
+						<c:setPropertyActionListener value="#{language}"
+							target="#{languageView.language}" />
+						<p:confirm header="Confirmation" message="Are you sure?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			    	</p:confirmDialog>
+						<p:commandButton value="Yes" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="No" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 				</p:column>
 			</p:dataTable>
 		</h:form>

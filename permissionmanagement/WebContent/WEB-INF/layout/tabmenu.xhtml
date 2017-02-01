@@ -4,22 +4,22 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<p:tabMenu activeIndex="#{param.index}">
-		<p:menuitem value="Users" outcome="userReadAll" icon="ui-icon-star">
+		<p:menuitem value="#{msg['home.navigation.users']}" outcome="userReadAll" icon="ui-icon-star">
 			<c:param name="index" value="0" />
 		</p:menuitem>
-		<p:menuitem value="Profiles" outcome="profileIndex"
+		<p:menuitem value="#{msg['home.navigation.profiles']}" outcome="profileIndex"
 			icon="ui-icon-search">
 			<c:param name="index" value="1" />
 		</p:menuitem>
-		<p:menuitem value="Permissions" outcome="permissionIndex"
+		<p:menuitem value="#{msg['home.navigation.permissions']}" outcome="permissionIndex"
 			icon="ui-icon-document">
 			<c:param name="index" value="2" />
 		</p:menuitem>
-		<p:menuitem value="Languages" outcome="languageIndex"
+		<p:menuitem value="#{msg['home.navigation.languages']}" outcome="languageIndex"
 			icon="ui-icon-document">
 			<c:param name="index" value="3" />
 		</p:menuitem>
-		<p:menuitem value="Labels" outcome="labelIndex"
+		<p:menuitem value="#{msg['home.navigation.labels']}" outcome="labelIndex"
 			icon="ui-icon-document">
 			<c:param name="index" value="3" />
 		</p:menuitem>
