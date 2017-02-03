@@ -9,6 +9,11 @@
 	<ui:define name="headerTitle">
 		<h:outputText id="layoutTitle" value="#{msg['label.layout1']}" />
 	</ui:define>
+	
+	<ui:define name="backLink">
+		<p:menuitem value="List Users" outcome="home" />
+	</ui:define>
+	
 	<ui:define name="content">
 		<c:loadBundle var="msg" basename="messages" />
 		<h:form id="formUserUpdate">

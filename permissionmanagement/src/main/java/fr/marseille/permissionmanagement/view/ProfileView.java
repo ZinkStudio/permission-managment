@@ -43,8 +43,8 @@ public class ProfileView extends BaseView implements Serializable {
         try {
             profiles = service.findAll();
         } catch (ServiceException e) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Error", e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    getBundleValue("profile.index.message.error"), e.getMessage()));
         }
     }
 
@@ -56,12 +56,12 @@ public class ProfileView extends BaseView implements Serializable {
             service.update(profile);
         } catch (ServiceException e) {
             JPAUtil.closeAll();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error while updating the profile",
-                    e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    getBundleValue("profile.update.message.error"), e.getMessage()));
         }
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + profile.toString()));
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(getBundleValue("profile.update.message.success") + profile.toString()));
 
         this.redirectWithMessages("profileIndex.jsf");
     }
@@ -74,11 +74,11 @@ public class ProfileView extends BaseView implements Serializable {
             service.delete(profile.getId());
         } catch (ServiceException e) {
             JPAUtil.closeAll();
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error while deleting the profile",
-                    e.getMessage());
-            FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    getBundleValue("profile.delete.message.error"), e.getMessage()));
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Profile Deleted : " + profile.toString()));
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(getBundleValue("profile.delete.message.success") + profile.toString()));
     }
 
     /**

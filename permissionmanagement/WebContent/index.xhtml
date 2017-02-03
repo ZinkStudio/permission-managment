@@ -29,21 +29,20 @@
 	<ui:insert name="header">
 		<ui:include src="./WEB-INF/layout/header.xhtml" />
 	</ui:insert>
+	
 	<div style="margin:0 auto;max-width: 1200px;">
 	
-	<div class="breadCrumb">
-		<ui:include src="./WEB-INF/layout/homeLink.xhtml" />	
-		<ui:insert name="backLink"><p:spacer /></ui:insert>
+ 	<div class="breadCrumb">
+		<p:breadCrumb>
+			<p:menuitem value="#{msg['home.breadcrumb']}" outcome="home" />
+			<ui:insert name="backLink"></ui:insert>
+		</p:breadCrumb>
 	</div>
 	
 	<ui:insert name="content"></ui:insert>
 	
-	<div class="breadCrumb">
-		<ui:include src="./WEB-INF/layout/homeLink.xhtml" />	
-		<ui:insert name="backLink"><p:spacer /></ui:insert>
 	</div>
 	
-	</div>
 	<ui:insert name="footer">
 		<ui:include src="./WEB-INF/layout/footer.xhtml" />
 	</ui:insert>

@@ -13,8 +13,8 @@
 	</ui:define>
 
 	<ui:define name="backLink">
-		<p:link value="#{msg['profile.create.breadcrumb']}" outcome="profileIndex"
-			styleClass="backLink" />
+		<p:menuitem value="#{msg['home.breadcrumb.profile.index']}"
+			outcome="profileIndex" />
 	</ui:define>
 
 	<ui:define name="content">
@@ -27,7 +27,8 @@
 				<p:messages id="messages" />
 
 				<h:panelGrid columns="3" cellpadding="5">
-					<p:outputLabel for="name" value="#{msg['profile.create.form.label.name']}" />
+					<p:outputLabel for="name"
+						value="#{msg['profile.create.form.label.name']}" />
 					<p:inputText id="name" value="#{profileSaveView.profile.name}"
 						required="true" label="name">
 						<c:validateLength minimum="2" />
@@ -44,8 +45,10 @@
 
 				</h:panelGrid>
 			</p:panel>
-			<p:commandButton id="cmd-flash" value="#{msg['profile.create.form.command.submit']}"
-				update="panel" action="#{profileSaveView.save}">
+			<p:commandButton id="cmd-flash" update="panel"
+				value="#{msg['profile.create.form.command.submit']}"
+				title="#{msg['profile.create.form.command.submit']}"
+				action="#{profileSaveView.save}">
 				<c:setPropertyActionListener value="#{profileSaveView.profile}"
 					target="#{profileSaveView.profile}" />
 			</p:commandButton>

@@ -42,11 +42,13 @@ public class ProfileSaveView extends BaseView implements Serializable {
         try {
             profileService.save(profile);
         } catch (ServiceException e) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Error", e.getMessage());
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    getBundleValue("profile.create.message.error"), e.getMessage());
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
 
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved : " + profile.toString()));
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(getBundleValue("profile.create.message.success") + profile.toString()));
 
         this.redirectWithMessages("profileIndex.jsf");
     }
