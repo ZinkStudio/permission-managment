@@ -26,21 +26,23 @@
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" />
 
-				<h:panelGrid columns="3" cellpadding="5">
+				<h:panelGrid columns="3" cellpadding="5" style="margin-bottom:10px">
+
 					<p:outputLabel for="name"
 						value="#{msg['profile.create.form.label.name']}" />
 					<p:inputText id="name" value="#{profileSaveView.profile.name}"
-						required="true" label="name">
+						required="true" label="name"
+						placeholder="#{msg['profile.create.form.placeholder.name']}">
 						<c:validateLength minimum="2" />
 						<c:validator validatorId="noWhiteSpaceValidator" />
 						<c:validator validatorId="noSeparatorValidator" />
 					</p:inputText>
 					<p:message for="name" />
-
 					<p:outputLabel for="description"
 						value="#{msg['profile.create.form.label.description']}" />
 					<p:inputText id="description"
-						value="#{profileSaveView.profile.description}" label="description" />
+						value="#{profileSaveView.profile.description}" label="description"
+						placeholder="#{msg['profile.create.form.placeholder.description']}" />
 					<p:message for="description" />
 
 				</h:panelGrid>

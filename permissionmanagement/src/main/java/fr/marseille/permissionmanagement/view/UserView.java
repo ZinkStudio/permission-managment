@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.User;
 import fr.marseille.permissionmanagement.service.UserService;
+import fr.marseille.permissionmanagement.util.constants.Url;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -59,7 +60,7 @@ public class UserView extends BaseView implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Updated : " + user.toString()));
 
-        this.redirectWithMessages("userReadAll.jsf");
+        this.redirectWithMessages(Url.HOME);
     }
 
     /**

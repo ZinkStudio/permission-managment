@@ -9,6 +9,11 @@ import org.primefaces.context.RequestContext;
 
 public abstract class BaseView implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     protected String getBundleValue(String key) {
         FacesContext context = FacesContext.getCurrentInstance();
         ResourceBundle text = ResourceBundle.getBundle("messages", context.getViewRoot().getLocale());

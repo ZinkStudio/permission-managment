@@ -5,51 +5,60 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="title">
-		<h:outputText value="#{msg['label.title1']}" />
+		<h:outputText value="#{msg['user.create.html.title']}" />
 	</ui:define>
+
 	<ui:define name="headerTitle">
-		<h:outputText id="layoutTitle" value="#{msg['label.layout1']}" />
+		<h:outputText id="layoutTitle" value="#{msg['user.layout.title']}" />
 	</ui:define>
-	
+
 	<ui:define name="backLink">
-		<p:menuitem value="List Users" outcome="home" />
+		<p:menuitem value="#{msg['home.breadcrumb.user.index']}"
+			outcome="home" />
 	</ui:define>
-	
+
 	<ui:define name="content">
 
 		<c:loadBundle var="msg" basename="messages" />
 		<h:form id="formUser">
-			<p:panel id="panel" header="#{msg['label.header1']}"
+			<p:panel id="panel" header="#{msg['user.create.form.header']}"
 				style="font-size:20px;margin-bottom:10px;">
 				<p:messages id="messages" />
 				<h:panelGrid columns="3" cellpadding="5">
-					<p:outputLabel for="name" value="#{msg['label.name']}" />
+					<p:outputLabel for="name"
+						value="#{msg['user.create.form.label.name']}" />
 					<p:inputText id="name" value="#{userSaveView.user.name}"
-						required="true" label="name">
+						required="true" label="name"
+						placeholder="#{msg['user.create.form.placeholder.name']}">
 						<c:validator validatorId="noWhiteSpaceValidator" />
 						<c:validator validatorId="noSeparatorValidator" />
 						<c:validateLength minimum="2" />
 					</p:inputText>
 					<p:message for="name" />
 
-					<p:outputLabel for="firstName" value="#{msg['label.firstname']}" />
+					<p:outputLabel for="firstName"
+						value="#{msg['user.create.form.label.firstname']}" />
 					<p:inputText id="firstName" value="#{userSaveView.user.firstName}"
-						required="true" validator="noWhiteSpaceValidator"
-						label="firstName">
+						required="true" label="firstName"
+						placeholder="#{msg['user.create.form.placeholder.firstname']}">
 						<c:validator validatorId="noWhiteSpaceValidator" />
 						<c:validator validatorId="noSeparatorValidator" />
-						<p:message for="firstName" />
 					</p:inputText>
-					<br />
-					<p:outputLabel for="comment" value="#{msg['label.comment']}" />
+					<p:message for="firstName" />
+
+					<p:outputLabel for="comment"
+						value="#{msg['user.create.form.label.comment']}" />
 					<p:inputText id="comment" value="#{userSaveView.user.comment}"
-						required="false" label="comment" />
+						required="false" label="comment"
+						placeholder="#{msg['user.create.form.placeholder.comment']}" />
 					<p:message for="comment" />
 				</h:panelGrid>
 
 			</p:panel>
-			<p:commandButton value="#{msg['btn.save']}" update="panel"
-				actionListener="#{userSaveView.save}" style="margin-right:20px;" />
+			<p:commandButton id="cmd-flash" update="panel"
+				value="#{msg['user.create.form.command.submit']}"
+				title="#{msg['user.create.form.command.submit']}"
+				actionListener="#{userSaveView.save}" />
 		</h:form>
 
 	</ui:define>

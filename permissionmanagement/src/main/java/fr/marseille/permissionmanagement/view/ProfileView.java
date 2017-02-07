@@ -11,6 +11,7 @@ import fr.marseille.permissionmanagement.exception.ServiceException;
 import fr.marseille.permissionmanagement.model.Profile;
 import fr.marseille.permissionmanagement.service.ProfileService;
 import fr.marseille.permissionmanagement.util.JPAUtil;
+import fr.marseille.permissionmanagement.util.constants.Url;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -63,7 +64,7 @@ public class ProfileView extends BaseView implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(getBundleValue("profile.update.message.success") + profile.toString()));
 
-        this.redirectWithMessages("profileIndex.jsf");
+        this.redirectWithMessages(Url.PROFILE_INDEX);
     }
 
     /**

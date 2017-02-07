@@ -20,15 +20,19 @@ import fr.marseille.permissionmanagement.service.ProfileService;
  * The Class ProfilePermissionView.
  */
 @ManagedBean
-
 public class ProfilePermissionView implements Serializable {
-    
+
+    /**
+     * 
+     */
+    private static final long     serialVersionUID  = 1L;
+
     /** The permission names. */
     private DualListModel<String> permissionNames   = new DualListModel<String>();
-    
+
     /** The permission service. */
     private PermissionService     permissionService = new PermissionService();
-    
+
     /** The profile service. */
     private ProfileService        profileService    = new ProfileService();
 
@@ -76,7 +80,8 @@ public class ProfilePermissionView implements Serializable {
     /**
      * Sets the permission names.
      *
-     * @param permissionNames the new permission names
+     * @param permissionNames
+     *            the new permission names
      */
     public void setPermissionNames(DualListModel<String> permissionNames) {
         this.permissionNames = permissionNames;
@@ -94,7 +99,8 @@ public class ProfilePermissionView implements Serializable {
     /**
      * Sets the permission service.
      *
-     * @param permissionService the new permission service
+     * @param permissionService
+     *            the new permission service
      */
     public void setPermissionService(PermissionService permissionService) {
         this.permissionService = permissionService;
@@ -112,7 +118,8 @@ public class ProfilePermissionView implements Serializable {
     /**
      * Sets the profile view.
      *
-     * @param profileView the new profile view
+     * @param profileView
+     *            the new profile view
      */
     public void setProfileView(ProfileView profileView) {
         this.profileView = profileView;
@@ -121,7 +128,8 @@ public class ProfilePermissionView implements Serializable {
     /**
      * Update.
      *
-     * @throws ServiceException the service exception
+     * @throws ServiceException
+     *             the service exception
      */
     public void update() throws ServiceException {
         Profile profile = profileView.getProfile();
