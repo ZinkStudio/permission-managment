@@ -26,9 +26,16 @@
 		<!-- louiza -->
 		<navigation-case>
 			<from-outcome>home</from-outcome>
-			<to-view-id>/userReadAll.xhtml</to-view-id>
+			<to-view-id>/userIndex.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>userIndex</from-outcome>
+			<to-view-id>/userIndex.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
 		<navigation-case>
 			<from-outcome>userUpdate</from-outcome>
 			<to-view-id>/userUpdate.xhtml</to-view-id>
@@ -43,13 +50,13 @@
 
 		<navigation-case>
 			<from-outcome>userDelete</from-outcome>
-			<to-view-id>/userReadAll.xhtml</to-view-id>
+			<to-view-id>/userIndex.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
 		<navigation-case>
-			<from-outcome>userAllProfiles</from-outcome>
-			<to-view-id>/userAllProfiles.xhtml</to-view-id>
+			<from-outcome>userProfiles</from-outcome>
+			<to-view-id>/userProfiles.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 

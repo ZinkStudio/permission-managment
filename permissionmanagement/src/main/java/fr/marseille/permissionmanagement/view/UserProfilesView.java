@@ -141,7 +141,7 @@ public class UserProfilesView extends BaseView implements Serializable {
 
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("User's profiles successfully updated."));
 
-        this.redirectWithMessages("userReadAll.jsf");
+        this.redirectWithMessages("userIndex.jsf");
     }
 
 }

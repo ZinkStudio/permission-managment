@@ -47,7 +47,7 @@ public class UserSaveView extends BaseView implements Serializable {
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data Saved"));
 
-        this.redirectWithMessages("userReadAll.jsf");
+        this.redirectWithMessages("userIndex.jsf");
     }
 
     /**

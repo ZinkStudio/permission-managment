@@ -6,7 +6,7 @@ public final class Url {
     public static final String PROFILE_CREATE      = "profileCreate.jsf";
     public static final String PROFILE_UDPATE      = "profileUpdate.jsf";
 
-    public static final String HOME                = "userReadAll.jsf";
+    public static final String HOME                = "userIndex.jsf";
     public static final String USER_CREATE         = "userCreate.jsf";
     public static final String USER_UPDATE         = "userUpdate.jsf";
     public static final String USER_PROFILES       = "userAllProfiles.jsf";
